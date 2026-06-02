@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Know Your Customers — FreeUp Storage</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #142F54;
+    --navy-mid: #1a3d6b;
+    --red: #E23B30;
+    --red-light: #fdf0ef;
+    --mid-gray: #ADAFB2;
+    --gray-50: #f7f7f8;
+    --gray-100: #efefef;
+    --gray-200: #e0e0e2;
+    --gray-600: #6b6d70;
+    --black: #111111;
+    --white: #ffffff;
+    --form-max: 860px;
+    --radius: 4px;
+    --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.07);
+    --display: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  html { font-size: 15px; }
+
+  body {
+    font-family: var(--body);
+    background: #e8eaed;
+    color: var(--black);
+    min-height: 100vh;
+    padding: 0 0 80px;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--navy);
+    padding: 0 32px;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,.35);
+    border-bottom: 3px solid var(--red);
+  }
+  .header-text {
+    padding: 16px 0;
+  }
+  .header-text h1 {
+    font-family: var(--display);
+    font-size: 1.45rem;
+    color: white;
+    font-weight: 400;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .header-text p {
+    font-size: .68rem;
+    color: var(--mid-gray);
+    font-weight: 400;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .header-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    border-radius: var(--radius);
+    font-family: var(--body);
+    font-size: .78rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all .15s;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .btn-ghost {
+    background: rgba(255,255,255,.08);
+    color: rgba(255,255,255,.8);
+    border: 1px solid rgba(255,255,255,.2);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,.15); }
+  .btn-primary {
+    background: var(--red);
+    color: white;
+    box-shadow: 0 2px 8px rgba(226,59,48,.4);
+  }
+  .btn-primary:hover { background: #c82e24; transform: translateY(-1px); }
+
+  /* ── Progress bar ── */
+  .progress-wrap {
+    background: var(--navy-mid);
+    padding: 10px 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .progress-bar {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,.12);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--red);
+    border-radius: 2px;
+    width: 0%;
+    transition: width .4s ease;
+  }
+  .progress-label {
+    font-size: .68rem;
+    color: var(--mid-gray);
+    white-space: nowrap;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  /* ── Form container ── */
+  .form-container {
+    max-width: var(--form-max);
+    margin: 32px auto;
+    padding: 0 20px;
+  }
+
+  /* ── Intro card ── */
+  .intro-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--red);
+  }
+  .intro-card h2 {
+    font-family: var(--display);
+    font-size: 2.2rem;
+    color: var(--navy);
+    font-weight: 400;
+    margin-bottom: 4px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    line-height: 1.05;
+  }
+  .intro-card .subtitle {
+    font-size: .68rem;
+    color: var(--mid-gray);
+    font-weight: 600;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+  }
+  .intro-card p {
+    font-size: .88rem;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+
+  /* ── Section card ── */
+  .section-card {
+    background: white;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .section-header {
+    background: var(--navy);
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-num {
+    background: var(--red);
+    color: white;
+    font-size: .62rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 2px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    font-family: var(--body);
+  }
+  .section-header h3 {
+    font-family: var(--display);
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 400;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .section-body { padding: 28px; }
+
+  /* ── Question ── */
+  .question {
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .question:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+  .q-label {
+    font-weight: 700;
+    font-size: .9rem;
+    color: var(--navy);
+    margin-bottom: 4px;
+    line-height: 1.5;
+    letter-spacing: .01em;
+  }
+  .q-hint {
+    font-size: .76rem;
+    color: var(--mid-gray);
+    margin-bottom: 14px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* ── Text inputs ── */
+  input[type="text"], input[type="date"], input[type="number"], textarea, select {
+    width: 100%;
+    font-family: var(--body);
+    font-size: .88rem;
+    color: var(--black);
+    background: var(--gray-50);
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+    -webkit-appearance: none;
+  }
+  input[type="text"]:focus, input[type="date"]:focus,
+  input[type="number"]:focus, textarea:focus, select:focus {
+    border-color: var(--navy);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(20,47,84,.1);
+  }
+  textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+  input[type="number"] { width: 100px; }
+
+  .input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 560px) { .input-row { grid-template-columns: 1fr; } }
+
+  .input-with-suffix {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .input-with-suffix input { width: 90px; }
+  .input-with-suffix span { font-size: .85rem; color: var(--gray-600); font-weight: 500; }
+
+  /* ── Checkboxes & Radios ── */
+  .check-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 20px;
+  }
+  .check-grid.single-col { grid-template-columns: 1fr; }
+  @media (max-width: 560px) { .check-grid { grid-template-columns: 1fr; } }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--gray-200);
+    background: var(--gray-50);
+    transition: all .12s;
+    user-select: none;
+    min-height: 40px;
+  }
+  .check-item:hover { border-color: var(--navy); background: #f0f3f8; }
+  .check-item input[type="checkbox"],
+  .check-item input[type="radio"] {
+    width: 16px; height: 16px;
+    accent-color: var(--red);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .check-item span { font-size: .85rem; line-height: 1.4; }
+  .check-item.checked { border-color: var(--navy); background: #f0f3f8; }
+
+  .other-inline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--gray-200);
+    background: var(--gray-50);
+  }
+  .other-inline input[type="checkbox"] {
+    width: 16px; height: 16px;
+    accent-color: var(--red);
+    flex-shrink: 0;
+  }
+  .other-inline span { font-size: .85rem; flex-shrink: 0; }
+  .other-inline input[type="text"] {
+    flex: 1;
+    min-width: 0;
+    padding: 4px 8px;
+    font-size: .83rem;
+    background: white;
+  }
+
+  /* ── Grid tables ── */
+  .grid-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+  .grid-table th {
+    text-align: center;
+    font-weight: 600;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--gray-600);
+    padding: 10px 8px;
+    border-bottom: 2px solid var(--gray-200);
+    background: var(--gray-50);
+  }
+  .grid-table th:first-child { text-align: left; padding-left: 12px; }
+  .grid-table td {
+    padding: 9px 8px;
+    border-bottom: 1px solid var(--gray-100);
+    text-align: center;
+    vertical-align: middle;
+  }
+  .grid-table td:first-child {
+    text-align: left;
+    padding-left: 12px;
+    font-size: .83rem;
+    color: var(--black);
+  }
+  .grid-table tr:last-child td { border-bottom: none; }
+  .grid-table tr:hover td { background: var(--gray-50); }
+  .grid-table input[type="checkbox"] {
+    width: 16px; height: 16px;
+    accent-color: var(--red);
+    cursor: pointer;
+  }
+  .grid-table input[type="radio"] {
+    width: 16px; height: 16px;
+    accent-color: var(--red);
+    cursor: pointer;
+  }
+  .grid-table input[type="text"] {
+    width: 100%;
+    min-width: 80px;
+    padding: 5px 8px;
+    font-size: .8rem;
+  }
+
+  /* ── Rank inputs ── */
+  .rank-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 20px;
+  }
+  @media (max-width: 560px) { .rank-grid { grid-template-columns: 1fr; } }
+
+  .rank-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--gray-200);
+    background: var(--gray-50);
+  }
+  .rank-input {
+    width: 44px !important;
+    text-align: center;
+    font-weight: 700;
+    color: var(--red);
+    flex-shrink: 0;
+    padding: 4px 6px !important;
+    font-size: .85rem !important;
+    background: white !important;
+  }
+  .rank-item span { font-size: .85rem; }
+
+  /* ── Competitor table ── */
+  .comp-table { width: 100%; border-collapse: collapse; }
+  .comp-table th {
+    text-align: left;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--gray-600);
+    font-weight: 600;
+    padding: 8px 10px;
+    border-bottom: 2px solid var(--gray-200);
+    background: var(--gray-50);
+  }
+  .comp-table td { padding: 6px 6px; border-bottom: 1px solid var(--gray-100); }
+  .comp-table td:first-child { padding-left: 10px; width: 28px; color: var(--mid-gray); font-weight: 600; font-size: .8rem; }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table input[type="text"] { padding: 7px 10px; font-size: .82rem; }
+  .comp-table select { padding: 7px 10px; font-size: .82rem; }
+
+  /* ── Submit area ── */
+  .submit-area {
+    background: white;
+    border-radius: 10px;
+    padding: 28px 36px;
+    margin-top: 8px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .submit-area p { font-size: .8rem; color: var(--mid-gray); flex: 1; min-width: 200px; }
+  .btn-submit {
+    background: var(--navy);
+    color: white;
+    padding: 12px 28px;
+    font-size: .78rem;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: var(--body);
+    transition: all .15s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .btn-submit:hover { background: var(--red); transform: translateY(-1px); }
+  .btn-print {
+    background: transparent;
+    color: var(--gray-600);
+    padding: 12px 20px;
+    font-size: .78rem;
+    font-weight: 600;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: var(--body);
+    transition: all .15s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .btn-print:hover { border-color: var(--navy); color: var(--navy); }
+
+  /* ── Confidential badge ── */
+  .confidential {
+    text-align: center;
+    font-size: .72rem;
+    color: var(--mid-gray);
+    margin-top: 32px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  /* ── Toast ── */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--navy);
+    color: white;
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    font-size: .82rem;
+    font-weight: 500;
+    letter-spacing: .02em;
+    box-shadow: 0 4px 20px rgba(0,0,0,.3);
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all .3s cubic-bezier(.34,1.56,.64,1);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-left: 3px solid var(--red);
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ── Print styles ── */
+  @media print {
+    body { background: white; padding: 0; font-size: 11px; }
+    .site-header, .progress-wrap, .header-actions, .btn, .submit-area, .toast { display: none !important; }
+    .form-container { max-width: 100%; margin: 0; padding: 10px; }
+    .section-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; margin-bottom: 12px; }
+    .section-header { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .check-item, .rank-item, .other-inline { border: 1px solid #ccc; }
+    textarea { min-height: 50px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="header-text">
+    <h1>FreeUp Storage</h1>
+    <p>Internal &nbsp;·&nbsp; Confidential</p>
+  </div>
+  <div class="header-actions">
+    <button class="btn btn-ghost" onclick="printForm()">🖨 Print / Save PDF</button>
+    <button class="btn btn-primary" onclick="submitForm()">Submit Form</button>
+  </div>
+</header>
+
+<!-- Progress -->
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <span class="progress-label" id="progressLabel">0 of 55 answered</span>
+</div>
+
+<div class="form-container">
+  <!-- Intro -->
+  <div class="intro-card">
+    <div class="subtitle">Store Manager Questionnaire</div>
+    <h2>Know Your<br>Customers</h2>
+    <p style="margin-top:14px">This questionnaire helps the marketing department understand customers by facility, market, and region. There are no wrong answers. Please use your honest day-to-day observations. If you are not sure, your best estimate is fine.</p>
+  </div>
+
+  <form id="kycForm" novalidate>
+
+  <!-- ═══ SECTION 1 ═══ -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 1</span>
+      <h3>Facility &amp; Market Context</h3>
+    </div>
+    <div class="section-body">
+
+      <div class="question" data-q="1">
+        <div class="q-label">1. Facility name / location</div>
+        <div class="q-hint">If you manage multiple facilities, please fill out a separate form for each facility.</div>
+        <input type="text" name="q1" placeholder="e.g. FreeUp Storage – Mesa, AZ">
+      </div>
+
+      <div class="question" data-q="2">
+        <div class="q-label">2. Your name</div>
+        <input type="text" name="q2" placeholder="Full name">
+      </div>
+
+      <div class="question" data-q="3">
+        <div class="q-label">3. Date</div>
+        <input type="date" name="q3" style="width:200px">
+      </div>
+
+      <div class="question" data-q="4">
+        <div class="q-label">4. How long have you managed this facility?</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="radio" name="q4" value="less_6mo"><span>Less than 6 months</span></label>
+          <label class="check-item"><input type="radio" name="q4" value="6mo_1yr"><span>6 months to 1 year</span></label>
+          <label class="check-item"><input type="radio" name="q4" value="1_3yr"><span>1–3 years</span></label>
+          <label class="check-item"><input type="radio" name="q4" value="3plus"><span>3+ years</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-q="5">
+        <div class="q-label">5. About how many tenants do you have right now?</div>
+        <input type="number" name="q5" placeholder="e.g. 250" min="0">
+      </div>
+
+      <div class="question" data-q="6">
+        <div class="q-label">6. What best describes your market?</div>
+        <div class="q-hint">Select the best fit. If more than one applies, check all that apply.</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="q6" value="urban"><span>Urban</span></label>
+          <label class="check-item"><input type="checkbox" name="q6" value="dense_suburban"><span>Dense suburban</span></label>
+          <label class="check-item"><input type="checkbox" name="q6" value="standard_suburban"><span>Standard suburban</span></label>
+          <label class="check-item"><input type="checkbox" name="q6" value="rural"><span>Rural</span></label>
+          <label class="check-item"><input type="checkbox" name="q6" value="college_town"><span>College town</span></label>
+          <label class="check-item"><input type="checkbox" name="q6" value="military_town"><span>Military town</span></label>
+          <label class="check-item"><input type="checkbox" name="q6" value="vacation_seasonal"><span>Vacation / seasonal market</span></label>
+        </div>
+        <div class="other-inline" style="margin-top:8px">
+          <input type="checkbox" name="q6" value="other">
+          <span>Other:</span>
+          <input type="text" name="q6_other" placeholder="Describe…">
+        </div>
+      </div>
+
+      <div class="question" data-q="7">
+        <div class="q-label">7. What nearby drivers influence storage demand most?</div>
+        <div class="q-hint">Check all that apply.</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="q7" value="apt_density"><span>Apartment density</span></label>
+          <label class="check-item"><input type="checkbox" name="q7" value="new_housing"><span>New housing growth</span></label>
+          <label class="check-item"><input type="checkbox" name="q7" value="military_base"><span>Military base</span></label>
+          <label class="check-item"><input type="checkbox" name="q7" value="college_univ"><span>College / university</span></label>
+          <label class="check-item"><input type="checkbox" name="q7" value="tourism"><span>Tourism / seasonal residents</span></label>
+          <label class="check-item"><input type="checkbox" name="q7" value="small_biz"><span>Small business / contractor activity</span></label>
+          <label class="check-item"><input type="checkbox" name="q7" value="warehousing"><span>Warehousing / industrial area</span></label>
+          <label class="check-item"><input type="checkbox" name="q7" value="affluent"><span>Affluent homeowners</span></label>
+          <label class="check-item"><input type="checkbox" name="q7" value="retirees"><span>Retiree population</span></label>
+          <label class="check-item"><input type="checkbox" name="q7" value="hoa"><span>HOA-heavy neighborhoods</span></label>
+          <label class="check-item"><input type="checkbox" name="q7" value="major_employers"><span>Major employers nearby</span></label>
+          <label class="check-item"><input type="checkbox" name="q7" value="hospitals"><span>Hospitals / medical offices</span></label>
+        </div>
+        <div class="other-inline" style="margin-top:8px">
+          <input type="checkbox" name="q7" value="other">
+          <span>Other:</span>
+          <input type="text" name="q7_other" placeholder="Describe…">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 2 ═══ -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 2</span>
+      <h3>Customer Mix &amp; Segments</h3>
+    </div>
+    <div class="section-body">
+
+      <div class="question" data-q="8">
+        <div class="q-label">8. What is your overall customer mix?</div>
+        <div class="q-hint">Best estimate is fine. The percentages should total roughly 100%.</div>
+        <div class="check-grid single-col" style="margin-bottom:16px">
+          <label class="check-item"><input type="radio" name="q8_mix" value="all_personal"><span>Almost all personal</span></label>
+          <label class="check-item"><input type="radio" name="q8_mix" value="mostly_personal"><span>Mostly personal, some business</span></label>
+          <label class="check-item"><input type="radio" name="q8_mix" value="even"><span>About even</span></label>
+          <label class="check-item"><input type="radio" name="q8_mix" value="mostly_biz"><span>Mostly business, some personal</span></label>
+          <label class="check-item"><input type="radio" name="q8_mix" value="all_biz"><span>Almost all business</span></label>
+        </div>
+        <div class="input-row" style="max-width:380px">
+          <div>
+            <div style="font-size:.78rem;color:var(--gray-600);margin-bottom:5px;font-weight:500">Personal / Household (B2C) %</div>
+            <div class="input-with-suffix"><input type="number" name="q8_pct_b2c" min="0" max="100" placeholder="0"><span>%</span></div>
+          </div>
+          <div>
+            <div style="font-size:.78rem;color:var(--gray-600);margin-bottom:5px;font-weight:500">Business (B2B) %</div>
+            <div class="input-with-suffix"><input type="number" name="q8_pct_b2b" min="0" max="100" placeholder="0"><span>%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question" data-q="9">
+        <div class="q-label">9. How common is each personal customer type at your facility?</div>
+        <div class="q-hint">For each type, check the column that best describes how many you see.</div>
+        <div style="overflow-x:auto">
+        <table class="grid-table">
+          <thead><tr><th>Customer Type</th><th>None</th><th>A Few</th><th>Some</th><th>Many</th><th>Most</th></tr></thead>
+          <tbody id="q9tbody"></tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="question" data-q="10">
+        <div class="q-label">10. How would you describe the typical personal customer at your facility?</div>
+        <div class="q-hint">Think age range, renters vs. homeowners, families vs. singles, income sensitivity, lifestyle, or other patterns you notice.</div>
+        <textarea name="q10" rows="4" placeholder="Describe your typical customer…"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 2 cont – Q11-17 ═══ -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 2</span>
+      <h3>Customer Mix &amp; Segments (continued)</h3>
+    </div>
+    <div class="section-body">
+
+      <div class="question" data-q="11">
+        <div class="q-label">11. For personal customers, why are most of them renting?</div>
+        <div class="q-hint">Check the top reasons you see.</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="q11" value="moving_local"><span>Moving to a new home locally</span></label>
+          <label class="check-item"><input type="checkbox" name="q11" value="moving_oos"><span>Moving out of state</span></label>
+          <label class="check-item"><input type="checkbox" name="q11" value="downsizing"><span>Downsizing or life change</span></label>
+          <label class="check-item"><input type="checkbox" name="q11" value="renovating"><span>Renovating their home</span></label>
+          <label class="check-item"><input type="checkbox" name="q11" value="need_space"><span>Need more space / decluttering</span></label>
+          <label class="check-item"><input type="checkbox" name="q11" value="apt_no_garage"><span>Apartment living / no garage or basement</span></label>
+          <label class="check-item"><input type="checkbox" name="q11" value="hoa"><span>HOA restrictions</span></label>
+          <label class="check-item"><input type="checkbox" name="q11" value="seasonal"><span>Seasonal items</span></label>
+          <label class="check-item"><input type="checkbox" name="q11" value="military"><span>Military move or deployment</span></label>
+          <label class="check-item"><input type="checkbox" name="q11" value="college"><span>College student storage</span></label>
+          <label class="check-item"><input type="checkbox" name="q11" value="vehicle"><span>Storing a vehicle, RV, or boat</span></label>
+        </div>
+        <div class="other-inline" style="margin-top:8px">
+          <input type="checkbox" name="q11" value="other">
+          <span>Other:</span>
+          <input type="text" name="q11_other" placeholder="Describe…">
+        </div>
+      </div>
+
+      <div class="question" data-q="12">
+        <div class="q-label">12. What emotional or practical situations drive most personal customers?</div>
+        <div class="q-hint">Check the column that best reflects what you hear from customers.</div>
+        <div style="overflow-x:auto">
+        <table class="grid-table">
+          <thead><tr><th>Reason</th><th>Rare</th><th>Common</th><th>Very Common</th></tr></thead>
+          <tbody id="q12tbody"></tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="question" data-q="13">
+        <div class="q-label">13. How common is each business customer type at your facility?</div>
+        <div class="q-hint">This helps us understand B2B demand by market and region.</div>
+        <div style="overflow-x:auto">
+        <table class="grid-table">
+          <thead><tr><th>Business Type</th><th>None</th><th>Rare</th><th>Common</th><th>Major Customer Base</th></tr></thead>
+          <tbody id="q13tbody"></tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="question" data-q="14">
+        <div class="q-label">14. What do your business customers usually store?</div>
+        <div class="q-hint">Examples: tools, inventory, paperwork, furniture, equipment, staging materials, supplies, vehicles.</div>
+        <textarea name="q14" rows="3" placeholder="Describe what business customers typically store…"></textarea>
+      </div>
+
+      <div class="question" data-q="15">
+        <div class="q-label">15. What specific needs do your business customers bring up most?</div>
+        <div class="q-hint">Check all that apply.</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="q15" value="247_access"><span>24/7 access</span></label>
+          <label class="check-item"><input type="checkbox" name="q15" value="climate_sensitive"><span>Climate-controlled units for sensitive inventory</span></label>
+          <label class="check-item"><input type="checkbox" name="q15" value="driveup_trucks"><span>Drive-up access for trucks or equipment</span></label>
+          <label class="check-item"><input type="checkbox" name="q15" value="pkg_accept"><span>Delivery / package acceptance at the facility</span></label>
+          <label class="check-item"><input type="checkbox" name="q15" value="larger_units"><span>Larger or custom-sized units</span></label>
+          <label class="check-item"><input type="checkbox" name="q15" value="vol_discount"><span>Volume discounts for multiple units</span></label>
+          <label class="check-item"><input type="checkbox" name="q15" value="acct_mgr"><span>Dedicated account manager or point of contact</span></label>
+          <label class="check-item"><input type="checkbox" name="q15" value="flex_billing"><span>Flexible billing / consolidated invoices</span></label>
+          <label class="check-item"><input type="checkbox" name="q15" value="parking"><span>Parking / fleet access</span></label>
+        </div>
+        <div class="other-inline" style="margin-top:8px">
+          <input type="checkbox" name="q15" value="other">
+          <span>Other:</span>
+          <input type="text" name="q15_other" placeholder="Describe…">
+        </div>
+      </div>
+
+      <div class="question" data-q="16">
+        <div class="q-label">16. What unit types do different customers usually rent?</div>
+        <div class="q-hint">Check all that commonly apply.</div>
+        <div style="overflow-x:auto">
+        <table class="grid-table">
+          <thead><tr><th>Customer Type</th><th>Small</th><th>Medium</th><th>Large</th><th>Climate</th><th>Drive-Up</th><th>Parking</th></tr></thead>
+          <tbody id="q16tbody"></tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="question" data-q="17">
+        <div class="q-label">17. Do you have customers with multiple units, fleet storage, or enterprise-level needs?</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="radio" name="q17" value="none"><span>None</span></label>
+          <label class="check-item"><input type="radio" name="q17" value="a_few"><span>A few</span></label>
+          <label class="check-item"><input type="radio" name="q17" value="several"><span>Several important accounts</span></label>
+          <label class="check-item"><input type="radio" name="q17" value="major"><span>Major part of the business</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-q="18">
+        <div class="q-label">18. What types of larger accounts do you see?</div>
+        <div class="q-hint">Check all that apply.</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="q18" value="contractors"><span>Contractors</span></label>
+          <label class="check-item"><input type="checkbox" name="q18" value="property_mgmt"><span>Property management companies</span></label>
+          <label class="check-item"><input type="checkbox" name="q18" value="retail"><span>Retail inventory</span></label>
+          <label class="check-item"><input type="checkbox" name="q18" value="govt"><span>Government / municipal</span></label>
+          <label class="check-item"><input type="checkbox" name="q18" value="restoration"><span>Restoration companies</span></label>
+          <label class="check-item"><input type="checkbox" name="q18" value="medical"><span>Medical / records storage</span></label>
+          <label class="check-item"><input type="checkbox" name="q18" value="ecomm"><span>E-commerce sellers</span></label>
+          <label class="check-item"><input type="checkbox" name="q18" value="fleet"><span>Fleet / vehicle users</span></label>
+        </div>
+        <div class="other-inline" style="margin-top:8px">
+          <input type="checkbox" name="q18" value="other">
+          <span>Other:</span>
+          <input type="text" name="q18_other" placeholder="Describe…">
+        </div>
+      </div>
+
+      <div class="question" data-q="19">
+        <div class="q-label">19. What do larger accounts care about most?</div>
+        <div class="q-hint">Check all that apply.</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="q19" value="access_hours"><span>Access hours</span></label>
+          <label class="check-item"><input type="checkbox" name="q19" value="security"><span>Security</span></label>
+          <label class="check-item"><input type="checkbox" name="q19" value="multi_discount"><span>Multiple-unit discounts</span></label>
+          <label class="check-item"><input type="checkbox" name="q19" value="billing"><span>Billing simplicity</span></label>
+          <label class="check-item"><input type="checkbox" name="q19" value="contact"><span>Dedicated contact person</span></label>
+          <label class="check-item"><input type="checkbox" name="q19" value="parking"><span>Parking / fleet access</span></label>
+          <label class="check-item"><input type="checkbox" name="q19" value="climate"><span>Climate control</span></label>
+          <label class="check-item"><input type="checkbox" name="q19" value="pkg_accept"><span>Package acceptance</span></label>
+        </div>
+        <div class="other-inline" style="margin-top:8px">
+          <input type="checkbox" name="q19" value="other">
+          <span>Other:</span>
+          <input type="text" name="q19_other" placeholder="Describe…">
+        </div>
+      </div>
+
+      <div class="question" data-q="20">
+        <div class="q-label">20. Which customer segments generate the most revenue or occupy the most space?</div>
+        <div class="q-hint">Rank the top 5. Use your best estimate.</div>
+        <div style="overflow-x:auto">
+        <table class="grid-table">
+          <thead><tr><th>Rank</th><th>Customer segment</th><th>Top revenue driver?</th><th>Uses large units?</th><th>Long-term?</th><th>Price sensitive?</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><input type="text" name="q20_seg1" placeholder="Segment name"></td><td><input type="checkbox" name="q20_rev1"></td><td><input type="checkbox" name="q20_big1"></td><td><input type="checkbox" name="q20_long1"></td><td><input type="checkbox" name="q20_price1"></td></tr>
+            <tr><td>2</td><td><input type="text" name="q20_seg2" placeholder="Segment name"></td><td><input type="checkbox" name="q20_rev2"></td><td><input type="checkbox" name="q20_big2"></td><td><input type="checkbox" name="q20_long2"></td><td><input type="checkbox" name="q20_price2"></td></tr>
+            <tr><td>3</td><td><input type="text" name="q20_seg3" placeholder="Segment name"></td><td><input type="checkbox" name="q20_rev3"></td><td><input type="checkbox" name="q20_big3"></td><td><input type="checkbox" name="q20_long3"></td><td><input type="checkbox" name="q20_price3"></td></tr>
+            <tr><td>4</td><td><input type="text" name="q20_seg4" placeholder="Segment name"></td><td><input type="checkbox" name="q20_rev4"></td><td><input type="checkbox" name="q20_big4"></td><td><input type="checkbox" name="q20_long4"></td><td><input type="checkbox" name="q20_price4"></td></tr>
+            <tr><td>5</td><td><input type="text" name="q20_seg5" placeholder="Segment name"></td><td><input type="checkbox" name="q20_rev5"></td><td><input type="checkbox" name="q20_big5"></td><td><input type="checkbox" name="q20_long5"></td><td><input type="checkbox" name="q20_price5"></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 3 ═══ -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 3</span>
+      <h3>Length of Stay &amp; Seasonality</h3>
+    </div>
+    <div class="section-body">
+
+      <div class="question" data-q="21">
+        <div class="q-label">21. On average, how long do your customers stay?</div>
+        <div class="q-hint">Check one for each customer group.</div>
+        <div style="overflow-x:auto">
+        <table class="grid-table">
+          <thead><tr><th>Customer Group</th><th>Under 3 mo.</th><th>3–12 mo.</th><th>1–2 years</th><th>2+ years</th></tr></thead>
+          <tbody>
+            <tr><td>Personal customers</td><td><input type="radio" name="q21_personal" value="u3mo"></td><td><input type="radio" name="q21_personal" value="3_12mo"></td><td><input type="radio" name="q21_personal" value="1_2yr"></td><td><input type="radio" name="q21_personal" value="2plus"></td></tr>
+            <tr><td>Business customers</td><td><input type="radio" name="q21_business" value="u3mo"></td><td><input type="radio" name="q21_business" value="3_12mo"></td><td><input type="radio" name="q21_business" value="1_2yr"></td><td><input type="radio" name="q21_business" value="2plus"></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="question" data-q="22">
+        <div class="q-label">22. How long do people typically stay based on their reason for renting?</div>
+        <div class="q-hint">Check the typical duration for each. Skip any that do not apply to your facility.</div>
+        <div style="overflow-x:auto">
+        <table class="grid-table">
+          <thead><tr><th>Reason for Renting</th><th>Under 3 mo.</th><th>3–6 mo.</th><th>6–12 mo.</th><th>12+ mo.</th></tr></thead>
+          <tbody id="q22tbody"></tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="question" data-q="23">
+        <div class="q-label">23. Which customer types tend to stay the longest or leave the fastest?</div>
+        <div class="q-hint">Use this to call out unusual patterns at your facility.</div>
+        <div style="overflow-x:auto">
+        <table class="grid-table">
+          <thead><tr><th>Customer Type</th><th>Longest Stay?</th><th>Fastest Move-Out?</th><th>Notes</th></tr></thead>
+          <tbody id="q23tbody"></tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="question" data-q="24">
+        <div class="q-label">24. Is there a time of year when more people move in?</div>
+        <textarea name="q24" rows="2" placeholder="e.g. Summer months, May–August…"></textarea>
+      </div>
+
+      <div class="question" data-q="25">
+        <div class="q-label">25. Is there a time of year when more people move out?</div>
+        <textarea name="q25" rows="2" placeholder="e.g. End of year, December…"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 4 ═══ -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 4</span>
+      <h3>How Customers Find Us</h3>
+    </div>
+    <div class="section-body">
+
+      <div class="question" data-q="26">
+        <div class="q-label">26. When new customers come in, how did they usually hear about us?</div>
+        <div class="q-hint">Check the ones you hear most often.</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="q26" value="google_search"><span>Found us on Google search</span></label>
+          <label class="check-item"><input type="checkbox" name="q26" value="google_maps"><span>Saw us on Google Maps</span></label>
+          <label class="check-item"><input type="checkbox" name="q26" value="drive_by"><span>Drove by and saw the building / signage</span></label>
+          <label class="check-item"><input type="checkbox" name="q26" value="friend_ref"><span>Friend, family member, or neighbor referral</span></label>
+          <label class="check-item"><input type="checkbox" name="q26" value="pro_ref"><span>Realtor, moving company, or contractor referral</span></label>
+          <label class="check-item"><input type="checkbox" name="q26" value="listing_site"><span>Storage listing site (SpareFoot, etc.)</span></label>
+          <label class="check-item"><input type="checkbox" name="q26" value="facebook"><span>Facebook or Instagram ad</span></label>
+          <label class="check-item"><input type="checkbox" name="q26" value="mail_flyer"><span>Mail flyer or postcard</span></label>
+          <label class="check-item"><input type="checkbox" name="q26" value="yelp"><span>Yelp or another review site</span></label>
+          <label class="check-item"><input type="checkbox" name="q26" value="returning"><span>Returning customer</span></label>
+        </div>
+        <div class="other-inline" style="margin-top:8px">
+          <input type="checkbox" name="q26" value="other">
+          <span>Other:</span>
+          <input type="text" name="q26_other" placeholder="Describe…">
+        </div>
+      </div>
+
+      <div class="question" data-q="27">
+        <div class="q-label">27. Which lead sources produce the best customers?</div>
+        <div class="q-hint">Check all that apply based on what you observe.</div>
+        <div style="overflow-x:auto">
+        <table class="grid-table">
+          <thead><tr><th>Lead Source</th><th>High Volume</th><th>Best Conversion</th><th>Longest Stay</th><th>Most Price Sensitive</th></tr></thead>
+          <tbody id="q27tbody"></tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="question" data-q="28">
+        <div class="q-label">28. Do any local businesses regularly send customers your way?</div>
+        <div class="q-hint">Examples: realtor, moving company, apartment complex, contractor. List names if you can.</div>
+        <textarea name="q28" rows="3" placeholder="List businesses and relationships…"></textarea>
+      </div>
+
+      <div class="question" data-q="29">
+        <div class="q-label">29. How do most people first get in touch with you?</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="radio" name="q29" value="walk_in"><span>Walk in</span></label>
+          <label class="check-item"><input type="radio" name="q29" value="phone"><span>Phone call</span></label>
+          <label class="check-item"><input type="radio" name="q29" value="book_web"><span>Book online through our website</span></label>
+          <label class="check-item"><input type="radio" name="q29" value="book_3rd"><span>Book through a third-party site</span></label>
+          <label class="check-item"><input type="radio" name="q29" value="email_text"><span>Email or text</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-q="30">
+        <div class="q-label">30. What questions do new customers usually ask first?</div>
+        <div class="q-hint">Examples: price, unit sizes, security, access hours, availability.</div>
+        <textarea name="q30" rows="3" placeholder="Common first questions from new customers…"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 5 ═══ -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 5</span>
+      <h3>Why Customers Choose Us (or Not)</h3>
+    </div>
+    <div class="section-body">
+
+      <div class="question" data-q="31">
+        <div class="q-label">31. What are the main reasons people pick your facility?</div>
+        <div class="q-hint">Check the ones that come up most.</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="q31" value="price"><span>Price / good deal</span></label>
+          <label class="check-item"><input type="checkbox" name="q31" value="location"><span>Close to where they live or work</span></label>
+          <label class="check-item"><input type="checkbox" name="q31" value="right_size"><span>Right size unit available</span></label>
+          <label class="check-item"><input type="checkbox" name="q31" value="movein_special"><span>Move-in special or promotion</span></label>
+          <label class="check-item"><input type="checkbox" name="q31" value="clean_safe"><span>Facility looks clean and safe</span></label>
+          <label class="check-item"><input type="checkbox" name="q31" value="good_reviews"><span>Good reviews online</span></label>
+          <label class="check-item"><input type="checkbox" name="q31" value="friendly_staff"><span>Friendly staff / good customer service</span></label>
+          <label class="check-item"><input type="checkbox" name="q31" value="climate"><span>Climate-controlled units</span></label>
+          <label class="check-item"><input type="checkbox" name="q31" value="easy_online"><span>Easy to reserve or pay online</span></label>
+          <label class="check-item"><input type="checkbox" name="q31" value="driveup"><span>Drive-up access</span></label>
+          <label class="check-item"><input type="checkbox" name="q31" value="flex_mm"><span>Flexible month-to-month rental</span></label>
+        </div>
+        <div class="other-inline" style="margin-top:8px">
+          <input type="checkbox" name="q31" value="other">
+          <span>Other:</span>
+          <input type="text" name="q31_other" placeholder="Describe…">
+        </div>
+      </div>
+
+      <div class="question" data-q="32">
+        <div class="q-label">32. What is the #1 compliment you consistently receive?</div>
+        <textarea name="q32" rows="2" placeholder="Most common compliment from customers…"></textarea>
+      </div>
+
+      <div class="question" data-q="33">
+        <div class="q-label">33. What is the #1 complaint or hesitation you hear during the leasing process?</div>
+        <textarea name="q33" rows="2" placeholder="Most common complaint or hesitation…"></textarea>
+      </div>
+
+      <div class="question" data-q="34">
+        <div class="q-label">34. When someone decides not to rent with us, what is usually the reason?</div>
+        <div class="q-hint">Check the most common reasons.</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="q34" value="price_high"><span>Our price was too high</span></label>
+          <label class="check-item"><input type="checkbox" name="q34" value="comp_closer"><span>A competitor was closer</span></label>
+          <label class="check-item"><input type="checkbox" name="q34" value="no_right_size"><span>We did not have the right unit size</span></label>
+          <label class="check-item"><input type="checkbox" name="q34" value="better_deal"><span>Competitor had a better deal or promotion</span></label>
+          <label class="check-item"><input type="checkbox" name="q34" value="better_reviews"><span>They found better reviews somewhere else</span></label>
+        </div>
+        <div class="other-inline" style="margin-top:8px">
+          <input type="checkbox" name="q34" value="other">
+          <span>Other:</span>
+          <input type="text" name="q34_other" placeholder="Describe…">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 6 ═══ -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 6</span>
+      <h3>The Competition</h3>
+    </div>
+    <div class="section-body">
+
+      <div class="question" data-q="35">
+        <div class="q-label">35. Who are your closest competitors?</div>
+        <div class="q-hint">List up to 5. Fill in what you know.</div>
+        <div style="overflow-x:auto">
+        <table class="comp-table">
+          <thead><tr><th>#</th><th>Competitor Name</th><th>How Close?</th><th>Cheaper / Same / Pricier?</th><th>Why Customers Pick Them</th></tr></thead>
+          <tbody>
+            <tr><td>1.</td><td><input type="text" name="q35_name1" placeholder="Name"></td><td><input type="text" name="q35_dist1" placeholder="e.g. 0.5 mi"></td><td><select name="q35_price1"><option value="">—</option><option>Cheaper</option><option>Same</option><option>Pricier</option></select></td><td><input type="text" name="q35_why1" placeholder="Reason"></td></tr>
+            <tr><td>2.</td><td><input type="text" name="q35_name2" placeholder="Name"></td><td><input type="text" name="q35_dist2" placeholder="e.g. 1 mi"></td><td><select name="q35_price2"><option value="">—</option><option>Cheaper</option><option>Same</option><option>Pricier</option></select></td><td><input type="text" name="q35_why2" placeholder="Reason"></td></tr>
+            <tr><td>3.</td><td><input type="text" name="q35_name3" placeholder="Name"></td><td><input type="text" name="q35_dist3" placeholder="e.g. 2 mi"></td><td><select name="q35_price3"><option value="">—</option><option>Cheaper</option><option>Same</option><option>Pricier</option></select></td><td><input type="text" name="q35_why3" placeholder="Reason"></td></tr>
+            <tr><td>4.</td><td><input type="text" name="q35_name4" placeholder="Name"></td><td><input type="text" name="q35_dist4"></td><td><select name="q35_price4"><option value="">—</option><option>Cheaper</option><option>Same</option><option>Pricier</option></select></td><td><input type="text" name="q35_why4" placeholder="Reason"></td></tr>
+            <tr><td>5.</td><td><input type="text" name="q35_name5" placeholder="Name"></td><td><input type="text" name="q35_dist5"></td><td><select name="q35_price5"><option value="">—</option><option>Cheaper</option><option>Same</option><option>Pricier</option></select></td><td><input type="text" name="q35_why5" placeholder="Reason"></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="question" data-q="36">
+        <div class="q-label">36. Who is your toughest competitor, and why?</div>
+        <textarea name="q36" rows="3" placeholder="Name and reason…"></textarea>
+      </div>
+
+      <div class="question" data-q="37">
+        <div class="q-label">37. Is there anything competitors offer that we do not?</div>
+        <textarea name="q37" rows="3" placeholder="Features, services, or pricing competitors have that we don't…"></textarea>
+      </div>
+
+      <div class="question" data-q="38">
+        <div class="q-label">38. Are competitors running any move-in deals right now that you know of?</div>
+        <textarea name="q38" rows="2" placeholder="Current competitor promotions…"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 7 ═══ -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 7</span>
+      <h3>Why Customers Leave &amp; Price Sensitivity</h3>
+    </div>
+    <div class="section-body">
+
+      <div class="question" data-q="39">
+        <div class="q-label">39. When customers move out, what is usually the reason?</div>
+        <div class="q-hint">Check the most common reasons.</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="q39" value="no_need"><span>They do not need storage anymore</span></label>
+          <label class="check-item"><input type="checkbox" name="q39" value="moving_area"><span>They are moving out of the area</span></label>
+          <label class="check-item"><input type="checkbox" name="q39" value="price_up"><span>Price went up and they did not want to pay more</span></label>
+          <label class="check-item"><input type="checkbox" name="q39" value="cheaper_comp"><span>Switched to a cheaper competitor</span></label>
+          <label class="check-item"><input type="checkbox" name="q39" value="unhappy"><span>Unhappy with the facility or service</span></label>
+          <label class="check-item"><input type="checkbox" name="q39" value="no_payment"><span>Could not keep up with payments</span></label>
+        </div>
+        <div class="other-inline" style="margin-top:8px">
+          <input type="checkbox" name="q39" value="other">
+          <span>Other:</span>
+          <input type="text" name="q39_other" placeholder="Describe…">
+        </div>
+      </div>
+
+      <div class="question" data-q="40">
+        <div class="q-label">40. How do customers usually react when their rate goes up?</div>
+        <div class="check-grid single-col">
+          <label class="check-item"><input type="radio" name="q40" value="dont_say"><span>Most do not say anything; they just pay</span></label>
+          <label class="check-item"><input type="radio" name="q40" value="some_call"><span>Some call to ask about it but stay</span></label>
+          <label class="check-item"><input type="radio" name="q40" value="leave"><span>A noticeable number leave because of it</span></label>
+          <label class="check-item"><input type="radio" name="q40" value="upset"><span>People get upset and it is a regular issue</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-q="41">
+        <div class="q-label">41. Which customers are most sensitive to price increases?</div>
+        <div class="q-hint">Rank the top 3 most price-sensitive groups. Enter 1, 2, or 3.</div>
+        <div class="rank-grid">
+          <div class="rank-item"><input type="number" class="rank-input" name="q41_apt" min="1" max="3" placeholder="–"><span>Apartment renters</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q41_students" min="1" max="3" placeholder="–"><span>Students</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q41_contractors" min="1" max="3" placeholder="–"><span>Contractors</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q41_longterm" min="1" max="3" placeholder="–"><span>Long-term residential</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q41_ecomm" min="1" max="3" placeholder="–"><span>E-commerce sellers</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q41_retirees" min="1" max="3" placeholder="–"><span>Retirees / fixed income</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q41_military" min="1" max="3" placeholder="–"><span>Military</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q41_smallbiz" min="1" max="3" placeholder="–"><span>Small businesses</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q41_vehicle" min="1" max="3" placeholder="–"><span>Vehicle storage customers</span></div>
+        </div>
+        <div class="other-inline" style="margin-top:8px">
+          <span style="font-size:.82rem;color:var(--gray-600)">Other:</span>
+          <input type="text" name="q41_other" placeholder="Other group + rank…">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 8 ═══ -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 8</span>
+      <h3>What Could Be Better</h3>
+    </div>
+    <div class="section-body">
+
+      <div class="question" data-q="42">
+        <div class="q-label">42. What are the biggest day-to-day issues customers run into?</div>
+        <div class="q-hint">Examples: gate problems, app not working, pests, lighting, payment issues.</div>
+        <textarea name="q42" rows="3" placeholder="Day-to-day customer issues…"></textarea>
+      </div>
+
+      <div class="question" data-q="43">
+        <div class="q-label">43. What operational issues hurt leasing or customer satisfaction most?</div>
+        <div class="q-hint">Rank the top 5. Enter 1–5.</div>
+        <div class="rank-grid">
+          <div class="rank-item"><input type="number" class="rank-input" name="q43_pricing" min="1" max="5" placeholder="–"><span>Pricing confusion</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q43_rates" min="1" max="5" placeholder="–"><span>Rate increases</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q43_website" min="1" max="5" placeholder="–"><span>Website / online booking issues</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q43_office" min="1" max="5" placeholder="–"><span>Limited office hours</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q43_gate" min="1" max="5" placeholder="–"><span>Gate access problems</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q43_lighting" min="1" max="5" placeholder="–"><span>Poor lighting / security perception</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q43_clean" min="1" max="5" placeholder="–"><span>Cleanliness</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q43_climate" min="1" max="5" placeholder="–"><span>Lack of climate control</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q43_units" min="1" max="5" placeholder="–"><span>Unit availability</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q43_access" min="1" max="5" placeholder="–"><span>Hard-to-access units</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q43_staff" min="1" max="5" placeholder="–"><span>Staffing / customer service consistency</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q43_comp" min="1" max="5" placeholder="–"><span>Competitor promotions</span></div>
+        </div>
+        <div class="other-inline" style="margin-top:8px">
+          <span style="font-size:.82rem;color:var(--gray-600)">Other:</span>
+          <input type="text" name="q43_other" placeholder="Other issue + rank…">
+        </div>
+      </div>
+
+      <div class="question" data-q="44">
+        <div class="q-label">44. Do customers ask for services or features you do not currently offer?</div>
+        <div class="q-hint">Examples: vehicle/boat storage, package acceptance, moving supplies, longer hours, truck rental, specific unit sizes.</div>
+        <textarea name="q44" rows="3" placeholder="Requested services or features…"></textarea>
+      </div>
+
+      <div class="question" data-q="45">
+        <div class="q-label">45. Are there certain unit sizes you are always running out of?</div>
+        <textarea name="q45" rows="2" placeholder="e.g. 10×10 and 10×20 are always full…"></textarea>
+      </div>
+
+      <div class="question" data-q="46">
+        <div class="q-label">46. Are there unit sizes that sit empty and are hard to fill?</div>
+        <textarea name="q46" rows="2" placeholder="e.g. 5×5 units often sit empty…"></textarea>
+      </div>
+
+      <div class="question" data-q="47">
+        <div class="q-label">47. If you could change or improve one thing about the customer move-in / onboarding process, what would it be?</div>
+        <textarea name="q47" rows="3" placeholder="Your top onboarding improvement idea…"></textarea>
+      </div>
+
+      <div class="question" data-q="48">
+        <div class="q-label">48. If you could add one thing to your facility to get more customers, what would it be?</div>
+        <textarea name="q48" rows="3" placeholder="Your top facility improvement idea…"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 9 ═══ -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 9</span>
+      <h3>Opportunities &amp; Marketing</h3>
+    </div>
+    <div class="section-body">
+
+      <div class="question" data-q="49">
+        <div class="q-label">49. Which customer groups in your market are currently underserved by self-storage options?</div>
+        <div class="q-hint">Think about who is nearby: military bases, colleges, new housing, business parks, seasonal residents, contractors, and local businesses.</div>
+        <div style="overflow-x:auto">
+        <table class="grid-table">
+          <thead><tr><th>Customer Type</th><th>Not Present</th><th>Some Opportunity</th><th>Major Opportunity</th></tr></thead>
+          <tbody id="q49tbody"></tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="question" data-q="50">
+        <div class="q-label">50. Are there local businesses or organizations we should partner with?</div>
+        <div class="q-hint">Examples: realtors, movers, apartment complexes, contractors, property managers, chambers of commerce.</div>
+        <textarea name="q50" rows="3" placeholder="List potential partners…"></textarea>
+      </div>
+
+      <div class="question" data-q="51">
+        <div class="q-label">51. Is anything happening in your area that could bring in more customers?</div>
+        <div class="q-hint">Examples: new neighborhoods, road construction, military base changes, businesses opening or closing.</div>
+        <textarea name="q51" rows="3" placeholder="Local developments or changes…"></textarea>
+      </div>
+
+      <div class="question" data-q="52">
+        <div class="q-label">52. In your opinion, what should our marketing focus on for your facility?</div>
+        <div class="q-hint">Pick the top 3 that matter most in your market. Enter 1, 2, or 3.</div>
+        <div class="rank-grid">
+          <div class="rank-item"><input type="number" class="rank-input" name="q52_price" min="1" max="3" placeholder="–"><span>Price / promotions</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q52_convenience" min="1" max="3" placeholder="–"><span>Convenience / location</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q52_security" min="1" max="3" placeholder="–"><span>Security</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q52_climate" min="1" max="3" placeholder="–"><span>Climate control</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q52_longterm" min="1" max="3" placeholder="–"><span>Long-term value</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q52_biz" min="1" max="3" placeholder="–"><span>Business storage</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q52_monthmth" min="1" max="3" placeholder="–"><span>Month-to-month flexibility</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q52_clean" min="1" max="3" placeholder="–"><span>Cleanliness / safety</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="q52_driveup" min="1" max="3" placeholder="–"><span>Drive-up access</span></div>
+        </div>
+        <div class="other-inline" style="margin-top:8px">
+          <span style="font-size:.82rem;color:var(--gray-600)">Other:</span>
+          <input type="text" name="q52_other" placeholder="Other focus area + rank…">
+        </div>
+      </div>
+
+      <div class="question" data-q="53">
+        <div class="q-label">53. Is there any messaging or advertising that would not work in your market?</div>
+        <div class="q-hint">Example: premium messaging in a price-sensitive area, or military messaging where there is no base nearby.</div>
+        <textarea name="q53" rows="3" placeholder="Messaging that wouldn't fit your market…"></textarea>
+      </div>
+
+      <div class="question" data-q="54">
+        <div class="q-label">54. What are the best ways to reach customers in your area?</div>
+        <div class="q-hint">Rank 1–5, where 1 = most effective.</div>
+        <div style="overflow-x:auto">
+        <table class="grid-table">
+          <thead><tr><th>Channel</th><th>Rank (1–5)</th></tr></thead>
+          <tbody>
+            <tr><td>Google search / Google Maps</td><td><input type="number" name="q54_google" min="1" max="5" placeholder="–" style="width:70px;text-align:center"></td></tr>
+            <tr><td>Drive-by signage / visibility</td><td><input type="number" name="q54_driveby" min="1" max="5" placeholder="–" style="width:70px;text-align:center"></td></tr>
+            <tr><td>Local referrals (realtors, movers, etc.)</td><td><input type="number" name="q54_referrals" min="1" max="5" placeholder="–" style="width:70px;text-align:center"></td></tr>
+            <tr><td>Online ads (Facebook, Instagram, etc.)</td><td><input type="number" name="q54_online" min="1" max="5" placeholder="–" style="width:70px;text-align:center"></td></tr>
+            <tr><td>Community partnerships / local events</td><td><input type="number" name="q54_community" min="1" max="5" placeholder="–" style="width:70px;text-align:center"></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="question" data-q="55">
+        <div class="q-label">55. Anything else we should know?</div>
+        <div class="q-hint">Trends, concerns, ideas, staffing needs, or anything not covered above.</div>
+        <textarea name="q55" rows="4" placeholder="Any additional observations, ideas, or concerns…"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="submit-area">
+    <p>Your responses are confidential and for FreeUp Storage marketing use only. Responses are saved in your browser until you submit or clear them.</p>
+    <button type="button" class="btn-print" onclick="printForm()">🖨 Print / Save PDF</button>
+    <button type="button" class="btn-submit" onclick="submitForm()">✓ Submit Completed Form</button>
+  </div>
+
+  </form>
+
+  <div class="confidential">Confidential &nbsp;|&nbsp; FreeUp Storage &nbsp;|&nbsp; Internal Use Only</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── Build grid tables dynamically ───────────────────────────────────────────
+
+const q9rows = [
+  'Residential - Moving / temporary storage',
+  'Residential - Long-term storage',
+  'Apartment / condo renters',
+  'Homeowners',
+  'Military',
+  'Students',
+  'Seasonal / snowbird residents',
+  'Vehicle / RV / boat owners',
+  'Retirees / fixed income',
+  'Other customer types'
+];
+const q9cols5 = ['none','afew','some','many','most'];
+(function(){
+  const tb = document.getElementById('q9tbody');
+  q9rows.forEach((label, ri) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${label}</td>` + q9cols5.map((v,ci) =>
+      `<td><input type="radio" name="q9_r${ri}" value="${v}"></td>`
+    ).join('');
+    tb.appendChild(tr);
+  });
+})();
+
+const q12rows = [
+  'Stressful life event','Lack of space','Moving transition',
+  'Divorce / death / family change','Lifestyle upgrade / downsizing','Seasonal convenience'
+];
+(function(){
+  const tb = document.getElementById('q12tbody');
+  q12rows.forEach((label, ri) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${label}</td>` +
+      ['rare','common','verycommon'].map(v =>
+        `<td><input type="radio" name="q12_r${ri}" value="${v}"></td>`
+      ).join('');
+    tb.appendChild(tr);
+  });
+})();
+
+const q13rows = [
+  'General contractors','HVAC / plumbing / electrical','Landscapers / outdoor services',
+  'Roofers','Painters','Restoration companies','Realtors / staging companies',
+  'Property management companies','Medical / pharmaceutical reps',
+  'Restaurants / food service / hospitality','Retail inventory',
+  'Amazon / e-commerce sellers','Auto-related businesses',
+  'Professional services / records storage',
+  'Nonprofits / churches / community organizations',
+  'Government / municipal','Other business customers'
+];
+(function(){
+  const tb = document.getElementById('q13tbody');
+  q13rows.forEach((label, ri) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${label}</td>` +
+      ['none','rare','common','major'].map(v =>
+        `<td><input type="radio" name="q13_r${ri}" value="${v}"></td>`
+      ).join('');
+    tb.appendChild(tr);
+  });
+})();
+
+const q16rows = [
+  'Residential movers','Long-term residential','Apartment / condo renters',
+  'Homeowners','Contractors / trades','Retail / e-commerce',
+  'Real estate / staging','Vehicle / RV / boat storage'
+];
+(function(){
+  const tb = document.getElementById('q16tbody');
+  q16rows.forEach((label, ri) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${label}</td>` +
+      ['small','med','large','climate','driveup','park'].map(v =>
+        `<td><input type="checkbox" name="q16_r${ri}_${v}"></td>`
+      ).join('');
+    tb.appendChild(tr);
+  });
+})();
+
+const q22rows = [
+  'Local move','Out-of-state move','Downsizing / life change',
+  'Apartment / no space at home','Home renovation','Business use',
+  'Military','Student storage','Vehicle / RV / boat storage'
+];
+(function(){
+  const tb = document.getElementById('q22tbody');
+  q22rows.forEach((label, ri) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${label}</td>` +
+      ['u3mo','3_6mo','6_12mo','12plus'].map(v =>
+        `<td><input type="radio" name="q22_r${ri}" value="${v}"></td>`
+      ).join('');
+    tb.appendChild(tr);
+  });
+})();
+
+(function(){
+  const tb = document.getElementById('q23tbody');
+  for(let i=0;i<5;i++){
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><input type="text" name="q23_type${i}" placeholder="Customer type"></td>
+      <td><input type="checkbox" name="q23_long${i}"></td>
+      <td><input type="checkbox" name="q23_fast${i}"></td>
+      <td><input type="text" name="q23_notes${i}" placeholder="Notes"></td>`;
+    tb.appendChild(tr);
+  }
+})();
+
+const q27rows = [
+  'Google search / website','Google Maps','Drive-by traffic',
+  'Customer referrals','Realtor / mover / contractor referrals',
+  'Storage listing sites','Facebook / Instagram','Mailers / postcards','Returning customers'
+];
+(function(){
+  const tb = document.getElementById('q27tbody');
+  q27rows.forEach((label, ri) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${label}</td>` +
+      ['hvol','bconv','longstay','pricesens'].map(v =>
+        `<td><input type="checkbox" name="q27_r${ri}_${v}"></td>`
+      ).join('');
+    tb.appendChild(tr);
+  });
+})();
+
+const q49rows = [
+  'Contractors','Apartment renters','Military','College students',
+  'E-commerce sellers','Vehicle / RV storage','Boat owners','Small businesses',
+  'Seasonal residents','Retirees / fixed income','Medical / healthcare','Other customer groups'
+];
+(function(){
+  const tb = document.getElementById('q49tbody');
+  q49rows.forEach((label, ri) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${label}</td>` +
+      ['notpres','someopp','majoropp'].map(v =>
+        `<td><input type="radio" name="q49_r${ri}" value="${v}"></td>`
+      ).join('');
+    tb.appendChild(tr);
+  });
+})();
+
+// ── Progress tracking ────────────────────────────────────────────────────────
+function updateProgress(){
+  const total = 55;
+  let answered = 0;
+  for(let q=1; q<=55; q++){
+    const el = document.querySelector(`[data-q="${q}"]`);
+    if(!el) continue;
+    const inputs = el.querySelectorAll('input, textarea, select');
+    let hasValue = false;
+    inputs.forEach(inp => {
+      if(inp.type==='checkbox'||inp.type==='radio'){
+        if(inp.checked) hasValue=true;
+      } else if(inp.value.trim()) hasValue=true;
+    });
+    if(hasValue) answered++;
+  }
+  const pct = Math.round(answered/total*100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressLabel').textContent = `${answered} of ${total} answered`;
+}
+
+document.getElementById('kycForm').addEventListener('input', updateProgress);
+document.getElementById('kycForm').addEventListener('change', updateProgress);
+
+// ── Checkbox visual state ────────────────────────────────────────────────────
+document.addEventListener('change', e => {
+  if(e.target.type==='checkbox'||e.target.type==='radio'){
+    const label = e.target.closest('.check-item');
+    if(label){
+      if(e.target.type==='radio'){
+        document.querySelectorAll(`[name="${e.target.name}"]`).forEach(r=>{
+          r.closest('.check-item')?.classList.toggle('checked', r.checked);
+        });
+      } else {
+        label.classList.toggle('checked', e.target.checked);
+      }
+    }
+  }
+});
+
+// ── Auto-save to localStorage ────────────────────────────────────────────────
+function saveData(){
+  const form = document.getElementById('kycForm');
+  const data = {};
+  new FormData(form).forEach((v,k) => {
+    if(data[k]) {
+      data[k] = Array.isArray(data[k]) ? [...data[k], v] : [data[k], v];
+    } else { data[k]=v; }
+  });
+  // Also capture checkboxes
+  form.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    if(!cb.checked) return;
+    const k=cb.name, v=cb.value;
+    if(!data[k]) data[k]=[v];
+    else if(!Array.isArray(data[k])) data[k]=[data[k],v];
+    else data[k].push(v);
+  });
+  localStorage.setItem('kyc_autosave', JSON.stringify(data));
+}
+
+function loadSaved(){
+  const saved = localStorage.getItem('kyc_autosave');
+  if(!saved) return;
+  try {
+    const data = JSON.parse(saved);
+    const form = document.getElementById('kycForm');
+    Object.entries(data).forEach(([k,v])=>{
+      const vals = Array.isArray(v)?v:[v];
+      vals.forEach(val=>{
+        const els = form.querySelectorAll(`[name="${k}"]`);
+        els.forEach(el=>{
+          if(el.type==='checkbox') { if(el.value===val) el.checked=true; }
+          else if(el.type==='radio') { if(el.value===val) el.checked=true; }
+          else el.value=val;
+        });
+      });
+    });
+    // Restore visual checked states
+    form.querySelectorAll('input[type=checkbox]:checked, input[type=radio]:checked').forEach(inp=>{
+      inp.closest('.check-item')?.classList.add('checked');
+    });
+    updateProgress();
+    showToast('✓ Previous answers restored');
+  } catch(e){}
+}
+
+document.getElementById('kycForm').addEventListener('input', ()=>{ clearTimeout(window._saveTimer); window._saveTimer=setTimeout(saveData,800); });
+document.getElementById('kycForm').addEventListener('change', ()=>{ clearTimeout(window._saveTimer); window._saveTimer=setTimeout(saveData,800); });
+
+// ── Collect all form data into a clean object ────────────────────────────────
+function collectFormData(){
+  const form = document.getElementById('kycForm');
+  const data = {};
+  // Text, textarea, number, date, select
+  form.querySelectorAll('input:not([type=checkbox]):not([type=radio]), textarea, select').forEach(el=>{
+    if(el.name && el.value.trim()) data[el.name] = el.value.trim();
+  });
+  // Radios
+  form.querySelectorAll('input[type=radio]:checked').forEach(el=>{
+    data[el.name] = el.value;
+  });
+  // Checkboxes — collect as arrays
+  form.querySelectorAll('input[type=checkbox]:checked').forEach(el=>{
+    if(!el.name) return;
+    if(!data[el.name]) data[el.name] = [];
+    if(!Array.isArray(data[el.name])) data[el.name] = [data[el.name]];
+    data[el.name].push(el.value);
+  });
+  return data;
+}
+
+// ── Print: open a new window so it works inside iframes ─────────────────────
+function printForm(){
+  // Gather current HTML of the form with filled values baked in
+  const formHTML = document.getElementById('kycForm').innerHTML;
+
+  // Clone and serialize inputs so values appear in print
+  const clone = document.getElementById('kycForm').cloneNode(true);
+
+  // Copy live values into clone
+  const srcInputs = document.getElementById('kycForm').querySelectorAll('input, textarea, select');
+  const clnInputs = clone.querySelectorAll('input, textarea, select');
+  srcInputs.forEach((src, i) => {
+    const cln = clnInputs[i];
+    if(!cln) return;
+    if(src.type === 'checkbox' || src.type === 'radio') {
+      cln.checked = src.checked;
+      cln.setAttribute('checked', src.checked ? 'checked' : '');
+    } else {
+      cln.value = src.value;
+      cln.setAttribute('value', src.value);
+      if(src.tagName === 'TEXTAREA') cln.textContent = src.value;
+    }
+  });
+
+  const win = window.open('', '_blank', 'width=900,height=700');
+  if(!win) {
+    // Popup blocked — fall back to top-level print
+    try { window.top.print(); } catch(e) { window.print(); }
+    return;
+  }
+
+  win.document.write(`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FreeUp Storage — Know Your Customers</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;font-size:11pt;color:#111;background:white;padding:20px 28px}
+  .print-header{display:flex;align-items:center;gap:14px;border-bottom:3px solid #E23B30;padding-bottom:14px;margin-bottom:20px}
+  .print-logo{background:#E23B30;color:white;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;padding:6px 14px;letter-spacing:.1em}
+  .print-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#142F54;letter-spacing:.1em;text-transform:uppercase;line-height:1}
+  .print-subtitle{font-size:7pt;text-transform:uppercase;letter-spacing:.1em;color:#ADAFB2;margin-top:3px}
+  .section-header{background:#142F54;color:white;padding:7px 14px;margin:18px 0 10px;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+  .section-num{background:#E23B30;font-family:'Inter',sans-serif;font-size:6pt;font-weight:700;padding:2px 7px;text-transform:uppercase;letter-spacing:.08em}
+  .question{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #efefef}
+  .question:last-child{border-bottom:none}
+  .q-label{font-weight:700;font-size:9pt;color:#142F54;margin-bottom:3px}
+  .q-hint{font-size:7.5pt;color:#ADAFB2;font-style:italic;margin-bottom:6px}
+  input[type=text],input[type=date],input[type=number],textarea,select{
+    width:100%;border:1px solid #ccc;padding:4px 7px;font-family:'Inter',sans-serif;
+    font-size:9pt;border-radius:2px;background:#fafafa}
+  textarea{min-height:44px;resize:none}
+  .check-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px}
+  .check-item{display:flex;align-items:center;gap:7px;padding:4px 8px;border:1px solid #e0e0e2;font-size:8.5pt;border-radius:2px}
+  .check-item.checked{border-color:#142F54;background:#f0f3f8}
+  .other-inline{display:flex;align-items:center;gap:8px;padding:4px 8px;border:1px solid #e0e0e2;font-size:8.5pt;border-radius:2px;margin-top:4px}
+  .rank-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px}
+  .rank-item{display:flex;align-items:center;gap:7px;padding:4px 8px;border:1px solid #e0e0e2;font-size:8.5pt;border-radius:2px}
+  .rank-input{width:36px;text-align:center;font-weight:700;color:#E23B30;border:1px solid #ccc;padding:2px 4px;font-size:8.5pt}
+  table{width:100%;border-collapse:collapse;font-size:8pt}
+  th{text-align:center;font-weight:600;font-size:7pt;text-transform:uppercase;letter-spacing:.05em;color:#6b6d70;padding:6px 5px;border-bottom:2px solid #e0e0e2;background:#f7f7f8}
+  th:first-child{text-align:left;padding-left:8px}
+  td{padding:5px;border-bottom:1px solid #efefef;text-align:center;vertical-align:middle}
+  td:first-child{text-align:left;padding-left:8px;font-size:8pt}
+  .comp-table th{text-align:left;padding:5px 6px}
+  .comp-table td{text-align:left;padding:3px 4px}
+  .confidential{text-align:center;font-size:7pt;color:#ADAFB2;margin-top:24px;text-transform:uppercase;letter-spacing:.08em;border-top:1px solid #efefef;padding-top:10px}
+  @media print{
+    body{padding:12px 16px}
+    .no-print{display:none}
+    .section-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .print-logo{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+<div class="print-header">
+  <div class="print-logo">FUS</div>
+  <div>
+    <div class="print-title">Know Your Customers</div>
+    <div class="print-subtitle">Store Manager Questionnaire &nbsp;·&nbsp; Confidential</div>
+  </div>
+</div>
+${clone.outerHTML}
+<p class="confidential">Confidential &nbsp;|&nbsp; FreeUp Storage &nbsp;|&nbsp; Internal Use Only</p>
+<script>window.onload=function(){window.print();}<\/script>
+</body></html>`);
+  win.document.close();
+}
+
+// ── Submit ───────────────────────────────────────────────────────────────────
+function submitForm(){
+  const q1 = document.querySelector('[name="q1"]').value.trim();
+  const q2 = document.querySelector('[name="q2"]').value.trim();
+  if(!q1||!q2){
+    showToast('⚠ Please fill in facility name and your name before submitting.', true);
+    document.querySelector('[name="q1"]').focus();
+    return;
+  }
+  saveData();
+
+  // ── Option A: mailto (works without a server) ────────────────────────────
+  // Opens the user's email client with a summary. Replace the address below.
+  const data = collectFormData();
+  const facility = data.q1 || '(no facility)';
+  const manager  = data.q2 || '(no name)';
+  const date     = data.q3 || new Date().toLocaleDateString();
+
+  let body = `FreeUp Storage — Know Your Customers\n`;
+  body += `Facility: ${facility}\nManager: ${manager}\nDate: ${date}\n\n`;
+  body += `--- Full Responses ---\n\n`;
+  Object.entries(data).forEach(([k,v])=>{
+    const label = k.replace(/_/g,' ');
+    const val   = Array.isArray(v) ? v.join(', ') : v;
+    body += `${label}: ${val}\n`;
+  });
+
+  const subject = encodeURIComponent(`KYC Form — ${facility} — ${manager}`);
+  const bodyEnc = encodeURIComponent(body);
+
+  // Replace with your actual email address:
+  const mailto = `mailto:kelly@spartan-investors.com?subject=${subject}&body=${bodyEnc}`;
+
+  // Try to open mailto — works in most environments
+  const a = document.createElement('a');
+  a.href = mailto;
+  a.target = '_blank';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  showToast('✓ Opening email with your responses. Also printing a PDF copy…');
+  setTimeout(()=>printForm(), 1000);
+
+  // ── Option B: POST to an endpoint (uncomment + add URL to use instead) ───
+  // fetch('https://YOUR-ENDPOINT/submit', {
+  //   method: 'POST',
+  //   headers: {'Content-Type':'application/json'},
+  //   body: JSON.stringify(data)
+  // }).then(()=>showToast('✓ Submitted successfully!')).catch(()=>showToast('⚠ Submission failed. Please print instead.', true));
+}
+
+function showToast(msg, isWarning=false){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = isWarning ? 'var(--red)' : 'var(--navy)';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 4000);
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+loadSaved();
+</script>
+</body>
+</html>
