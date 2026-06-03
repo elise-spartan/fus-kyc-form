@@ -239,6 +239,50 @@
     line-height: 1.5;
   }
 
+  /* ── Validation ── */
+  .question.invalid .q-label::after {
+    content: ' *';
+    color: var(--red);
+  }
+  .question.invalid > input,
+  .question.invalid > textarea,
+  .question.invalid > .input-row input,
+  .question.invalid > .input-with-suffix input {
+    border-color: var(--red);
+    box-shadow: 0 0 0 2px rgba(226,59,48,.15);
+  }
+  .question.invalid .check-grid,
+  .question.invalid .rank-grid,
+  .question.invalid .other-inline,
+  .question.invalid .grid-wrap,
+  .question.invalid .comp-table {
+    outline: 2px solid var(--red);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+  .q-error {
+    display: none;
+    font-size: .74rem;
+    color: var(--red);
+    font-weight: 600;
+    margin-top: 7px;
+    letter-spacing: .01em;
+  }
+  .question.invalid .q-error { display: block; }
+  .error-banner {
+    background: var(--red);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    font-size: .84rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+  }
+  .error-banner.show { display: flex; }
+
   /* ── Text inputs ── */
   input[type="text"], input[type="date"], input[type="number"], textarea, select {
     width: 100%;
@@ -550,6 +594,8 @@
     <p style="margin-top:14px">This questionnaire helps the marketing department understand customers by facility, market, and region. There are no wrong answers. Please use your honest day-to-day observations. If you are not sure, your best estimate is fine.</p>
   </div>
 
+  <div class="error-banner" id="errorBanner">⚠ Please answer all required questions before submitting. Unanswered questions are highlighted below.</div>
+
   <form id="kycForm" novalidate>
 
   <!-- ═══ SECTION 1 ═══ -->
@@ -564,16 +610,19 @@
         <div class="q-label">1. Facility name / location</div>
         <div class="q-hint">If you manage multiple facilities, please fill out a separate form for each facility.</div>
         <input type="text" name="q1" placeholder="e.g. FreeUp Storage Beaufort">
+      <span class="q-error" id="qerr1">Please enter the facility name.</span>
       </div>
 
       <div class="question" data-q="2">
         <div class="q-label">2. Your name</div>
         <input type="text" name="q2" placeholder="Full name">
+      <span class="q-error" id="qerr2">Please enter your name.</span>
       </div>
 
       <div class="question" data-q="3">
         <div class="q-label">3. Date</div>
         <input type="date" name="q3" style="width:200px">
+      <span class="q-error" id="qerr3">Please enter the date.</span>
       </div>
 
       <div class="question" data-q="4">
@@ -584,11 +633,13 @@
           <label class="check-item"><input type="radio" name="q4" value="1_3yr"><span>1–3 years</span></label>
           <label class="check-item"><input type="radio" name="q4" value="3plus"><span>3+ years</span></label>
         </div>
+      <span class="q-error" id="qerr4">Please select how long you have managed this facility.</span>
       </div>
 
       <div class="question" data-q="5">
         <div class="q-label">5. About how many tenants do you have right now?</div>
         <input type="number" name="q5" placeholder="e.g. 250" min="0">
+      <span class="q-error" id="qerr5">Please enter the approximate number of tenants.</span>
       </div>
 
       <div class="question" data-q="6">
@@ -608,6 +659,7 @@
           <span>Other:</span>
           <input type="text" name="q6_other" placeholder="Describe…">
         </div>
+      <span class="q-error" id="qerr6">Please select at least one market type.</span>
       </div>
 
       <div class="question" data-q="7">
@@ -632,6 +684,7 @@
           <span>Other:</span>
           <input type="text" name="q7_other" placeholder="Describe…">
         </div>
+      <span class="q-error" id="qerr7">Please select at least one demand driver.</span>
       </div>
 
     </div>
@@ -665,6 +718,7 @@
             <div class="input-with-suffix"><input type="number" name="q8_pct_b2b" min="0" max="100" placeholder="0"><span>%</span></div>
           </div>
         </div>
+      <span class="q-error" id="qerr8">Please select the overall customer mix.</span>
       </div>
 
       <div class="question" data-q="9">
@@ -676,12 +730,14 @@
           <tbody id="q9tbody"></tbody>
         </table>
         </div>
+      <span class="q-error" id="qerr9">Please rate each personal customer type.</span>
       </div>
 
       <div class="question" data-q="10">
         <div class="q-label">10. How would you describe the typical personal customer at your facility?</div>
         <div class="q-hint">Think age range, renters vs. homeowners, families vs. singles, income sensitivity, lifestyle, or other patterns you notice.</div>
         <textarea name="q10" rows="4" placeholder="Describe your typical customer…"></textarea>
+      <span class="q-error" id="qerr10">Please describe your typical personal customer.</span>
       </div>
 
     </div>
@@ -716,6 +772,7 @@
           <span>Other:</span>
           <input type="text" name="q11_other" placeholder="Describe…">
         </div>
+      <span class="q-error" id="qerr11">Please select at least one reason.</span>
       </div>
 
       <div class="question" data-q="12">
@@ -727,6 +784,7 @@
           <tbody id="q12tbody"></tbody>
         </table>
         </div>
+      <span class="q-error" id="qerr12">Please rate each situation.</span>
       </div>
 
       <div class="question" data-q="13">
@@ -738,12 +796,14 @@
           <tbody id="q13tbody"></tbody>
         </table>
         </div>
+      <span class="q-error" id="qerr13">Please rate each business customer type.</span>
       </div>
 
       <div class="question" data-q="14">
         <div class="q-label">14. What do your business customers usually store?</div>
         <div class="q-hint">Examples: tools, inventory, paperwork, furniture, equipment, staging materials, supplies, vehicles.</div>
         <textarea name="q14" rows="3" placeholder="Describe what business customers typically store…"></textarea>
+      <span class="q-error" id="qerr14">Please describe what business customers store.</span>
       </div>
 
       <div class="question" data-q="15">
@@ -765,6 +825,7 @@
           <span>Other:</span>
           <input type="text" name="q15_other" placeholder="Describe…">
         </div>
+      <span class="q-error" id="qerr15">Please select at least one business need.</span>
       </div>
 
       <div class="question" data-q="16">
@@ -776,6 +837,7 @@
           <tbody id="q16tbody"></tbody>
         </table>
         </div>
+      <span class="q-error" id="qerr16">Please select unit types for at least one customer category.</span>
       </div>
 
       <div class="question" data-q="17">
@@ -786,6 +848,7 @@
           <label class="check-item"><input type="radio" name="q17" value="several"><span>Several important accounts</span></label>
           <label class="check-item"><input type="radio" name="q17" value="major"><span>Major part of the business</span></label>
         </div>
+      <span class="q-error" id="qerr17">Please select one option.</span>
       </div>
 
       <div class="question" data-q="18">
@@ -806,6 +869,7 @@
           <span>Other:</span>
           <input type="text" name="q18_other" placeholder="Describe…">
         </div>
+      <span class="q-error" id="qerr18">Please select at least one account type.</span>
       </div>
 
       <div class="question" data-q="19">
@@ -826,6 +890,7 @@
           <span>Other:</span>
           <input type="text" name="q19_other" placeholder="Describe…">
         </div>
+      <span class="q-error" id="qerr19">Please select at least one priority.</span>
       </div>
 
       <div class="question" data-q="20">
@@ -843,6 +908,7 @@
           </tbody>
         </table>
         </div>
+      <span class="q-error" id="qerr20">Please enter at least one customer segment.</span>
       </div>
 
     </div>
@@ -868,6 +934,7 @@
           </tbody>
         </table>
         </div>
+      <span class="q-error" id="qerr21">Please select a stay length for each customer group.</span>
       </div>
 
       <div class="question" data-q="22">
@@ -879,6 +946,7 @@
           <tbody id="q22tbody"></tbody>
         </table>
         </div>
+      <span class="q-error" id="qerr22">Please select a duration for at least one reason.</span>
       </div>
 
       <div class="question" data-q="23">
@@ -890,16 +958,19 @@
           <tbody id="q23tbody"></tbody>
         </table>
         </div>
+      <span class="q-error" id="qerr23">Please fill in at least one customer type.</span>
       </div>
 
       <div class="question" data-q="24">
         <div class="q-label">24. Is there a time of year when more people move in?</div>
         <textarea name="q24" rows="2" placeholder="e.g. Summer months, May–August…"></textarea>
+      <span class="q-error" id="qerr24">Please describe your peak move-in season.</span>
       </div>
 
       <div class="question" data-q="25">
         <div class="q-label">25. Is there a time of year when more people move out?</div>
         <textarea name="q25" rows="2" placeholder="e.g. End of year, December…"></textarea>
+      <span class="q-error" id="qerr25">Please describe your peak move-out season.</span>
       </div>
 
     </div>
@@ -933,6 +1004,7 @@
           <span>Other:</span>
           <input type="text" name="q26_other" placeholder="Describe…">
         </div>
+      <span class="q-error" id="qerr26">Please select at least one lead source.</span>
       </div>
 
       <div class="question" data-q="27">
@@ -944,12 +1016,14 @@
           <tbody id="q27tbody"></tbody>
         </table>
         </div>
+      <span class="q-error" id="qerr27">Please rate at least one lead source.</span>
       </div>
 
       <div class="question" data-q="28">
         <div class="q-label">28. Do any local businesses regularly send customers your way?</div>
         <div class="q-hint">Examples: realtor, moving company, apartment complex, contractor. List names if you can.</div>
         <textarea name="q28" rows="3" placeholder="List businesses and relationships…"></textarea>
+      <span class="q-error" id="qerr28">Please describe any local referral businesses.</span>
       </div>
 
       <div class="question" data-q="29">
@@ -961,12 +1035,14 @@
           <label class="check-item"><input type="radio" name="q29" value="book_3rd"><span>Book through a third-party site</span></label>
           <label class="check-item"><input type="radio" name="q29" value="email_text"><span>Email or text</span></label>
         </div>
+      <span class="q-error" id="qerr29">Please select how most customers first contact you.</span>
       </div>
 
       <div class="question" data-q="30">
         <div class="q-label">30. What questions do new customers usually ask first?</div>
         <div class="q-hint">Examples: price, unit sizes, security, access hours, availability.</div>
         <textarea name="q30" rows="3" placeholder="Common first questions from new customers…"></textarea>
+      <span class="q-error" id="qerr30">Please describe common first questions.</span>
       </div>
 
     </div>
@@ -1001,16 +1077,19 @@
           <span>Other:</span>
           <input type="text" name="q31_other" placeholder="Describe…">
         </div>
+      <span class="q-error" id="qerr31">Please select at least one reason customers choose you.</span>
       </div>
 
       <div class="question" data-q="32">
         <div class="q-label">32. What is the #1 compliment you consistently receive?</div>
         <textarea name="q32" rows="2" placeholder="Most common compliment from customers…"></textarea>
+      <span class="q-error" id="qerr32">Please enter the most common compliment.</span>
       </div>
 
       <div class="question" data-q="33">
         <div class="q-label">33. What is the #1 complaint or hesitation you hear during the leasing process?</div>
         <textarea name="q33" rows="2" placeholder="Most common complaint or hesitation…"></textarea>
+      <span class="q-error" id="qerr33">Please enter the most common complaint.</span>
       </div>
 
       <div class="question" data-q="34">
@@ -1028,6 +1107,7 @@
           <span>Other:</span>
           <input type="text" name="q34_other" placeholder="Describe…">
         </div>
+      <span class="q-error" id="qerr34">Please select at least one reason.</span>
       </div>
 
     </div>
@@ -1056,21 +1136,25 @@
           </tbody>
         </table>
         </div>
+      <span class="q-error" id="qerr35">Please enter at least one competitor.</span>
       </div>
 
       <div class="question" data-q="36">
         <div class="q-label">36. Who is your toughest competitor, and why?</div>
         <textarea name="q36" rows="3" placeholder="Name and reason…"></textarea>
+      <span class="q-error" id="qerr36">Please describe your toughest competitor.</span>
       </div>
 
       <div class="question" data-q="37">
         <div class="q-label">37. Is there anything competitors offer that we do not?</div>
         <textarea name="q37" rows="3" placeholder="Features, services, or pricing competitors have that we don't…"></textarea>
+      <span class="q-error" id="qerr37">Please describe what competitors offer that you do not.</span>
       </div>
 
       <div class="question" data-q="38">
         <div class="q-label">38. Are competitors running any move-in deals right now that you know of?</div>
         <textarea name="q38" rows="2" placeholder="Current competitor promotions…"></textarea>
+      <span class="q-error" id="qerr38">Please describe any current competitor deals.</span>
       </div>
 
     </div>
@@ -1100,6 +1184,7 @@
           <span>Other:</span>
           <input type="text" name="q39_other" placeholder="Describe…">
         </div>
+      <span class="q-error" id="qerr39">Please select at least one move-out reason.</span>
       </div>
 
       <div class="question" data-q="40">
@@ -1110,6 +1195,7 @@
           <label class="check-item"><input type="radio" name="q40" value="leave"><span>A noticeable number leave because of it</span></label>
           <label class="check-item"><input type="radio" name="q40" value="upset"><span>People get upset and it is a regular issue</span></label>
         </div>
+      <span class="q-error" id="qerr40">Please select how customers react to rate increases.</span>
       </div>
 
       <div class="question" data-q="41">
@@ -1130,6 +1216,7 @@
           <span style="font-size:.82rem;color:var(--gray-600)">Other:</span>
           <input type="text" name="q41_other" placeholder="Other group + rank…">
         </div>
+      <span class="q-error" id="qerr41">Please rank at least one price-sensitive group.</span>
       </div>
 
     </div>
@@ -1147,6 +1234,7 @@
         <div class="q-label">42. What are the biggest day-to-day issues customers run into?</div>
         <div class="q-hint">Examples: gate problems, app not working, pests, lighting, payment issues.</div>
         <textarea name="q42" rows="3" placeholder="Day-to-day customer issues…"></textarea>
+      <span class="q-error" id="qerr42">Please describe day-to-day customer issues.</span>
       </div>
 
       <div class="question" data-q="43">
@@ -1170,32 +1258,38 @@
           <span style="font-size:.82rem;color:var(--gray-600)">Other:</span>
           <input type="text" name="q43_other" placeholder="Other issue + rank…">
         </div>
+      <span class="q-error" id="qerr43">Please rank at least one operational issue.</span>
       </div>
 
       <div class="question" data-q="44">
         <div class="q-label">44. Do customers ask for services or features you do not currently offer?</div>
         <div class="q-hint">Examples: vehicle/boat storage, package acceptance, moving supplies, longer hours, truck rental, specific unit sizes.</div>
         <textarea name="q44" rows="3" placeholder="Requested services or features…"></textarea>
+      <span class="q-error" id="qerr44">Please describe services customers request.</span>
       </div>
 
       <div class="question" data-q="45">
         <div class="q-label">45. Are there certain unit sizes you are always running out of?</div>
         <textarea name="q45" rows="2" placeholder="e.g. 10×10 and 10×20 are always full…"></textarea>
+      <span class="q-error" id="qerr45">Please describe unit sizes you run out of.</span>
       </div>
 
       <div class="question" data-q="46">
         <div class="q-label">46. Are there unit sizes that sit empty and are hard to fill?</div>
         <textarea name="q46" rows="2" placeholder="e.g. 5×5 units often sit empty…"></textarea>
+      <span class="q-error" id="qerr46">Please describe unit sizes that are hard to fill.</span>
       </div>
 
       <div class="question" data-q="47">
         <div class="q-label">47. If you could change or improve one thing about the customer move-in / onboarding process, what would it be?</div>
         <textarea name="q47" rows="3" placeholder="Your top onboarding improvement idea…"></textarea>
+      <span class="q-error" id="qerr47">Please describe your onboarding improvement idea.</span>
       </div>
 
       <div class="question" data-q="48">
         <div class="q-label">48. If you could add one thing to your facility to get more customers, what would it be?</div>
         <textarea name="q48" rows="3" placeholder="Your top facility improvement idea…"></textarea>
+      <span class="q-error" id="qerr48">Please describe what you would add to the facility.</span>
       </div>
 
     </div>
@@ -1218,18 +1312,21 @@
           <tbody id="q49tbody"></tbody>
         </table>
         </div>
+      <span class="q-error" id="qerr49">Please rate at least one underserved customer group.</span>
       </div>
 
       <div class="question" data-q="50">
         <div class="q-label">50. Are there local businesses or organizations we should partner with?</div>
         <div class="q-hint">Examples: realtors, movers, apartment complexes, contractors, property managers, chambers of commerce.</div>
         <textarea name="q50" rows="3" placeholder="List potential partners…"></textarea>
+      <span class="q-error" id="qerr50">Please describe potential local partners.</span>
       </div>
 
       <div class="question" data-q="51">
         <div class="q-label">51. Is anything happening in your area that could bring in more customers?</div>
         <div class="q-hint">Examples: new neighborhoods, road construction, military base changes, businesses opening or closing.</div>
         <textarea name="q51" rows="3" placeholder="Local developments or changes…"></textarea>
+      <span class="q-error" id="qerr51">Please describe local growth opportunities.</span>
       </div>
 
       <div class="question" data-q="52">
@@ -1250,12 +1347,14 @@
           <span style="font-size:.82rem;color:var(--gray-600)">Other:</span>
           <input type="text" name="q52_other" placeholder="Other focus area + rank…">
         </div>
+      <span class="q-error" id="qerr52">Please rank at least one marketing focus.</span>
       </div>
 
       <div class="question" data-q="53">
         <div class="q-label">53. Is there any messaging or advertising that would not work in your market?</div>
         <div class="q-hint">Example: premium messaging in a price-sensitive area, or military messaging where there is no base nearby.</div>
         <textarea name="q53" rows="3" placeholder="Messaging that wouldn't fit your market…"></textarea>
+      <span class="q-error" id="qerr53">Please describe messaging that would not work.</span>
       </div>
 
       <div class="question" data-q="54">
@@ -1273,12 +1372,14 @@
           </tbody>
         </table>
         </div>
+      <span class="q-error" id="qerr54">Please rank at least one channel.</span>
       </div>
 
       <div class="question" data-q="55">
         <div class="q-label">55. Anything else we should know?</div>
         <div class="q-hint">Trends, concerns, ideas, staffing needs, or anything not covered above.</div>
         <textarea name="q55" rows="4" placeholder="Any additional observations, ideas, or concerns…"></textarea>
+      <span class="q-error" id="qerr55">Please share any additional observations.</span>
       </div>
 
     </div>
@@ -1467,6 +1568,20 @@ function updateProgress(){
 document.getElementById('kycForm').addEventListener('input', updateProgress);
 document.getElementById('kycForm').addEventListener('change', updateProgress);
 
+// Clear invalid state on a question when it gets answered
+document.getElementById('kycForm').addEventListener('input', e => {
+  const q = e.target.closest('.question');
+  if(q && q.classList.contains('invalid')) q.classList.remove('invalid');
+});
+document.getElementById('kycForm').addEventListener('change', e => {
+  const q = e.target.closest('.question');
+  if(q && q.classList.contains('invalid')) q.classList.remove('invalid');
+  // Hide banner if no more invalid questions
+  if(!document.querySelector('.question.invalid')){
+    document.getElementById('errorBanner').classList.remove('show');
+  }
+});
+
 // ── Checkbox visual state ────────────────────────────────────────────────────
 document.addEventListener('change', e => {
   if(e.target.type==='checkbox'||e.target.type==='radio'){
@@ -1646,19 +1761,151 @@ ${clone.outerHTML}
   win.document.close();
 }
 
+// ── Validation rules — one entry per question ───────────────────────────────
+// type: 'text'|'radio'|'checkbox'|'grid-radio'|'grid-checkbox'|'table-text'|'rank'|'number'
+const RULES = [
+  {q:'1',  type:'text',         names:['q1']},
+  {q:'2',  type:'text',         names:['q2']},
+  {q:'3',  type:'text',         names:['q3']},
+  {q:'4',  type:'radio',        names:['q4']},
+  {q:'5',  type:'number',       names:['q5']},
+  {q:'6',  type:'checkbox',     names:['q6']},
+  {q:'7',  type:'checkbox',     names:['q7']},
+  {q:'8',  type:'radio',        names:['q8_mix']},
+  {q:'9',  type:'grid-radio',   prefix:'q9_r',  rows:10},
+  {q:'10', type:'text',         names:['q10'],  tag:'textarea'},
+  {q:'11', type:'checkbox',     names:['q11']},
+  {q:'12', type:'grid-radio',   prefix:'q12_r', rows:6},
+  {q:'13', type:'grid-radio',   prefix:'q13_r', rows:17},
+  {q:'14', type:'text',         names:['q14'],  tag:'textarea'},
+  {q:'15', type:'checkbox',     names:['q15']},
+  {q:'16', type:'grid-checkbox',prefix:'q16_r', rows:8, cols:['small','med','large','climate','driveup','park']},
+  {q:'17', type:'radio',        names:['q17']},
+  {q:'18', type:'checkbox',     names:['q18']},
+  {q:'19', type:'checkbox',     names:['q19']},
+  {q:'20', type:'table-text',   names:['q20_seg1']},
+  {q:'21', type:'radio',        names:['q21_personal','q21_business'], all:true},
+  {q:'22', type:'grid-radio',   prefix:'q22_r', rows:9,  minRows:1},
+  {q:'23', type:'table-text',   names:['q23_type0']},
+  {q:'24', type:'text',         names:['q24'],  tag:'textarea'},
+  {q:'25', type:'text',         names:['q25'],  tag:'textarea'},
+  {q:'26', type:'checkbox',     names:['q26']},
+  {q:'27', type:'grid-checkbox',prefix:'q27_r', rows:9, cols:['hvol','bconv','longstay','pricesens'], minRows:1},
+  {q:'28', type:'text',         names:['q28'],  tag:'textarea'},
+  {q:'29', type:'radio',        names:['q29']},
+  {q:'30', type:'text',         names:['q30'],  tag:'textarea'},
+  {q:'31', type:'checkbox',     names:['q31']},
+  {q:'32', type:'text',         names:['q32'],  tag:'textarea'},
+  {q:'33', type:'text',         names:['q33'],  tag:'textarea'},
+  {q:'34', type:'checkbox',     names:['q34']},
+  {q:'35', type:'table-text',   names:['q35_name1']},
+  {q:'36', type:'text',         names:['q36'],  tag:'textarea'},
+  {q:'37', type:'text',         names:['q37'],  tag:'textarea'},
+  {q:'38', type:'text',         names:['q38'],  tag:'textarea'},
+  {q:'39', type:'checkbox',     names:['q39']},
+  {q:'40', type:'radio',        names:['q40']},
+  {q:'41', type:'rank',         prefix:'q41_', names:['q41_apt','q41_students','q41_contractors','q41_longterm','q41_ecomm','q41_retirees','q41_military','q41_smallbiz','q41_vehicle'], minCount:1},
+  {q:'42', type:'text',         names:['q42'],  tag:'textarea'},
+  {q:'43', type:'rank',         names:['q43_pricing','q43_rates','q43_website','q43_office','q43_gate','q43_lighting','q43_clean','q43_climate','q43_units','q43_access','q43_staff','q43_comp'], minCount:1},
+  {q:'44', type:'text',         names:['q44'],  tag:'textarea'},
+  {q:'45', type:'text',         names:['q45'],  tag:'textarea'},
+  {q:'46', type:'text',         names:['q46'],  tag:'textarea'},
+  {q:'47', type:'text',         names:['q47'],  tag:'textarea'},
+  {q:'48', type:'text',         names:['q48'],  tag:'textarea'},
+  {q:'49', type:'grid-radio',   prefix:'q49_r', rows:12, minRows:1},
+  {q:'50', type:'text',         names:['q50'],  tag:'textarea'},
+  {q:'51', type:'text',         names:['q51'],  tag:'textarea'},
+  {q:'52', type:'rank',         names:['q52_price','q52_convenience','q52_security','q52_climate','q52_longterm','q52_biz','q52_monthmth','q52_clean','q52_driveup'], minCount:1},
+  {q:'53', type:'text',         names:['q53'],  tag:'textarea'},
+  {q:'54', type:'rank',         names:['q54_google','q54_driveby','q54_referrals','q54_online','q54_community'], minCount:1},
+  {q:'55', type:'text',         names:['q55'],  tag:'textarea'},
+];
+
+function isAnswered(rule){
+  const form = document.getElementById('kycForm');
+  const {type} = rule;
+
+  if(type === 'text' || type === 'number'){
+    return rule.names.some(n => {
+      const el = form.querySelector(`[name="${n}"]`);
+      return el && el.value.trim().length > 0;
+    });
+  }
+  if(type === 'radio'){
+    if(rule.all){
+      return rule.names.every(n => form.querySelector(`[name="${n}"]:checked`));
+    }
+    return rule.names.some(n => form.querySelector(`[name="${n}"]:checked`));
+  }
+  if(type === 'checkbox'){
+    return rule.names.some(n => form.querySelector(`[name="${n}"]:checked`));
+  }
+  if(type === 'grid-radio'){
+    const minRows = rule.minRows || rule.rows;
+    let answered = 0;
+    for(let i=0; i<rule.rows; i++){
+      if(form.querySelector(`[name="${rule.prefix}${i}"]:checked`)) answered++;
+    }
+    return answered >= minRows;
+  }
+  if(type === 'grid-checkbox'){
+    const minRows = rule.minRows || 1;
+    let answered = 0;
+    for(let i=0; i<rule.rows; i++){
+      const anyCol = rule.cols.some(c => {
+        const el = form.querySelector(`[name="${rule.prefix}${i}_${c}"]`);
+        return el && el.checked;
+      });
+      if(anyCol) answered++;
+    }
+    return answered >= minRows;
+  }
+  if(type === 'table-text'){
+    return rule.names.some(n => {
+      const el = form.querySelector(`[name="${n}"]`);
+      return el && el.value.trim().length > 0;
+    });
+  }
+  if(type === 'rank'){
+    const minCount = rule.minCount || 1;
+    const filled = rule.names.filter(n => {
+      const el = form.querySelector(`[name="${n}"]`);
+      return el && el.value.trim().length > 0;
+    });
+    return filled.length >= minCount;
+  }
+  return false;
+}
+
 // ── Submit ───────────────────────────────────────────────────────────────────
 function submitForm(){
-  const q1 = document.querySelector('[name="q1"]').value.trim();
-  const q2 = document.querySelector('[name="q2"]').value.trim();
-  if(!q1||!q2){
-    showToast('⚠ Please fill in facility name and your name before submitting.', true);
-    document.querySelector('[name="q1"]').focus();
+  // Clear all previous errors
+  document.querySelectorAll('.question.invalid').forEach(el => el.classList.remove('invalid'));
+  document.getElementById('errorBanner').classList.remove('show');
+
+  // Validate all questions
+  const failed = [];
+  RULES.forEach(rule => {
+    if(!isAnswered(rule)){
+      const qEl = document.querySelector(`[data-q="${rule.q}"]`);
+      if(qEl){
+        qEl.classList.add('invalid');
+        failed.push(qEl);
+      }
+    }
+  });
+
+  if(failed.length > 0){
+    document.getElementById('errorBanner').classList.add('show');
+    // Scroll to first failed question
+    failed[0].scrollIntoView({behavior:'smooth', block:'center'});
+    showToast(`⚠ ${failed.length} question${failed.length>1?'s':''} still need${failed.length===1?'s':''} an answer.`, true);
     return;
   }
+
+  // All answered — proceed
   saveData();
 
-  // ── Option A: mailto (works without a server) ────────────────────────────
-  // Opens the user's email client with a summary. Replace the address below.
   const data = collectFormData();
   const facility = data.q1 || '(no facility)';
   const manager  = data.q2 || '(no name)';
@@ -1675,11 +1922,8 @@ function submitForm(){
 
   const subject = encodeURIComponent(`KYC Form — ${facility} — ${manager}`);
   const bodyEnc = encodeURIComponent(body);
+  const mailto  = `mailto:kelly@spartan-investors.com?subject=${subject}&body=${bodyEnc}`;
 
-  // Replace with your actual email address:
-  const mailto = `mailto:kelly@spartan-investors.com?subject=${subject}&body=${bodyEnc}`;
-
-  // Try to open mailto — works in most environments
   const a = document.createElement('a');
   a.href = mailto;
   a.target = '_blank';
@@ -1687,15 +1931,8 @@ function submitForm(){
   a.click();
   document.body.removeChild(a);
 
-  showToast('✓ Opening email with your responses. Also printing a PDF copy…');
+  showToast('✓ Opening email with your responses. Printing a PDF copy…');
   setTimeout(()=>printForm(), 1000);
-
-  // ── Option B: POST to an endpoint (uncomment + add URL to use instead) ───
-  // fetch('https://YOUR-ENDPOINT/submit', {
-  //   method: 'POST',
-  //   headers: {'Content-Type':'application/json'},
-  //   body: JSON.stringify(data)
-  // }).then(()=>showToast('✓ Submitted successfully!')).catch(()=>showToast('⚠ Submission failed. Please print instead.', true));
 }
 
 function showToast(msg, isWarning=false){
