@@ -1168,7 +1168,20 @@
       </div>
 
       <div class="question" data-q="34">
-        <div class="q-label">34. When someone decides not to rent with us, what is usually the reason?</div>
+        <div class="q-label">34. Based on what you observe, how likely do you think customers are to refer this facility to a friend or family member?</div>
+        <div class="q-hint">Think about the general sentiment you pick up from customers day-to-day.</div>
+        <div class="check-grid single-col">
+          <label class="check-item"><input type="radio" name="q34_nps" value="very_likely"><span>Very likely - customers frequently mention us to others or we get a lot of referrals</span></label>
+          <label class="check-item"><input type="radio" name="q34_nps" value="somewhat_likely"><span>Somewhat likely - happy customers but not many active referrals</span></label>
+          <label class="check-item"><input type="radio" name="q34_nps" value="neutral"><span>Neutral - mixed, hard to say</span></label>
+          <label class="check-item"><input type="radio" name="q34_nps" value="unlikely"><span>Unlikely - customers are generally not enthusiastic enough to refer</span></label>
+        </div>
+        <textarea name="q34_nps_reason" rows="2" placeholder="Any context on what drives referrals or holds them back at your facility…" style="margin-top:8px"></textarea>
+      <span class="q-error" id="qerr34">Please select how likely customers are to refer the facility.</span>
+      </div>
+
+      <div class="question" data-q="35">
+        <div class="q-label">35. When someone decides not to rent with us, what is usually the reason?</div>
         <div class="q-hint">Check the most common reasons.</div>
         <div class="check-grid">
           <label class="check-item"><input type="checkbox" name="q34" value="price_high"><span>Our price was too high</span></label>
@@ -1182,7 +1195,7 @@
           <span>Other:</span>
           <input type="text" name="q34_other" placeholder="Describe…">
         </div>
-      <span class="q-error" id="qerr34">Please select at least one reason.</span>
+      <span class="q-error" id="qerr35">Please select at least one reason.</span>
       </div>
 
     </div>
@@ -1196,9 +1209,9 @@
     </div>
     <div class="section-body">
 
-      <div class="question" data-q="35">
-        <div class="q-label">35. Who are your closest competitors?</div>
-        <div class="q-hint">List up to 5. Fill in what you know.</div>
+      <div class="question" data-q="36">
+        <div class="q-label">36. Who do you believe are your closest competitors? List up to 5 below.</div>
+        <div class="q-hint">Use the "Why Customers Pick Them" column to share what you know about why customers choose them over us.</div>
         <div style="overflow-x:auto">
         <table class="comp-table">
           <thead><tr><th>#</th><th>Competitor Name</th><th>How Close?</th><th>Cheaper / Same / Pricier?</th><th>Why Customers Pick Them</th></tr></thead>
@@ -1211,13 +1224,7 @@
           </tbody>
         </table>
         </div>
-      <span class="q-error" id="qerr35">Please enter at least one competitor.</span>
-      </div>
-
-      <div class="question" data-q="36">
-        <div class="q-label">36. Who is your toughest competitor, and why?</div>
-        <textarea name="q36" rows="3" placeholder="Name and reason…"></textarea>
-      <span class="q-error" id="qerr36">Please describe your toughest competitor.</span>
+      <span class="q-error" id="qerr36">Please describe your primary competitor and fill in at least one row.</span>
       </div>
 
       <div class="question" data-q="37">
@@ -1232,6 +1239,20 @@
       <span class="q-error" id="qerr38">Please describe any current competitor deals.</span>
       </div>
 
+      <div class="question" data-q="39">
+        <div class="q-label">39. Have customers come to you specifically because they left a competitor?</div>
+        <div class="q-hint">If yes, which competitor do you hear about most, and what was the main reason they left?</div>
+        <div class="check-grid" style="margin-bottom:12px">
+          <label class="check-item"><input type="radio" name="q39_switchers" value="yes_often"><span>Yes, this happens regularly</span></label>
+          <label class="check-item"><input type="radio" name="q39_switchers" value="yes_sometimes"><span>Yes, occasionally</span></label>
+          <label class="check-item"><input type="radio" name="q39_switchers" value="rarely"><span>Rarely or never</span></label>
+          <label class="check-item"><input type="radio" name="q39_switchers" value="unsure"><span>Not sure / don't always ask</span></label>
+        </div>
+        <input type="text" name="q39_comp_name" placeholder="Competitor they left most often (if applicable)…" style="margin-bottom:8px">
+        <textarea name="q39_comp_reason" rows="2" placeholder="Main reason they left that competitor…"></textarea>
+      <span class="q-error" id="qerr39">Please indicate whether customers switch from competitors.</span>
+      </div>
+
     </div>
   </div>
 
@@ -1243,38 +1264,38 @@
     </div>
     <div class="section-body">
 
-      <div class="question" data-q="39">
-        <div class="q-label">39. When customers move out, what is usually the reason?</div>
+      <div class="question" data-q="40">
+        <div class="q-label">40. When customers move out, what is usually the reason?</div>
         <div class="q-hint">Check the most common reasons.</div>
         <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="q39" value="no_need"><span>They do not need storage anymore</span></label>
-          <label class="check-item"><input type="checkbox" name="q39" value="moving_area"><span>They are moving out of the area</span></label>
-          <label class="check-item"><input type="checkbox" name="q39" value="price_up"><span>Price went up and they did not want to pay more</span></label>
-          <label class="check-item"><input type="checkbox" name="q39" value="cheaper_comp"><span>Switched to a cheaper competitor</span></label>
-          <label class="check-item"><input type="checkbox" name="q39" value="unhappy"><span>Unhappy with the facility or service</span></label>
-          <label class="check-item"><input type="checkbox" name="q39" value="no_payment"><span>Could not keep up with payments</span></label>
+          <label class="check-item"><input type="checkbox" name="q40" value="no_need"><span>They do not need storage anymore</span></label>
+          <label class="check-item"><input type="checkbox" name="q40" value="moving_area"><span>They are moving out of the area</span></label>
+          <label class="check-item"><input type="checkbox" name="q40" value="price_up"><span>Price went up and they did not want to pay more</span></label>
+          <label class="check-item"><input type="checkbox" name="q40" value="cheaper_comp"><span>Switched to a cheaper competitor</span></label>
+          <label class="check-item"><input type="checkbox" name="q40" value="unhappy"><span>Unhappy with the facility or service</span></label>
+          <label class="check-item"><input type="checkbox" name="q40" value="no_payment"><span>Could not keep up with payments</span></label>
         </div>
         <div class="other-inline" style="margin-top:8px">
-          <input type="checkbox" name="q39" value="other">
+          <input type="checkbox" name="q40" value="other">
           <span>Other:</span>
-          <input type="text" name="q39_other" placeholder="Describe…">
+          <input type="text" name="q40_other" placeholder="Describe…">
         </div>
-      <span class="q-error" id="qerr39">Please select at least one move-out reason.</span>
+      <span class="q-error" id="qerr40">Please select at least one move-out reason.</span>
       </div>
 
-      <div class="question" data-q="40">
-        <div class="q-label">40. How do customers usually react when their rate goes up?</div>
+      <div class="question" data-q="41">
+        <div class="q-label">41. How do customers usually react when their rate goes up?</div>
         <div class="check-grid single-col">
           <label class="check-item"><input type="radio" name="q40" value="dont_say"><span>Most do not say anything; they just pay</span></label>
           <label class="check-item"><input type="radio" name="q40" value="some_call"><span>Some call to ask about it but stay</span></label>
           <label class="check-item"><input type="radio" name="q40" value="leave"><span>A noticeable number leave because of it</span></label>
           <label class="check-item"><input type="radio" name="q40" value="upset"><span>People get upset and it is a regular issue</span></label>
         </div>
-      <span class="q-error" id="qerr40">Please select how customers react to rate increases.</span>
+      <span class="q-error" id="qerr41">Please select how customers react to rate increases.</span>
       </div>
 
-      <div class="question" data-q="41">
-        <div class="q-label">41. Which customers are most sensitive to price increases?</div>
+      <div class="question" data-q="42">
+        <div class="q-label">42. Which customers are most sensitive to price increases?</div>
         <div class="q-hint">Rank the top 3 most price-sensitive groups. Enter 1, 2, or 3.</div>
         <div class="rank-grid">
           <div class="rank-item"><input type="number" class="rank-input" name="q41_apt" min="1" max="3" placeholder="–"><span>Apartment renters</span></div>
@@ -1291,7 +1312,7 @@
           <span style="font-size:.82rem;color:var(--gray-600)">Other:</span>
           <input type="text" name="q41_other" placeholder="Other group + rank…">
         </div>
-      <span class="q-error" id="qerr41">Please rank at least one price-sensitive group.</span>
+      <span class="q-error" id="qerr42">Please rank at least one price-sensitive group.</span>
       </div>
 
     </div>
@@ -1305,15 +1326,15 @@
     </div>
     <div class="section-body">
 
-      <div class="question" data-q="42">
-        <div class="q-label">42. What are the biggest day-to-day issues customers run into?</div>
+      <div class="question" data-q="43">
+        <div class="q-label">43. What are the biggest day-to-day issues customers run into?</div>
         <div class="q-hint">Examples: gate problems, app not working, pests, lighting, payment issues.</div>
         <textarea name="q42" rows="3" placeholder="Day-to-day customer issues…"></textarea>
-      <span class="q-error" id="qerr42">Please describe day-to-day customer issues.</span>
+      <span class="q-error" id="qerr43">Please describe day-to-day customer issues.</span>
       </div>
 
-      <div class="question" data-q="43">
-        <div class="q-label">43. What operational issues hurt leasing or customer satisfaction most?</div>
+      <div class="question" data-q="44">
+        <div class="q-label">44. What operational issues hurt leasing or customer satisfaction most?</div>
         <div class="q-hint">Rank the top 5. Enter 1–5.</div>
         <div class="rank-grid">
           <div class="rank-item"><input type="number" class="rank-input" name="q43_pricing" min="1" max="5" placeholder="–"><span>Pricing confusion</span></div>
@@ -1333,38 +1354,38 @@
           <span style="font-size:.82rem;color:var(--gray-600)">Other:</span>
           <input type="text" name="q43_other" placeholder="Other issue + rank…">
         </div>
-      <span class="q-error" id="qerr43">Please rank at least one operational issue.</span>
-      </div>
-
-      <div class="question" data-q="44">
-        <div class="q-label">44. Do customers ask for services or features you do not currently offer?</div>
-        <div class="q-hint">Examples: vehicle/boat storage, package acceptance, moving supplies, longer hours, truck rental, specific unit sizes.</div>
-        <textarea name="q44" rows="3" placeholder="Requested services or features…"></textarea>
-      <span class="q-error" id="qerr44">Please describe services customers request.</span>
+      <span class="q-error" id="qerr44">Please rank at least one operational issue.</span>
       </div>
 
       <div class="question" data-q="45">
-        <div class="q-label">45. Are there certain unit sizes you are always running out of?</div>
-        <textarea name="q45" rows="2" placeholder="e.g. 10×10 and 10×20 are always full…"></textarea>
-      <span class="q-error" id="qerr45">Please describe unit sizes you run out of.</span>
+        <div class="q-label">45. Do customers ask for services or features you do not currently offer?</div>
+        <div class="q-hint">Examples: vehicle/boat storage, package acceptance, moving supplies, longer hours, truck rental, specific unit sizes.</div>
+        <textarea name="q44" rows="3" placeholder="Requested services or features…"></textarea>
+      <span class="q-error" id="qerr45">Please describe services customers request.</span>
       </div>
 
       <div class="question" data-q="46">
-        <div class="q-label">46. Are there unit sizes that sit empty and are hard to fill?</div>
-        <textarea name="q46" rows="2" placeholder="e.g. 5×5 units often sit empty…"></textarea>
-      <span class="q-error" id="qerr46">Please describe unit sizes that are hard to fill.</span>
+        <div class="q-label">46. Are there certain unit sizes you are always running out of?</div>
+        <textarea name="q45" rows="2" placeholder="e.g. 10×10 and 10×20 are always full…"></textarea>
+      <span class="q-error" id="qerr46">Please describe unit sizes you run out of.</span>
       </div>
 
       <div class="question" data-q="47">
-        <div class="q-label">47. If you could change or improve one thing about the customer move-in / onboarding process, what would it be?</div>
-        <textarea name="q47" rows="3" placeholder="Your top onboarding improvement idea…"></textarea>
-      <span class="q-error" id="qerr47">Please describe your onboarding improvement idea.</span>
+        <div class="q-label">47. Are there unit sizes that sit empty and are hard to fill?</div>
+        <textarea name="q46" rows="2" placeholder="e.g. 5×5 units often sit empty…"></textarea>
+      <span class="q-error" id="qerr47">Please describe unit sizes that are hard to fill.</span>
       </div>
 
       <div class="question" data-q="48">
-        <div class="q-label">48. If you could add one thing to your facility to get more customers, what would it be?</div>
+        <div class="q-label">48. If you could change or improve one thing about the customer move-in / onboarding process, what would it be?</div>
+        <textarea name="q47" rows="3" placeholder="Your top onboarding improvement idea…"></textarea>
+      <span class="q-error" id="qerr48">Please describe your onboarding improvement idea.</span>
+      </div>
+
+      <div class="question" data-q="49">
+        <div class="q-label">49. If you could add one thing to your facility to get more customers, what would it be?</div>
         <textarea name="q48" rows="3" placeholder="Your top facility improvement idea…"></textarea>
-      <span class="q-error" id="qerr48">Please describe what you would add to the facility.</span>
+      <span class="q-error" id="qerr49">Please describe what you would add to the facility.</span>
       </div>
 
     </div>
@@ -1378,8 +1399,8 @@
     </div>
     <div class="section-body">
 
-      <div class="question" data-q="49">
-        <div class="q-label">49. Which customer groups in your market are currently underserved by self-storage options?</div>
+      <div class="question" data-q="50">
+        <div class="q-label">50. Which customer groups in your market are currently underserved by self-storage options?</div>
         <div class="q-hint">Think about who is nearby: military bases, colleges, new housing, business parks, seasonal residents, contractors, and local businesses.</div>
         <div style="overflow-x:auto">
         <table class="grid-table">
@@ -1400,25 +1421,25 @@
 </tbody>
         </table>
         </div>
-      <span class="q-error" id="qerr49">Please rate at least one underserved customer group.</span>
-      </div>
-
-      <div class="question" data-q="50">
-        <div class="q-label">50. Are there local businesses or organizations we should partner with?</div>
-        <div class="q-hint">Examples: realtors, movers, apartment complexes, contractors, property managers, chambers of commerce.</div>
-        <textarea name="q50" rows="3" placeholder="List potential partners…"></textarea>
-      <span class="q-error" id="qerr50">Please describe potential local partners.</span>
+      <span class="q-error" id="qerr50">Please rate at least one underserved customer group.</span>
       </div>
 
       <div class="question" data-q="51">
-        <div class="q-label">51. Is anything happening in your area that could bring in more customers?</div>
-        <div class="q-hint">Examples: new neighborhoods, road construction, military base changes, businesses opening or closing.</div>
-        <textarea name="q51" rows="3" placeholder="Local developments or changes…"></textarea>
-      <span class="q-error" id="qerr51">Please describe local growth opportunities.</span>
+        <div class="q-label">51. Are there local businesses or organizations we should partner with?</div>
+        <div class="q-hint">Examples: realtors, movers, apartment complexes, contractors, property managers, chambers of commerce.</div>
+        <textarea name="q50" rows="3" placeholder="List potential partners…"></textarea>
+      <span class="q-error" id="qerr51">Please describe potential local partners.</span>
       </div>
 
       <div class="question" data-q="52">
-        <div class="q-label">52. In your opinion, what should our marketing focus on for your facility?</div>
+        <div class="q-label">52. Is anything happening in your area that could bring in more customers?</div>
+        <div class="q-hint">Examples: new neighborhoods, road construction, military base changes, businesses opening or closing.</div>
+        <textarea name="q51" rows="3" placeholder="Local developments or changes…"></textarea>
+      <span class="q-error" id="qerr52">Please describe local growth opportunities.</span>
+      </div>
+
+      <div class="question" data-q="53">
+        <div class="q-label">53. In your opinion, what should our marketing focus on for your facility?</div>
         <div class="q-hint">Pick the top 3 that matter most in your market. Enter 1, 2, or 3.</div>
         <div class="rank-grid">
           <div class="rank-item"><input type="number" class="rank-input" name="q52_price" min="1" max="3" placeholder="–"><span>Price / promotions</span></div>
@@ -1435,18 +1456,18 @@
           <span style="font-size:.82rem;color:var(--gray-600)">Other:</span>
           <input type="text" name="q52_other" placeholder="Other focus area + rank…">
         </div>
-      <span class="q-error" id="qerr52">Please rank at least one marketing focus.</span>
-      </div>
-
-      <div class="question" data-q="53">
-        <div class="q-label">53. Is there any messaging or advertising that would not work in your market?</div>
-        <div class="q-hint">Example: premium messaging in a price-sensitive area, or military messaging where there is no base nearby.</div>
-        <textarea name="q53" rows="3" placeholder="Messaging that wouldn't fit your market…"></textarea>
-      <span class="q-error" id="qerr53">Please describe messaging that would not work.</span>
+      <span class="q-error" id="qerr53">Please rank at least one marketing focus.</span>
       </div>
 
       <div class="question" data-q="54">
-        <div class="q-label">54. What are the best ways to reach customers in your area?</div>
+        <div class="q-label">54. Is there any messaging or advertising that would not work in your market?</div>
+        <div class="q-hint">Example: premium messaging in a price-sensitive area, or military messaging where there is no base nearby.</div>
+        <textarea name="q53" rows="3" placeholder="Messaging that wouldn't fit your market…"></textarea>
+      <span class="q-error" id="qerr54">Please describe messaging that would not work.</span>
+      </div>
+
+      <div class="question" data-q="55">
+        <div class="q-label">55. What are the best ways to reach customers in your area?</div>
         <div class="q-hint">Rank 1–5, where 1 = most effective.</div>
         <div style="overflow-x:auto">
         <table class="grid-table">
@@ -1460,14 +1481,14 @@
           </tbody>
         </table>
         </div>
-      <span class="q-error" id="qerr54">Please rank at least one channel.</span>
+      <span class="q-error" id="qerr55">Please rank at least one channel.</span>
       </div>
 
-      <div class="question" data-q="55">
-        <div class="q-label">55. Anything else we should know?</div>
+      <div class="question" data-q="56">
+        <div class="q-label">56. Anything else we should know?</div>
         <div class="q-hint">Trends, concerns, ideas, staffing needs, or anything not covered above.</div>
         <textarea name="q55" rows="4" placeholder="Any additional observations, ideas, or concerns…"></textarea>
-      <span class="q-error" id="qerr55">Please share any additional observations.</span>
+      <span class="q-error" id="qerr56">Please share any additional observations.</span>
       </div>
 
     </div>
@@ -1492,7 +1513,7 @@
 
 // ── Progress tracking ────────────────────────────────────────────────────────
 function updateProgress(){
-  const total = 55;
+  const total = 56;
   let answered = 0;
   for(let q=1; q<=55; q++){
     const el = document.querySelector(`[data-q="${q}"]`);
@@ -1743,28 +1764,30 @@ const RULES = [
   {q:'31', type:'checkbox',     names:['q31']},
   {q:'32', type:'text',         names:['q32'],  tag:'textarea'},
   {q:'33', type:'text',         names:['q33'],  tag:'textarea'},
-  {q:'34', type:'checkbox',     names:['q34']},
-  {q:'35', type:'table-text',   names:['q35_name1']},
-  {q:'36', type:'text',         names:['q36'],  tag:'textarea'},
+  {q:'34', type:'radio',        names:['q34_nps']},
+  {q:'36', type:'checkbox',     names:['q34']},
+  {q:'36', type:'table-text',   names:['q35_name1']},
+  {q:'37', type:'text',         names:['q36'],  tag:'textarea'},
   {q:'37', type:'text',         names:['q37'],  tag:'textarea'},
   {q:'38', type:'text',         names:['q38'],  tag:'textarea'},
-  {q:'39', type:'checkbox',     names:['q39']},
-  {q:'40', type:'radio',        names:['q40']},
-  {q:'41', type:'rank',         prefix:'q41_', names:['q41_apt','q41_students','q41_contractors','q41_longterm','q41_ecomm','q41_retirees','q41_military','q41_smallbiz','q41_vehicle'], minCount:1},
-  {q:'42', type:'text',         names:['q42'],  tag:'textarea'},
-  {q:'43', type:'rank',         names:['q43_pricing','q43_rates','q43_website','q43_office','q43_gate','q43_lighting','q43_clean','q43_climate','q43_units','q43_access','q43_staff','q43_comp'], minCount:1},
-  {q:'44', type:'text',         names:['q44'],  tag:'textarea'},
-  {q:'45', type:'text',         names:['q45'],  tag:'textarea'},
-  {q:'46', type:'text',         names:['q46'],  tag:'textarea'},
-  {q:'47', type:'text',         names:['q47'],  tag:'textarea'},
-  {q:'48', type:'text',         names:['q48'],  tag:'textarea'},
-  {q:'49', type:'grid-radio',   prefix:'q49_r', rows:12, minRows:1},
-  {q:'50', type:'text',         names:['q50'],  tag:'textarea'},
-  {q:'51', type:'text',         names:['q51'],  tag:'textarea'},
-  {q:'52', type:'rank',         names:['q52_price','q52_convenience','q52_security','q52_climate','q52_longterm','q52_biz','q52_monthmth','q52_clean','q52_driveup'], minCount:1},
-  {q:'53', type:'text',         names:['q53'],  tag:'textarea'},
-  {q:'54', type:'rank',         names:['q54_google','q54_driveby','q54_referrals','q54_online','q54_community'], minCount:1},
-  {q:'55', type:'text',         names:['q55'],  tag:'textarea'},
+  {q:'39', type:'radio',        names:['q39_switchers']},
+  {q:'40', type:'checkbox',     names:['q40']},
+  {q:'41', type:'radio',        names:['q40']},
+  {q:'42', type:'rank',         prefix:'q41_', names:['q41_apt','q41_students','q41_contractors','q41_longterm','q41_ecomm','q41_retirees','q41_military','q41_smallbiz','q41_vehicle'], minCount:1},
+  {q:'43', type:'text',         names:['q42'],  tag:'textarea'},
+  {q:'44', type:'rank',         names:['q43_pricing','q43_rates','q43_website','q43_office','q43_gate','q43_lighting','q43_clean','q43_climate','q43_units','q43_access','q43_staff','q43_comp'], minCount:1},
+  {q:'45', type:'text',         names:['q44'],  tag:'textarea'},
+  {q:'46', type:'text',         names:['q45'],  tag:'textarea'},
+  {q:'47', type:'text',         names:['q46'],  tag:'textarea'},
+  {q:'48', type:'text',         names:['q47'],  tag:'textarea'},
+  {q:'49', type:'text',         names:['q48'],  tag:'textarea'},
+  {q:'50', type:'grid-radio',   prefix:'q49_r', rows:12, minRows:1},
+  {q:'51', type:'text',         names:['q50'],  tag:'textarea'},
+  {q:'52', type:'text',         names:['q51'],  tag:'textarea'},
+  {q:'53', type:'rank',         names:['q52_price','q52_convenience','q52_security','q52_climate','q52_longterm','q52_biz','q52_monthmth','q52_clean','q52_driveup'], minCount:1},
+  {q:'54', type:'text',         names:['q53'],  tag:'textarea'},
+  {q:'55', type:'rank',         names:['q54_google','q54_driveby','q54_referrals','q54_online','q54_community'], minCount:1},
+  {q:'56', type:'text',         names:['q55'],  tag:'textarea'},
 ];
 
 function isAnswered(rule){
