@@ -578,36 +578,36 @@
       <div class="question" data-q="1">
         <div class="q-label">1. Facility name / location</div>
         <div class="q-hint">If you manage multiple facilities, please fill out a separate form for each facility.</div>
-        <input type="text" name="q1" placeholder="e.g. FreeUp Storage Beaufort">
+        <input type="text" name="Facility_Name" placeholder="e.g. FreeUp Storage Beaufort">
       <span class="q-error" id="qerr1">Please enter the facility name.</span>
       </div>
 
       <div class="question" data-q="2">
         <div class="q-label">2. Your name</div>
-        <input type="text" name="q2" placeholder="Full name">
+        <input type="text" name="Manager_Name" placeholder="Full name">
       <span class="q-error" id="qerr2">Please enter your name.</span>
       </div>
 
       <div class="question" data-q="3">
         <div class="q-label">3. Date</div>
-        <input type="date" name="q3" style="width:200px">
+        <input type="date" name="Date" style="width:200px">
       <span class="q-error" id="qerr3">Please enter the date.</span>
       </div>
 
       <div class="question" data-q="4">
         <div class="q-label">4. How long have you managed this facility?</div>
         <div class="check-grid">
-          <label class="check-item"><input type="radio" name="q4" value="less_6mo"><span>Less than 6 months</span></label>
-          <label class="check-item"><input type="radio" name="q4" value="6mo_1yr"><span>6 months to 1 year</span></label>
-          <label class="check-item"><input type="radio" name="q4" value="1_3yr"><span>1–3 years</span></label>
-          <label class="check-item"><input type="radio" name="q4" value="3plus"><span>3+ years</span></label>
+          <label class="check-item"><input type="radio" name="How_Long_Managed" value="less_6mo"><span>Less than 6 months</span></label>
+          <label class="check-item"><input type="radio" name="How_Long_Managed" value="6mo_1yr"><span>6 months to 1 year</span></label>
+          <label class="check-item"><input type="radio" name="How_Long_Managed" value="1_3yr"><span>1–3 years</span></label>
+          <label class="check-item"><input type="radio" name="How_Long_Managed" value="3plus"><span>3+ years</span></label>
         </div>
       <span class="q-error" id="qerr4">Please select how long you have managed this facility.</span>
       </div>
 
       <div class="question" data-q="5">
         <div class="q-label">5. About how many tenants do you have right now?</div>
-        <input type="number" name="q5" placeholder="e.g. 250" min="0">
+        <input type="number" name="Approx_Tenants" placeholder="e.g. 250" min="0">
       <span class="q-error" id="qerr5">Please enter the approximate number of tenants.</span>
       </div>
 
@@ -615,18 +615,18 @@
         <div class="q-label">6. What best describes your market?</div>
         <div class="q-hint">Select the best fit. If more than one applies, check all that apply.</div>
         <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="q6" value="urban"><span>Urban</span></label>
-          <label class="check-item"><input type="checkbox" name="q6" value="dense_suburban"><span>Dense suburban</span></label>
-          <label class="check-item"><input type="checkbox" name="q6" value="standard_suburban"><span>Standard suburban</span></label>
-          <label class="check-item"><input type="checkbox" name="q6" value="rural"><span>Rural</span></label>
-          <label class="check-item"><input type="checkbox" name="q6" value="college_town"><span>College town</span></label>
-          <label class="check-item"><input type="checkbox" name="q6" value="military_town"><span>Military town</span></label>
-          <label class="check-item"><input type="checkbox" name="q6" value="vacation_seasonal"><span>Vacation / seasonal market</span></label>
+          <label class="check-item"><input type="checkbox" name="Market_Type" value="urban"><span>Urban</span></label>
+          <label class="check-item"><input type="checkbox" name="Market_Type" value="dense_suburban"><span>Dense suburban</span></label>
+          <label class="check-item"><input type="checkbox" name="Market_Type" value="standard_suburban"><span>Standard suburban</span></label>
+          <label class="check-item"><input type="checkbox" name="Market_Type" value="rural"><span>Rural</span></label>
+          <label class="check-item"><input type="checkbox" name="Market_Type" value="college_town"><span>College town</span></label>
+          <label class="check-item"><input type="checkbox" name="Market_Type" value="military_town"><span>Military town</span></label>
+          <label class="check-item"><input type="checkbox" name="Market_Type" value="vacation_seasonal"><span>Vacation / seasonal market</span></label>
         </div>
         <div class="other-inline" style="margin-top:8px">
-          <input type="checkbox" name="q6" value="other">
+          <input type="checkbox" name="Market_Type" value="other">
           <span>Other:</span>
-          <input type="text" name="q6_other" placeholder="Describe…">
+          <input type="text" name="Market_Type_Other" placeholder="Describe…">
         </div>
       <span class="q-error" id="qerr6">Please select at least one market type.</span>
       </div>
@@ -635,23 +635,23 @@
         <div class="q-label">7. What nearby drivers influence storage demand most?</div>
         <div class="q-hint">Check all that apply.</div>
         <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="q7" value="apt_density"><span>Apartment density</span></label>
-          <label class="check-item"><input type="checkbox" name="q7" value="new_housing"><span>New housing growth</span></label>
-          <label class="check-item"><input type="checkbox" name="q7" value="military_base"><span>Military base</span></label>
-          <label class="check-item"><input type="checkbox" name="q7" value="college_univ"><span>College / university</span></label>
-          <label class="check-item"><input type="checkbox" name="q7" value="tourism"><span>Tourism / seasonal residents</span></label>
-          <label class="check-item"><input type="checkbox" name="q7" value="small_biz"><span>Small business / contractor activity</span></label>
-          <label class="check-item"><input type="checkbox" name="q7" value="warehousing"><span>Warehousing / industrial area</span></label>
-          <label class="check-item"><input type="checkbox" name="q7" value="affluent"><span>Affluent homeowners</span></label>
-          <label class="check-item"><input type="checkbox" name="q7" value="retirees"><span>Retiree population</span></label>
-          <label class="check-item"><input type="checkbox" name="q7" value="hoa"><span>HOA-heavy neighborhoods</span></label>
-          <label class="check-item"><input type="checkbox" name="q7" value="major_employers"><span>Major employers nearby</span></label>
-          <label class="check-item"><input type="checkbox" name="q7" value="hospitals"><span>Hospitals / medical offices</span></label>
+          <label class="check-item"><input type="checkbox" name="Demand_Drivers" value="apt_density"><span>Apartment density</span></label>
+          <label class="check-item"><input type="checkbox" name="Demand_Drivers" value="new_housing"><span>New housing growth</span></label>
+          <label class="check-item"><input type="checkbox" name="Demand_Drivers" value="military_base"><span>Military base</span></label>
+          <label class="check-item"><input type="checkbox" name="Demand_Drivers" value="college_univ"><span>College / university</span></label>
+          <label class="check-item"><input type="checkbox" name="Demand_Drivers" value="tourism"><span>Tourism / seasonal residents</span></label>
+          <label class="check-item"><input type="checkbox" name="Demand_Drivers" value="small_biz"><span>Small business / contractor activity</span></label>
+          <label class="check-item"><input type="checkbox" name="Demand_Drivers" value="warehousing"><span>Warehousing / industrial area</span></label>
+          <label class="check-item"><input type="checkbox" name="Demand_Drivers" value="affluent"><span>Affluent homeowners</span></label>
+          <label class="check-item"><input type="checkbox" name="Demand_Drivers" value="retirees"><span>Retiree population</span></label>
+          <label class="check-item"><input type="checkbox" name="Demand_Drivers" value="hoa"><span>HOA-heavy neighborhoods</span></label>
+          <label class="check-item"><input type="checkbox" name="Demand_Drivers" value="major_employers"><span>Major employers nearby</span></label>
+          <label class="check-item"><input type="checkbox" name="Demand_Drivers" value="hospitals"><span>Hospitals / medical offices</span></label>
         </div>
         <div class="other-inline" style="margin-top:8px">
-          <input type="checkbox" name="q7" value="other">
+          <input type="checkbox" name="Demand_Drivers" value="other">
           <span>Other:</span>
-          <input type="text" name="q7_other" placeholder="Describe…">
+          <input type="text" name="Demand_Drivers_Other" placeholder="Describe…">
         </div>
       <span class="q-error" id="qerr7">Please select at least one demand driver.</span>
       </div>
@@ -671,20 +671,20 @@
         <div class="q-label">8. What is your overall customer mix?</div>
         <div class="q-hint">Best estimate is fine. The percentages should total roughly 100%.</div>
         <div class="check-grid single-col" style="margin-bottom:16px">
-          <label class="check-item"><input type="radio" name="q8_mix" value="all_personal"><span>Almost all personal</span></label>
-          <label class="check-item"><input type="radio" name="q8_mix" value="mostly_personal"><span>Mostly personal, some business</span></label>
-          <label class="check-item"><input type="radio" name="q8_mix" value="even"><span>About even</span></label>
-          <label class="check-item"><input type="radio" name="q8_mix" value="mostly_biz"><span>Mostly business, some personal</span></label>
-          <label class="check-item"><input type="radio" name="q8_mix" value="all_biz"><span>Almost all business</span></label>
+          <label class="check-item"><input type="radio" name="Customer_Mix" value="all_personal"><span>Almost all personal</span></label>
+          <label class="check-item"><input type="radio" name="Customer_Mix" value="mostly_personal"><span>Mostly personal, some business</span></label>
+          <label class="check-item"><input type="radio" name="Customer_Mix" value="even"><span>About even</span></label>
+          <label class="check-item"><input type="radio" name="Customer_Mix" value="mostly_biz"><span>Mostly business, some personal</span></label>
+          <label class="check-item"><input type="radio" name="Customer_Mix" value="all_biz"><span>Almost all business</span></label>
         </div>
         <div class="input-row" style="max-width:380px">
           <div>
             <div style="font-size:.78rem;color:var(--gray-600);margin-bottom:5px;font-weight:500">Personal / Household (B2C) %</div>
-            <div class="input-with-suffix"><input type="number" name="q8_pct_b2c" min="0" max="100" placeholder="0"><span>%</span></div>
+            <div class="input-with-suffix"><input type="number" name="Pct_Personal_B2C" min="0" max="100" placeholder="0"><span>%</span></div>
           </div>
           <div>
             <div style="font-size:.78rem;color:var(--gray-600);margin-bottom:5px;font-weight:500">Business (B2B) %</div>
-            <div class="input-with-suffix"><input type="number" name="q8_pct_b2b" min="0" max="100" placeholder="0"><span>%</span></div>
+            <div class="input-with-suffix"><input type="number" name="Pct_Business_B2B" min="0" max="100" placeholder="0"><span>%</span></div>
           </div>
         </div>
       <span class="q-error" id="qerr8">Please select the overall customer mix.</span>
@@ -697,19 +697,19 @@
         <table class="grid-table">
           <thead><tr><th>Customer Type</th><th>None</th><th>A Few</th><th>Some</th><th>Many</th><th>Most</th></tr></thead>
           <tbody id="q9tbody">
-<tr><td>Residential - Moving / temporary storage</td><td><input type="radio" name="q9_r0" value="none"></td><td><input type="radio" name="q9_r0" value="afew"></td><td><input type="radio" name="q9_r0" value="some"></td><td><input type="radio" name="q9_r0" value="many"></td><td><input type="radio" name="q9_r0" value="most"></td></tr>
-<tr><td>Residential - Long-term storage</td><td><input type="radio" name="q9_r1" value="none"></td><td><input type="radio" name="q9_r1" value="afew"></td><td><input type="radio" name="q9_r1" value="some"></td><td><input type="radio" name="q9_r1" value="many"></td><td><input type="radio" name="q9_r1" value="most"></td></tr>
-<tr><td>Apartment / condo renters</td><td><input type="radio" name="q9_r2" value="none"></td><td><input type="radio" name="q9_r2" value="afew"></td><td><input type="radio" name="q9_r2" value="some"></td><td><input type="radio" name="q9_r2" value="many"></td><td><input type="radio" name="q9_r2" value="most"></td></tr>
-<tr><td>Homeowners</td><td><input type="radio" name="q9_r3" value="none"></td><td><input type="radio" name="q9_r3" value="afew"></td><td><input type="radio" name="q9_r3" value="some"></td><td><input type="radio" name="q9_r3" value="many"></td><td><input type="radio" name="q9_r3" value="most"></td></tr>
-<tr><td>Military</td><td><input type="radio" name="q9_r4" value="none"></td><td><input type="radio" name="q9_r4" value="afew"></td><td><input type="radio" name="q9_r4" value="some"></td><td><input type="radio" name="q9_r4" value="many"></td><td><input type="radio" name="q9_r4" value="most"></td></tr>
-<tr><td>Students</td><td><input type="radio" name="q9_r5" value="none"></td><td><input type="radio" name="q9_r5" value="afew"></td><td><input type="radio" name="q9_r5" value="some"></td><td><input type="radio" name="q9_r5" value="many"></td><td><input type="radio" name="q9_r5" value="most"></td></tr>
-<tr><td>Seasonal / snowbird residents</td><td><input type="radio" name="q9_r6" value="none"></td><td><input type="radio" name="q9_r6" value="afew"></td><td><input type="radio" name="q9_r6" value="some"></td><td><input type="radio" name="q9_r6" value="many"></td><td><input type="radio" name="q9_r6" value="most"></td></tr>
-<tr><td>Vehicle / RV / boat owners</td><td><input type="radio" name="q9_r7" value="none"></td><td><input type="radio" name="q9_r7" value="afew"></td><td><input type="radio" name="q9_r7" value="some"></td><td><input type="radio" name="q9_r7" value="many"></td><td><input type="radio" name="q9_r7" value="most"></td></tr>
-<tr><td>Retirees / fixed income</td><td><input type="radio" name="q9_r8" value="none"></td><td><input type="radio" name="q9_r8" value="afew"></td><td><input type="radio" name="q9_r8" value="some"></td><td><input type="radio" name="q9_r8" value="many"></td><td><input type="radio" name="q9_r8" value="most"></td></tr>
-<tr><td>Other customer types</td><td><input type="radio" name="q9_r9" value="none"></td><td><input type="radio" name="q9_r9" value="afew"></td><td><input type="radio" name="q9_r9" value="some"></td><td><input type="radio" name="q9_r9" value="many"></td><td><input type="radio" name="q9_r9" value="most"></td></tr>
-<tr><td><input type="text" name="q9_extra10" placeholder="Add customer type…" style="width:100%;font-size:.8rem;border:1px solid #e0e0e2;padding:4px 7px;border-radius:3px"></td><td><input type="radio" name="q9_r10" value="none"></td><td><input type="radio" name="q9_r10" value="afew"></td><td><input type="radio" name="q9_r10" value="some"></td><td><input type="radio" name="q9_r10" value="many"></td><td><input type="radio" name="q9_r10" value="most"></td></tr>
-<tr><td><input type="text" name="q9_extra11" placeholder="Add customer type…" style="width:100%;font-size:.8rem;border:1px solid #e0e0e2;padding:4px 7px;border-radius:3px"></td><td><input type="radio" name="q9_r11" value="none"></td><td><input type="radio" name="q9_r11" value="afew"></td><td><input type="radio" name="q9_r11" value="some"></td><td><input type="radio" name="q9_r11" value="many"></td><td><input type="radio" name="q9_r11" value="most"></td></tr>
-<tr><td><input type="text" name="q9_extra12" placeholder="Add customer type…" style="width:100%;font-size:.8rem;border:1px solid #e0e0e2;padding:4px 7px;border-radius:3px"></td><td><input type="radio" name="q9_r12" value="none"></td><td><input type="radio" name="q9_r12" value="afew"></td><td><input type="radio" name="q9_r12" value="some"></td><td><input type="radio" name="q9_r12" value="many"></td><td><input type="radio" name="q9_r12" value="most"></td></tr>
+<tr><td>Residential - Moving / temporary storage</td><td><input type="radio" name="Freq_Residential_Moving" value="none"></td><td><input type="radio" name="Freq_Residential_Moving" value="afew"></td><td><input type="radio" name="Freq_Residential_Moving" value="some"></td><td><input type="radio" name="Freq_Residential_Moving" value="many"></td><td><input type="radio" name="Freq_Residential_Moving" value="most"></td></tr>
+<tr><td>Residential - Long-term storage</td><td><input type="radio" name="Freq_Residential_Longterm" value="none"></td><td><input type="radio" name="Freq_Residential_Longterm" value="afew"></td><td><input type="radio" name="Freq_Residential_Longterm" value="some"></td><td><input type="radio" name="Freq_Residential_Longterm" value="many"></td><td><input type="radio" name="Freq_Residential_Longterm" value="most"></td></tr>
+<tr><td>Apartment / condo renters</td><td><input type="radio" name="Freq_Apt_Condo_Renters" value="none"></td><td><input type="radio" name="Freq_Apt_Condo_Renters" value="afew"></td><td><input type="radio" name="Freq_Apt_Condo_Renters" value="some"></td><td><input type="radio" name="Freq_Apt_Condo_Renters" value="many"></td><td><input type="radio" name="Freq_Apt_Condo_Renters" value="most"></td></tr>
+<tr><td>Homeowners</td><td><input type="radio" name="Freq_Homeowners" value="none"></td><td><input type="radio" name="Freq_Homeowners" value="afew"></td><td><input type="radio" name="Freq_Homeowners" value="some"></td><td><input type="radio" name="Freq_Homeowners" value="many"></td><td><input type="radio" name="Freq_Homeowners" value="most"></td></tr>
+<tr><td>Military</td><td><input type="radio" name="Freq_Military" value="none"></td><td><input type="radio" name="Freq_Military" value="afew"></td><td><input type="radio" name="Freq_Military" value="some"></td><td><input type="radio" name="Freq_Military" value="many"></td><td><input type="radio" name="Freq_Military" value="most"></td></tr>
+<tr><td>Students</td><td><input type="radio" name="Freq_Students" value="none"></td><td><input type="radio" name="Freq_Students" value="afew"></td><td><input type="radio" name="Freq_Students" value="some"></td><td><input type="radio" name="Freq_Students" value="many"></td><td><input type="radio" name="Freq_Students" value="most"></td></tr>
+<tr><td>Seasonal / snowbird residents</td><td><input type="radio" name="Freq_Seasonal_Snowbird" value="none"></td><td><input type="radio" name="Freq_Seasonal_Snowbird" value="afew"></td><td><input type="radio" name="Freq_Seasonal_Snowbird" value="some"></td><td><input type="radio" name="Freq_Seasonal_Snowbird" value="many"></td><td><input type="radio" name="Freq_Seasonal_Snowbird" value="most"></td></tr>
+<tr><td>Vehicle / RV / boat owners</td><td><input type="radio" name="Freq_Vehicle_RV_Boat" value="none"></td><td><input type="radio" name="Freq_Vehicle_RV_Boat" value="afew"></td><td><input type="radio" name="Freq_Vehicle_RV_Boat" value="some"></td><td><input type="radio" name="Freq_Vehicle_RV_Boat" value="many"></td><td><input type="radio" name="Freq_Vehicle_RV_Boat" value="most"></td></tr>
+<tr><td>Retirees / fixed income</td><td><input type="radio" name="Freq_Retirees" value="none"></td><td><input type="radio" name="Freq_Retirees" value="afew"></td><td><input type="radio" name="Freq_Retirees" value="some"></td><td><input type="radio" name="Freq_Retirees" value="many"></td><td><input type="radio" name="Freq_Retirees" value="most"></td></tr>
+<tr><td>Other customer types</td><td><input type="radio" name="Freq_Other_Customer_Types" value="none"></td><td><input type="radio" name="Freq_Other_Customer_Types" value="afew"></td><td><input type="radio" name="Freq_Other_Customer_Types" value="some"></td><td><input type="radio" name="Freq_Other_Customer_Types" value="many"></td><td><input type="radio" name="Freq_Other_Customer_Types" value="most"></td></tr>
+<tr><td><input type="text" name="Custom_Customer_Type_1" placeholder="Add customer type…" style="width:100%;font-size:.8rem;border:1px solid #e0e0e2;padding:4px 7px;border-radius:3px"></td><td><input type="radio" name="Freq_Custom_Type_1" value="none"></td><td><input type="radio" name="Freq_Custom_Type_1" value="afew"></td><td><input type="radio" name="Freq_Custom_Type_1" value="some"></td><td><input type="radio" name="Freq_Custom_Type_1" value="many"></td><td><input type="radio" name="Freq_Custom_Type_1" value="most"></td></tr>
+<tr><td><input type="text" name="Custom_Customer_Type_2" placeholder="Add customer type…" style="width:100%;font-size:.8rem;border:1px solid #e0e0e2;padding:4px 7px;border-radius:3px"></td><td><input type="radio" name="Freq_Custom_Type_2" value="none"></td><td><input type="radio" name="Freq_Custom_Type_2" value="afew"></td><td><input type="radio" name="Freq_Custom_Type_2" value="some"></td><td><input type="radio" name="Freq_Custom_Type_2" value="many"></td><td><input type="radio" name="Freq_Custom_Type_2" value="most"></td></tr>
+<tr><td><input type="text" name="Custom_Customer_Type_3" placeholder="Add customer type…" style="width:100%;font-size:.8rem;border:1px solid #e0e0e2;padding:4px 7px;border-radius:3px"></td><td><input type="radio" name="Freq_Custom_Type_3" value="none"></td><td><input type="radio" name="Freq_Custom_Type_3" value="afew"></td><td><input type="radio" name="Freq_Custom_Type_3" value="some"></td><td><input type="radio" name="Freq_Custom_Type_3" value="many"></td><td><input type="radio" name="Freq_Custom_Type_3" value="most"></td></tr>
 </tbody>
         </table>
         </div>
@@ -719,7 +719,7 @@
       <div class="question" data-q="10">
         <div class="q-label">10. How would you describe the typical personal customer at your facility?</div>
         <div class="q-hint">Think age range, renters vs. homeowners, families vs. singles, income sensitivity, lifestyle, or other patterns you notice.</div>
-        <textarea name="q10" rows="4" placeholder="Describe your typical customer…"></textarea>
+        <textarea name="Typical_Personal_Customer" rows="4" placeholder="Describe your typical customer…"></textarea>
       <span class="q-error" id="qerr10">Please describe your typical personal customer.</span>
       </div>
 
@@ -738,22 +738,22 @@
         <div class="q-label">11. For personal customers, why are most of them renting?</div>
         <div class="q-hint">Check the top reasons you see.</div>
         <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="q11" value="moving_local"><span>Moving to a new home locally</span></label>
-          <label class="check-item"><input type="checkbox" name="q11" value="moving_oos"><span>Moving out of state</span></label>
-          <label class="check-item"><input type="checkbox" name="q11" value="downsizing"><span>Downsizing or life change</span></label>
-          <label class="check-item"><input type="checkbox" name="q11" value="renovating"><span>Renovating their home</span></label>
-          <label class="check-item"><input type="checkbox" name="q11" value="need_space"><span>Need more space / decluttering</span></label>
-          <label class="check-item"><input type="checkbox" name="q11" value="apt_no_garage"><span>Apartment living / no garage or basement</span></label>
-          <label class="check-item"><input type="checkbox" name="q11" value="hoa"><span>HOA restrictions</span></label>
-          <label class="check-item"><input type="checkbox" name="q11" value="seasonal"><span>Seasonal items</span></label>
-          <label class="check-item"><input type="checkbox" name="q11" value="military"><span>Military move or deployment</span></label>
-          <label class="check-item"><input type="checkbox" name="q11" value="college"><span>College student storage</span></label>
-          <label class="check-item"><input type="checkbox" name="q11" value="vehicle"><span>Storing a vehicle, RV, or boat</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Personal_Customers_Rent" value="moving_local"><span>Moving to a new home locally</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Personal_Customers_Rent" value="moving_oos"><span>Moving out of state</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Personal_Customers_Rent" value="downsizing"><span>Downsizing or life change</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Personal_Customers_Rent" value="renovating"><span>Renovating their home</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Personal_Customers_Rent" value="need_space"><span>Need more space / decluttering</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Personal_Customers_Rent" value="apt_no_garage"><span>Apartment living / no garage or basement</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Personal_Customers_Rent" value="hoa"><span>HOA restrictions</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Personal_Customers_Rent" value="seasonal"><span>Seasonal items</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Personal_Customers_Rent" value="military"><span>Military move or deployment</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Personal_Customers_Rent" value="college"><span>College student storage</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Personal_Customers_Rent" value="vehicle"><span>Storing a vehicle, RV, or boat</span></label>
         </div>
         <div class="other-inline" style="margin-top:8px">
-          <input type="checkbox" name="q11" value="other">
+          <input type="checkbox" name="Why_Personal_Customers_Rent" value="other">
           <span>Other:</span>
-          <input type="text" name="q11_other" placeholder="Describe…">
+          <input type="text" name="Why_Rent_Other" placeholder="Describe…">
         </div>
       <span class="q-error" id="qerr11">Please select at least one reason.</span>
       </div>
@@ -765,12 +765,12 @@
         <table class="grid-table">
           <thead><tr><th>Reason</th><th>Rare</th><th>Common</th><th>Very Common</th></tr></thead>
           <tbody id="q12tbody">
-<tr><td>Stressful life event</td><td><input type="radio" name="q12_r0" value="rare"></td><td><input type="radio" name="q12_r0" value="common"></td><td><input type="radio" name="q12_r0" value="verycommon"></td></tr>
-<tr><td>Lack of space</td><td><input type="radio" name="q12_r1" value="rare"></td><td><input type="radio" name="q12_r1" value="common"></td><td><input type="radio" name="q12_r1" value="verycommon"></td></tr>
-<tr><td>Moving transition</td><td><input type="radio" name="q12_r2" value="rare"></td><td><input type="radio" name="q12_r2" value="common"></td><td><input type="radio" name="q12_r2" value="verycommon"></td></tr>
-<tr><td>Divorce / death / family change</td><td><input type="radio" name="q12_r3" value="rare"></td><td><input type="radio" name="q12_r3" value="common"></td><td><input type="radio" name="q12_r3" value="verycommon"></td></tr>
-<tr><td>Lifestyle upgrade / downsizing</td><td><input type="radio" name="q12_r4" value="rare"></td><td><input type="radio" name="q12_r4" value="common"></td><td><input type="radio" name="q12_r4" value="verycommon"></td></tr>
-<tr><td>Seasonal convenience</td><td><input type="radio" name="q12_r5" value="rare"></td><td><input type="radio" name="q12_r5" value="common"></td><td><input type="radio" name="q12_r5" value="verycommon"></td></tr>
+<tr><td>Stressful life event</td><td><input type="radio" name="Driver_Stressful_Life_Event" value="rare"></td><td><input type="radio" name="Driver_Stressful_Life_Event" value="common"></td><td><input type="radio" name="Driver_Stressful_Life_Event" value="verycommon"></td></tr>
+<tr><td>Lack of space</td><td><input type="radio" name="Driver_Lack_of_Space" value="rare"></td><td><input type="radio" name="Driver_Lack_of_Space" value="common"></td><td><input type="radio" name="Driver_Lack_of_Space" value="verycommon"></td></tr>
+<tr><td>Moving transition</td><td><input type="radio" name="Driver_Moving_Transition" value="rare"></td><td><input type="radio" name="Driver_Moving_Transition" value="common"></td><td><input type="radio" name="Driver_Moving_Transition" value="verycommon"></td></tr>
+<tr><td>Divorce / death / family change</td><td><input type="radio" name="Driver_Divorce_Death_Family" value="rare"></td><td><input type="radio" name="Driver_Divorce_Death_Family" value="common"></td><td><input type="radio" name="Driver_Divorce_Death_Family" value="verycommon"></td></tr>
+<tr><td>Lifestyle upgrade / downsizing</td><td><input type="radio" name="Driver_Lifestyle_Downsizing" value="rare"></td><td><input type="radio" name="Driver_Lifestyle_Downsizing" value="common"></td><td><input type="radio" name="Driver_Lifestyle_Downsizing" value="verycommon"></td></tr>
+<tr><td>Seasonal convenience</td><td><input type="radio" name="Driver_Seasonal_Convenience" value="rare"></td><td><input type="radio" name="Driver_Seasonal_Convenience" value="common"></td><td><input type="radio" name="Driver_Seasonal_Convenience" value="verycommon"></td></tr>
 </tbody>
         </table>
         </div>
@@ -784,23 +784,23 @@
         <table class="grid-table">
           <thead><tr><th>Business Type</th><th>None</th><th>Rare</th><th>Common</th><th>Major Customer Base</th></tr></thead>
           <tbody id="q13tbody">
-<tr><td>General contractors</td><td><input type="radio" name="q13_r0" value="none"></td><td><input type="radio" name="q13_r0" value="rare"></td><td><input type="radio" name="q13_r0" value="common"></td><td><input type="radio" name="q13_r0" value="major"></td></tr>
-<tr><td>HVAC / plumbing / electrical</td><td><input type="radio" name="q13_r1" value="none"></td><td><input type="radio" name="q13_r1" value="rare"></td><td><input type="radio" name="q13_r1" value="common"></td><td><input type="radio" name="q13_r1" value="major"></td></tr>
-<tr><td>Landscapers / outdoor services</td><td><input type="radio" name="q13_r2" value="none"></td><td><input type="radio" name="q13_r2" value="rare"></td><td><input type="radio" name="q13_r2" value="common"></td><td><input type="radio" name="q13_r2" value="major"></td></tr>
-<tr><td>Roofers</td><td><input type="radio" name="q13_r3" value="none"></td><td><input type="radio" name="q13_r3" value="rare"></td><td><input type="radio" name="q13_r3" value="common"></td><td><input type="radio" name="q13_r3" value="major"></td></tr>
-<tr><td>Painters</td><td><input type="radio" name="q13_r4" value="none"></td><td><input type="radio" name="q13_r4" value="rare"></td><td><input type="radio" name="q13_r4" value="common"></td><td><input type="radio" name="q13_r4" value="major"></td></tr>
-<tr><td>Restoration companies</td><td><input type="radio" name="q13_r5" value="none"></td><td><input type="radio" name="q13_r5" value="rare"></td><td><input type="radio" name="q13_r5" value="common"></td><td><input type="radio" name="q13_r5" value="major"></td></tr>
-<tr><td>Realtors / staging companies</td><td><input type="radio" name="q13_r6" value="none"></td><td><input type="radio" name="q13_r6" value="rare"></td><td><input type="radio" name="q13_r6" value="common"></td><td><input type="radio" name="q13_r6" value="major"></td></tr>
-<tr><td>Property management companies</td><td><input type="radio" name="q13_r7" value="none"></td><td><input type="radio" name="q13_r7" value="rare"></td><td><input type="radio" name="q13_r7" value="common"></td><td><input type="radio" name="q13_r7" value="major"></td></tr>
-<tr><td>Medical / pharmaceutical reps</td><td><input type="radio" name="q13_r8" value="none"></td><td><input type="radio" name="q13_r8" value="rare"></td><td><input type="radio" name="q13_r8" value="common"></td><td><input type="radio" name="q13_r8" value="major"></td></tr>
-<tr><td>Restaurants / food service / hospitality</td><td><input type="radio" name="q13_r9" value="none"></td><td><input type="radio" name="q13_r9" value="rare"></td><td><input type="radio" name="q13_r9" value="common"></td><td><input type="radio" name="q13_r9" value="major"></td></tr>
-<tr><td>Retail inventory</td><td><input type="radio" name="q13_r10" value="none"></td><td><input type="radio" name="q13_r10" value="rare"></td><td><input type="radio" name="q13_r10" value="common"></td><td><input type="radio" name="q13_r10" value="major"></td></tr>
-<tr><td>Amazon / e-commerce sellers</td><td><input type="radio" name="q13_r11" value="none"></td><td><input type="radio" name="q13_r11" value="rare"></td><td><input type="radio" name="q13_r11" value="common"></td><td><input type="radio" name="q13_r11" value="major"></td></tr>
-<tr><td>Auto-related businesses</td><td><input type="radio" name="q13_r12" value="none"></td><td><input type="radio" name="q13_r12" value="rare"></td><td><input type="radio" name="q13_r12" value="common"></td><td><input type="radio" name="q13_r12" value="major"></td></tr>
-<tr><td>Professional services / records storage</td><td><input type="radio" name="q13_r13" value="none"></td><td><input type="radio" name="q13_r13" value="rare"></td><td><input type="radio" name="q13_r13" value="common"></td><td><input type="radio" name="q13_r13" value="major"></td></tr>
-<tr><td>Nonprofits / churches / community organizations</td><td><input type="radio" name="q13_r14" value="none"></td><td><input type="radio" name="q13_r14" value="rare"></td><td><input type="radio" name="q13_r14" value="common"></td><td><input type="radio" name="q13_r14" value="major"></td></tr>
-<tr><td>Government / municipal</td><td><input type="radio" name="q13_r15" value="none"></td><td><input type="radio" name="q13_r15" value="rare"></td><td><input type="radio" name="q13_r15" value="common"></td><td><input type="radio" name="q13_r15" value="major"></td></tr>
-<tr><td>Other business customers</td><td><input type="radio" name="q13_r16" value="none"></td><td><input type="radio" name="q13_r16" value="rare"></td><td><input type="radio" name="q13_r16" value="common"></td><td><input type="radio" name="q13_r16" value="major"></td></tr>
+<tr><td>General contractors</td><td><input type="radio" name="BizType_General_Contractors" value="none"></td><td><input type="radio" name="BizType_General_Contractors" value="rare"></td><td><input type="radio" name="BizType_General_Contractors" value="common"></td><td><input type="radio" name="BizType_General_Contractors" value="major"></td></tr>
+<tr><td>HVAC / plumbing / electrical</td><td><input type="radio" name="BizType_HVAC_Plumbing_Electrical" value="none"></td><td><input type="radio" name="BizType_HVAC_Plumbing_Electrical" value="rare"></td><td><input type="radio" name="BizType_HVAC_Plumbing_Electrical" value="common"></td><td><input type="radio" name="BizType_HVAC_Plumbing_Electrical" value="major"></td></tr>
+<tr><td>Landscapers / outdoor services</td><td><input type="radio" name="BizType_Landscapers" value="none"></td><td><input type="radio" name="BizType_Landscapers" value="rare"></td><td><input type="radio" name="BizType_Landscapers" value="common"></td><td><input type="radio" name="BizType_Landscapers" value="major"></td></tr>
+<tr><td>Roofers</td><td><input type="radio" name="BizType_Roofers" value="none"></td><td><input type="radio" name="BizType_Roofers" value="rare"></td><td><input type="radio" name="BizType_Roofers" value="common"></td><td><input type="radio" name="BizType_Roofers" value="major"></td></tr>
+<tr><td>Painters</td><td><input type="radio" name="BizType_Painters" value="none"></td><td><input type="radio" name="BizType_Painters" value="rare"></td><td><input type="radio" name="BizType_Painters" value="common"></td><td><input type="radio" name="BizType_Painters" value="major"></td></tr>
+<tr><td>Restoration companies</td><td><input type="radio" name="BizType_Restoration" value="none"></td><td><input type="radio" name="BizType_Restoration" value="rare"></td><td><input type="radio" name="BizType_Restoration" value="common"></td><td><input type="radio" name="BizType_Restoration" value="major"></td></tr>
+<tr><td>Realtors / staging companies</td><td><input type="radio" name="BizType_Realtors_Staging" value="none"></td><td><input type="radio" name="BizType_Realtors_Staging" value="rare"></td><td><input type="radio" name="BizType_Realtors_Staging" value="common"></td><td><input type="radio" name="BizType_Realtors_Staging" value="major"></td></tr>
+<tr><td>Property management companies</td><td><input type="radio" name="BizType_Property_Management" value="none"></td><td><input type="radio" name="BizType_Property_Management" value="rare"></td><td><input type="radio" name="BizType_Property_Management" value="common"></td><td><input type="radio" name="BizType_Property_Management" value="major"></td></tr>
+<tr><td>Medical / pharmaceutical reps</td><td><input type="radio" name="BizType_Medical_Pharma" value="none"></td><td><input type="radio" name="BizType_Medical_Pharma" value="rare"></td><td><input type="radio" name="BizType_Medical_Pharma" value="common"></td><td><input type="radio" name="BizType_Medical_Pharma" value="major"></td></tr>
+<tr><td>Restaurants / food service / hospitality</td><td><input type="radio" name="BizType_Restaurants_Food" value="none"></td><td><input type="radio" name="BizType_Restaurants_Food" value="rare"></td><td><input type="radio" name="BizType_Restaurants_Food" value="common"></td><td><input type="radio" name="BizType_Restaurants_Food" value="major"></td></tr>
+<tr><td>Retail inventory</td><td><input type="radio" name="BizType_Retail_Inventory" value="none"></td><td><input type="radio" name="BizType_Retail_Inventory" value="rare"></td><td><input type="radio" name="BizType_Retail_Inventory" value="common"></td><td><input type="radio" name="BizType_Retail_Inventory" value="major"></td></tr>
+<tr><td>Amazon / e-commerce sellers</td><td><input type="radio" name="BizType_Amazon_Ecommerce" value="none"></td><td><input type="radio" name="BizType_Amazon_Ecommerce" value="rare"></td><td><input type="radio" name="BizType_Amazon_Ecommerce" value="common"></td><td><input type="radio" name="BizType_Amazon_Ecommerce" value="major"></td></tr>
+<tr><td>Auto-related businesses</td><td><input type="radio" name="BizType_Auto_Related" value="none"></td><td><input type="radio" name="BizType_Auto_Related" value="rare"></td><td><input type="radio" name="BizType_Auto_Related" value="common"></td><td><input type="radio" name="BizType_Auto_Related" value="major"></td></tr>
+<tr><td>Professional services / records storage</td><td><input type="radio" name="BizType_Professional_Services" value="none"></td><td><input type="radio" name="BizType_Professional_Services" value="rare"></td><td><input type="radio" name="BizType_Professional_Services" value="common"></td><td><input type="radio" name="BizType_Professional_Services" value="major"></td></tr>
+<tr><td>Nonprofits / churches / community organizations</td><td><input type="radio" name="BizType_Nonprofits_Churches" value="none"></td><td><input type="radio" name="BizType_Nonprofits_Churches" value="rare"></td><td><input type="radio" name="BizType_Nonprofits_Churches" value="common"></td><td><input type="radio" name="BizType_Nonprofits_Churches" value="major"></td></tr>
+<tr><td>Government / municipal</td><td><input type="radio" name="BizType_Government_Municipal" value="none"></td><td><input type="radio" name="BizType_Government_Municipal" value="rare"></td><td><input type="radio" name="BizType_Government_Municipal" value="common"></td><td><input type="radio" name="BizType_Government_Municipal" value="major"></td></tr>
+<tr><td>Other business customers</td><td><input type="radio" name="BizType_Other_Business" value="none"></td><td><input type="radio" name="BizType_Other_Business" value="rare"></td><td><input type="radio" name="BizType_Other_Business" value="common"></td><td><input type="radio" name="BizType_Other_Business" value="major"></td></tr>
 </tbody>
         </table>
         </div>
@@ -810,7 +810,7 @@
       <div class="question" data-q="14">
         <div class="q-label">14. What do your business customers usually store?</div>
         <div class="q-hint">Examples: tools, inventory, paperwork, furniture, equipment, staging materials, supplies, vehicles.</div>
-        <textarea name="q14" rows="3" placeholder="Describe what business customers typically store…"></textarea>
+        <textarea name="What_Biz_Customers_Store" rows="3" placeholder="Describe what business customers typically store…"></textarea>
       <span class="q-error" id="qerr14">Please describe what business customers store.</span>
       </div>
 
@@ -818,20 +818,20 @@
         <div class="q-label">15. What specific needs do your business customers bring up most?</div>
         <div class="q-hint">Check all that apply.</div>
         <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="q15" value="247_access"><span>24/7 access</span></label>
-          <label class="check-item"><input type="checkbox" name="q15" value="climate_sensitive"><span>Climate-controlled units for sensitive inventory</span></label>
-          <label class="check-item"><input type="checkbox" name="q15" value="driveup_trucks"><span>Drive-up access for trucks or equipment</span></label>
-          <label class="check-item"><input type="checkbox" name="q15" value="pkg_accept"><span>Delivery / package acceptance at the facility</span></label>
-          <label class="check-item"><input type="checkbox" name="q15" value="larger_units"><span>Larger or custom-sized units</span></label>
-          <label class="check-item"><input type="checkbox" name="q15" value="vol_discount"><span>Volume discounts for multiple units</span></label>
-          <label class="check-item"><input type="checkbox" name="q15" value="acct_mgr"><span>Dedicated account manager or point of contact</span></label>
-          <label class="check-item"><input type="checkbox" name="q15" value="flex_billing"><span>Flexible billing / consolidated invoices</span></label>
-          <label class="check-item"><input type="checkbox" name="q15" value="parking"><span>Parking / fleet access</span></label>
+          <label class="check-item"><input type="checkbox" name="Business_Needs" value="247_access"><span>24/7 access</span></label>
+          <label class="check-item"><input type="checkbox" name="Business_Needs" value="climate_sensitive"><span>Climate-controlled units for sensitive inventory</span></label>
+          <label class="check-item"><input type="checkbox" name="Business_Needs" value="driveup_trucks"><span>Drive-up access for trucks or equipment</span></label>
+          <label class="check-item"><input type="checkbox" name="Business_Needs" value="pkg_accept"><span>Delivery / package acceptance at the facility</span></label>
+          <label class="check-item"><input type="checkbox" name="Business_Needs" value="larger_units"><span>Larger or custom-sized units</span></label>
+          <label class="check-item"><input type="checkbox" name="Business_Needs" value="vol_discount"><span>Volume discounts for multiple units</span></label>
+          <label class="check-item"><input type="checkbox" name="Business_Needs" value="acct_mgr"><span>Dedicated account manager or point of contact</span></label>
+          <label class="check-item"><input type="checkbox" name="Business_Needs" value="flex_billing"><span>Flexible billing / consolidated invoices</span></label>
+          <label class="check-item"><input type="checkbox" name="Business_Needs" value="parking"><span>Parking / fleet access</span></label>
         </div>
         <div class="other-inline" style="margin-top:8px">
-          <input type="checkbox" name="q15" value="other">
+          <input type="checkbox" name="Business_Needs" value="other">
           <span>Other:</span>
-          <input type="text" name="q15_other" placeholder="Describe…">
+          <input type="text" name="Business_Needs_Other" placeholder="Describe…">
         </div>
       <span class="q-error" id="qerr15">Please select at least one business need.</span>
       </div>
@@ -843,14 +843,14 @@
         <table class="grid-table">
           <thead><tr><th>Customer Type</th><th>Small</th><th>Medium</th><th>Large</th><th>Climate</th><th>Drive-Up</th><th>Parking</th></tr></thead>
           <tbody id="q16tbody">
-<tr><td>Residential movers</td><td><input type="checkbox" name="q16_r0_small"></td><td><input type="checkbox" name="q16_r0_med"></td><td><input type="checkbox" name="q16_r0_large"></td><td><input type="checkbox" name="q16_r0_climate"></td><td><input type="checkbox" name="q16_r0_driveup"></td><td><input type="checkbox" name="q16_r0_park"></td></tr>
-<tr><td>Long-term residential</td><td><input type="checkbox" name="q16_r1_small"></td><td><input type="checkbox" name="q16_r1_med"></td><td><input type="checkbox" name="q16_r1_large"></td><td><input type="checkbox" name="q16_r1_climate"></td><td><input type="checkbox" name="q16_r1_driveup"></td><td><input type="checkbox" name="q16_r1_park"></td></tr>
-<tr><td>Apartment / condo renters</td><td><input type="checkbox" name="q16_r2_small"></td><td><input type="checkbox" name="q16_r2_med"></td><td><input type="checkbox" name="q16_r2_large"></td><td><input type="checkbox" name="q16_r2_climate"></td><td><input type="checkbox" name="q16_r2_driveup"></td><td><input type="checkbox" name="q16_r2_park"></td></tr>
-<tr><td>Homeowners</td><td><input type="checkbox" name="q16_r3_small"></td><td><input type="checkbox" name="q16_r3_med"></td><td><input type="checkbox" name="q16_r3_large"></td><td><input type="checkbox" name="q16_r3_climate"></td><td><input type="checkbox" name="q16_r3_driveup"></td><td><input type="checkbox" name="q16_r3_park"></td></tr>
-<tr><td>Contractors / trades</td><td><input type="checkbox" name="q16_r4_small"></td><td><input type="checkbox" name="q16_r4_med"></td><td><input type="checkbox" name="q16_r4_large"></td><td><input type="checkbox" name="q16_r4_climate"></td><td><input type="checkbox" name="q16_r4_driveup"></td><td><input type="checkbox" name="q16_r4_park"></td></tr>
-<tr><td>Retail / e-commerce</td><td><input type="checkbox" name="q16_r5_small"></td><td><input type="checkbox" name="q16_r5_med"></td><td><input type="checkbox" name="q16_r5_large"></td><td><input type="checkbox" name="q16_r5_climate"></td><td><input type="checkbox" name="q16_r5_driveup"></td><td><input type="checkbox" name="q16_r5_park"></td></tr>
-<tr><td>Real estate / staging</td><td><input type="checkbox" name="q16_r6_small"></td><td><input type="checkbox" name="q16_r6_med"></td><td><input type="checkbox" name="q16_r6_large"></td><td><input type="checkbox" name="q16_r6_climate"></td><td><input type="checkbox" name="q16_r6_driveup"></td><td><input type="checkbox" name="q16_r6_park"></td></tr>
-<tr><td>Vehicle / RV / boat storage</td><td><input type="checkbox" name="q16_r7_small"></td><td><input type="checkbox" name="q16_r7_med"></td><td><input type="checkbox" name="q16_r7_large"></td><td><input type="checkbox" name="q16_r7_climate"></td><td><input type="checkbox" name="q16_r7_driveup"></td><td><input type="checkbox" name="q16_r7_park"></td></tr>
+<tr><td>Residential movers</td><td><input type="checkbox" name="UnitType_ResiMovers_Small"></td><td><input type="checkbox" name="UnitType_ResiMovers_Medium"></td><td><input type="checkbox" name="UnitType_ResiMovers_Large"></td><td><input type="checkbox" name="UnitType_ResiMovers_Climate"></td><td><input type="checkbox" name="UnitType_ResiMovers_DriveUp"></td><td><input type="checkbox" name="UnitType_ResiMovers_Parking"></td></tr>
+<tr><td>Long-term residential</td><td><input type="checkbox" name="UnitType_LongtermResi_Small"></td><td><input type="checkbox" name="UnitType_LongtermResi_Medium"></td><td><input type="checkbox" name="UnitType_LongtermResi_Large"></td><td><input type="checkbox" name="UnitType_LongtermResi_Climate"></td><td><input type="checkbox" name="UnitType_LongtermResi_DriveUp"></td><td><input type="checkbox" name="UnitType_LongtermResi_Parking"></td></tr>
+<tr><td>Apartment / condo renters</td><td><input type="checkbox" name="UnitType_AptCondo_Small"></td><td><input type="checkbox" name="UnitType_AptCondo_Medium"></td><td><input type="checkbox" name="UnitType_AptCondo_Large"></td><td><input type="checkbox" name="UnitType_AptCondo_Climate"></td><td><input type="checkbox" name="UnitType_AptCondo_DriveUp"></td><td><input type="checkbox" name="UnitType_AptCondo_Parking"></td></tr>
+<tr><td>Homeowners</td><td><input type="checkbox" name="UnitType_Homeowners_Small"></td><td><input type="checkbox" name="UnitType_Homeowners_Medium"></td><td><input type="checkbox" name="UnitType_Homeowners_Large"></td><td><input type="checkbox" name="UnitType_Homeowners_Climate"></td><td><input type="checkbox" name="UnitType_Homeowners_DriveUp"></td><td><input type="checkbox" name="UnitType_Homeowners_Parking"></td></tr>
+<tr><td>Contractors / trades</td><td><input type="checkbox" name="UnitType_Contractors_Small"></td><td><input type="checkbox" name="UnitType_Contractors_Medium"></td><td><input type="checkbox" name="UnitType_Contractors_Large"></td><td><input type="checkbox" name="UnitType_Contractors_Climate"></td><td><input type="checkbox" name="UnitType_Contractors_DriveUp"></td><td><input type="checkbox" name="UnitType_Contractors_Parking"></td></tr>
+<tr><td>Retail / e-commerce</td><td><input type="checkbox" name="UnitType_RetailEcomm_Small"></td><td><input type="checkbox" name="UnitType_RetailEcomm_Medium"></td><td><input type="checkbox" name="UnitType_RetailEcomm_Large"></td><td><input type="checkbox" name="UnitType_RetailEcomm_Climate"></td><td><input type="checkbox" name="UnitType_RetailEcomm_DriveUp"></td><td><input type="checkbox" name="UnitType_RetailEcomm_Parking"></td></tr>
+<tr><td>Real estate / staging</td><td><input type="checkbox" name="UnitType_RealEstate_Small"></td><td><input type="checkbox" name="UnitType_RealEstate_Medium"></td><td><input type="checkbox" name="UnitType_RealEstate_Large"></td><td><input type="checkbox" name="UnitType_RealEstate_Climate"></td><td><input type="checkbox" name="UnitType_RealEstate_DriveUp"></td><td><input type="checkbox" name="UnitType_RealEstate_Parking"></td></tr>
+<tr><td>Vehicle / RV / boat storage</td><td><input type="checkbox" name="UnitType_VehicleRV_Small"></td><td><input type="checkbox" name="UnitType_VehicleRV_Medium"></td><td><input type="checkbox" name="UnitType_VehicleRV_Large"></td><td><input type="checkbox" name="UnitType_VehicleRV_Climate"></td><td><input type="checkbox" name="UnitType_VehicleRV_DriveUp"></td><td><input type="checkbox" name="UnitType_VehicleRV_Parking"></td></tr>
 </tbody>
         </table>
         </div>
@@ -860,10 +860,10 @@
       <div class="question" data-q="17">
         <div class="q-label">17. Do you have customers with multiple units, fleet storage, or enterprise-level needs?</div>
         <div class="check-grid">
-          <label class="check-item"><input type="radio" name="q17" value="none"><span>None</span></label>
-          <label class="check-item"><input type="radio" name="q17" value="a_few"><span>A few</span></label>
-          <label class="check-item"><input type="radio" name="q17" value="several"><span>Several important accounts</span></label>
-          <label class="check-item"><input type="radio" name="q17" value="major"><span>Major part of the business</span></label>
+          <label class="check-item"><input type="radio" name="Enterprise_Accounts" value="none"><span>None</span></label>
+          <label class="check-item"><input type="radio" name="Enterprise_Accounts" value="a_few"><span>A few</span></label>
+          <label class="check-item"><input type="radio" name="Enterprise_Accounts" value="several"><span>Several important accounts</span></label>
+          <label class="check-item"><input type="radio" name="Enterprise_Accounts" value="major"><span>Major part of the business</span></label>
         </div>
       <span class="q-error" id="qerr17">Please select one option.</span>
       </div>
@@ -872,19 +872,19 @@
         <div class="q-label">18. What types of larger accounts do you see?</div>
         <div class="q-hint">Check all that apply.</div>
         <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="q18" value="contractors"><span>Contractors</span></label>
-          <label class="check-item"><input type="checkbox" name="q18" value="property_mgmt"><span>Property management companies</span></label>
-          <label class="check-item"><input type="checkbox" name="q18" value="retail"><span>Retail inventory</span></label>
-          <label class="check-item"><input type="checkbox" name="q18" value="govt"><span>Government / municipal</span></label>
-          <label class="check-item"><input type="checkbox" name="q18" value="restoration"><span>Restoration companies</span></label>
-          <label class="check-item"><input type="checkbox" name="q18" value="medical"><span>Medical / records storage</span></label>
-          <label class="check-item"><input type="checkbox" name="q18" value="ecomm"><span>E-commerce sellers</span></label>
-          <label class="check-item"><input type="checkbox" name="q18" value="fleet"><span>Fleet / vehicle users</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Account_Types" value="contractors"><span>Contractors</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Account_Types" value="property_mgmt"><span>Property management companies</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Account_Types" value="retail"><span>Retail inventory</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Account_Types" value="govt"><span>Government / municipal</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Account_Types" value="restoration"><span>Restoration companies</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Account_Types" value="medical"><span>Medical / records storage</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Account_Types" value="ecomm"><span>E-commerce sellers</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Account_Types" value="fleet"><span>Fleet / vehicle users</span></label>
         </div>
         <div class="other-inline" style="margin-top:8px">
-          <input type="checkbox" name="q18" value="other">
+          <input type="checkbox" name="Larger_Account_Types" value="other">
           <span>Other:</span>
-          <input type="text" name="q18_other" placeholder="Describe…">
+          <input type="text" name="Larger_Account_Types_Other" placeholder="Describe…">
         </div>
       <span class="q-error" id="qerr18">Please select at least one account type.</span>
       </div>
@@ -893,19 +893,19 @@
         <div class="q-label">19. What do larger accounts care about most?</div>
         <div class="q-hint">Check all that apply.</div>
         <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="q19" value="access_hours"><span>Access hours</span></label>
-          <label class="check-item"><input type="checkbox" name="q19" value="security"><span>Security</span></label>
-          <label class="check-item"><input type="checkbox" name="q19" value="multi_discount"><span>Multiple-unit discounts</span></label>
-          <label class="check-item"><input type="checkbox" name="q19" value="billing"><span>Billing simplicity</span></label>
-          <label class="check-item"><input type="checkbox" name="q19" value="contact"><span>Dedicated contact person</span></label>
-          <label class="check-item"><input type="checkbox" name="q19" value="parking"><span>Parking / fleet access</span></label>
-          <label class="check-item"><input type="checkbox" name="q19" value="climate"><span>Climate control</span></label>
-          <label class="check-item"><input type="checkbox" name="q19" value="pkg_accept"><span>Package acceptance</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Accounts_Care_About" value="access_hours"><span>Access hours</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Accounts_Care_About" value="security"><span>Security</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Accounts_Care_About" value="multi_discount"><span>Multiple-unit discounts</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Accounts_Care_About" value="billing"><span>Billing simplicity</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Accounts_Care_About" value="contact"><span>Dedicated contact person</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Accounts_Care_About" value="parking"><span>Parking / fleet access</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Accounts_Care_About" value="climate"><span>Climate control</span></label>
+          <label class="check-item"><input type="checkbox" name="Larger_Accounts_Care_About" value="pkg_accept"><span>Package acceptance</span></label>
         </div>
         <div class="other-inline" style="margin-top:8px">
-          <input type="checkbox" name="q19" value="other">
+          <input type="checkbox" name="Larger_Accounts_Care_About" value="other">
           <span>Other:</span>
-          <input type="text" name="q19_other" placeholder="Describe…">
+          <input type="text" name="Larger_Accounts_Care_Other" placeholder="Describe…">
         </div>
       <span class="q-error" id="qerr19">Please select at least one priority.</span>
       </div>
@@ -917,11 +917,11 @@
         <table class="grid-table">
           <thead><tr><th>Rank</th><th>Customer segment</th><th>Top revenue driver?</th><th>Uses large units?</th><th>Long-term?</th><th>Price sensitive?</th></tr></thead>
           <tbody>
-            <tr><td>1</td><td><input type="text" name="q20_seg1" placeholder="Segment name"></td><td><input type="checkbox" name="q20_rev1"></td><td><input type="checkbox" name="q20_big1"></td><td><input type="checkbox" name="q20_long1"></td><td><input type="checkbox" name="q20_price1"></td></tr>
-            <tr><td>2</td><td><input type="text" name="q20_seg2" placeholder="Segment name"></td><td><input type="checkbox" name="q20_rev2"></td><td><input type="checkbox" name="q20_big2"></td><td><input type="checkbox" name="q20_long2"></td><td><input type="checkbox" name="q20_price2"></td></tr>
-            <tr><td>3</td><td><input type="text" name="q20_seg3" placeholder="Segment name"></td><td><input type="checkbox" name="q20_rev3"></td><td><input type="checkbox" name="q20_big3"></td><td><input type="checkbox" name="q20_long3"></td><td><input type="checkbox" name="q20_price3"></td></tr>
-            <tr><td>4</td><td><input type="text" name="q20_seg4" placeholder="Segment name"></td><td><input type="checkbox" name="q20_rev4"></td><td><input type="checkbox" name="q20_big4"></td><td><input type="checkbox" name="q20_long4"></td><td><input type="checkbox" name="q20_price4"></td></tr>
-            <tr><td>5</td><td><input type="text" name="q20_seg5" placeholder="Segment name"></td><td><input type="checkbox" name="q20_rev5"></td><td><input type="checkbox" name="q20_big5"></td><td><input type="checkbox" name="q20_long5"></td><td><input type="checkbox" name="q20_price5"></td></tr>
+            <tr><td>1</td><td><input type="text" name="Top_Segment_1" placeholder="Segment name"></td><td><input type="checkbox" name="Seg1_Top_Revenue"></td><td><input type="checkbox" name="Seg1_Large_Units"></td><td><input type="checkbox" name="Seg1_Long_Term"></td><td><input type="checkbox" name="Seg1_Price_Sensitive"></td></tr>
+            <tr><td>2</td><td><input type="text" name="Top_Segment_2" placeholder="Segment name"></td><td><input type="checkbox" name="Seg2_Top_Revenue"></td><td><input type="checkbox" name="Seg2_Large_Units"></td><td><input type="checkbox" name="Seg2_Long_Term"></td><td><input type="checkbox" name="Seg2_Price_Sensitive"></td></tr>
+            <tr><td>3</td><td><input type="text" name="Top_Segment_3" placeholder="Segment name"></td><td><input type="checkbox" name="Seg3_Top_Revenue"></td><td><input type="checkbox" name="Seg3_Large_Units"></td><td><input type="checkbox" name="Seg3_Long_Term"></td><td><input type="checkbox" name="Seg3_Price_Sensitive"></td></tr>
+            <tr><td>4</td><td><input type="text" name="Top_Segment_4" placeholder="Segment name"></td><td><input type="checkbox" name="Seg4_Top_Revenue"></td><td><input type="checkbox" name="Seg4_Large_Units"></td><td><input type="checkbox" name="Seg4_Long_Term"></td><td><input type="checkbox" name="Seg4_Price_Sensitive"></td></tr>
+            <tr><td>5</td><td><input type="text" name="Top_Segment_5" placeholder="Segment name"></td><td><input type="checkbox" name="Seg5_Top_Revenue"></td><td><input type="checkbox" name="Seg5_Large_Units"></td><td><input type="checkbox" name="Seg5_Long_Term"></td><td><input type="checkbox" name="Seg5_Price_Sensitive"></td></tr>
           </tbody>
         </table>
         </div>
@@ -946,8 +946,8 @@
         <table class="grid-table">
           <thead><tr><th>Customer Group</th><th>Under 3 mo.</th><th>3–12 mo.</th><th>1–2 years</th><th>2+ years</th></tr></thead>
           <tbody>
-            <tr><td>Personal customers</td><td><input type="radio" name="q21_personal" value="u3mo"></td><td><input type="radio" name="q21_personal" value="3_12mo"></td><td><input type="radio" name="q21_personal" value="1_2yr"></td><td><input type="radio" name="q21_personal" value="2plus"></td></tr>
-            <tr><td>Business customers</td><td><input type="radio" name="q21_business" value="u3mo"></td><td><input type="radio" name="q21_business" value="3_12mo"></td><td><input type="radio" name="q21_business" value="1_2yr"></td><td><input type="radio" name="q21_business" value="2plus"></td></tr>
+            <tr><td>Personal customers</td><td><input type="radio" name="Avg_Stay_Personal" value="u3mo"></td><td><input type="radio" name="Avg_Stay_Personal" value="3_12mo"></td><td><input type="radio" name="Avg_Stay_Personal" value="1_2yr"></td><td><input type="radio" name="Avg_Stay_Personal" value="2plus"></td></tr>
+            <tr><td>Business customers</td><td><input type="radio" name="Avg_Stay_Business" value="u3mo"></td><td><input type="radio" name="Avg_Stay_Business" value="3_12mo"></td><td><input type="radio" name="Avg_Stay_Business" value="1_2yr"></td><td><input type="radio" name="Avg_Stay_Business" value="2plus"></td></tr>
           </tbody>
         </table>
         </div>
@@ -961,15 +961,15 @@
         <table class="grid-table">
           <thead><tr><th>Reason for Renting</th><th>Under 3 mo.</th><th>3–6 mo.</th><th>6–12 mo.</th><th>12+ mo.</th></tr></thead>
           <tbody id="q22tbody">
-<tr><td>Local move</td><td><input type="radio" name="q22_r0" value="u3mo"></td><td><input type="radio" name="q22_r0" value="3_6mo"></td><td><input type="radio" name="q22_r0" value="6_12mo"></td><td><input type="radio" name="q22_r0" value="12plus"></td></tr>
-<tr><td>Out-of-state move</td><td><input type="radio" name="q22_r1" value="u3mo"></td><td><input type="radio" name="q22_r1" value="3_6mo"></td><td><input type="radio" name="q22_r1" value="6_12mo"></td><td><input type="radio" name="q22_r1" value="12plus"></td></tr>
-<tr><td>Downsizing / life change</td><td><input type="radio" name="q22_r2" value="u3mo"></td><td><input type="radio" name="q22_r2" value="3_6mo"></td><td><input type="radio" name="q22_r2" value="6_12mo"></td><td><input type="radio" name="q22_r2" value="12plus"></td></tr>
-<tr><td>Apartment / no space at home</td><td><input type="radio" name="q22_r3" value="u3mo"></td><td><input type="radio" name="q22_r3" value="3_6mo"></td><td><input type="radio" name="q22_r3" value="6_12mo"></td><td><input type="radio" name="q22_r3" value="12plus"></td></tr>
-<tr><td>Home renovation</td><td><input type="radio" name="q22_r4" value="u3mo"></td><td><input type="radio" name="q22_r4" value="3_6mo"></td><td><input type="radio" name="q22_r4" value="6_12mo"></td><td><input type="radio" name="q22_r4" value="12plus"></td></tr>
-<tr><td>Business use</td><td><input type="radio" name="q22_r5" value="u3mo"></td><td><input type="radio" name="q22_r5" value="3_6mo"></td><td><input type="radio" name="q22_r5" value="6_12mo"></td><td><input type="radio" name="q22_r5" value="12plus"></td></tr>
-<tr><td>Military</td><td><input type="radio" name="q22_r6" value="u3mo"></td><td><input type="radio" name="q22_r6" value="3_6mo"></td><td><input type="radio" name="q22_r6" value="6_12mo"></td><td><input type="radio" name="q22_r6" value="12plus"></td></tr>
-<tr><td>Student storage</td><td><input type="radio" name="q22_r7" value="u3mo"></td><td><input type="radio" name="q22_r7" value="3_6mo"></td><td><input type="radio" name="q22_r7" value="6_12mo"></td><td><input type="radio" name="q22_r7" value="12plus"></td></tr>
-<tr><td>Vehicle / RV / boat storage</td><td><input type="radio" name="q22_r8" value="u3mo"></td><td><input type="radio" name="q22_r8" value="3_6mo"></td><td><input type="radio" name="q22_r8" value="6_12mo"></td><td><input type="radio" name="q22_r8" value="12plus"></td></tr>
+<tr><td>Local move</td><td><input type="radio" name="Stay_Local_Move" value="u3mo"></td><td><input type="radio" name="Stay_Local_Move" value="3_6mo"></td><td><input type="radio" name="Stay_Local_Move" value="6_12mo"></td><td><input type="radio" name="Stay_Local_Move" value="12plus"></td></tr>
+<tr><td>Out-of-state move</td><td><input type="radio" name="Stay_OOS_Move" value="u3mo"></td><td><input type="radio" name="Stay_OOS_Move" value="3_6mo"></td><td><input type="radio" name="Stay_OOS_Move" value="6_12mo"></td><td><input type="radio" name="Stay_OOS_Move" value="12plus"></td></tr>
+<tr><td>Downsizing / life change</td><td><input type="radio" name="Stay_Downsizing" value="u3mo"></td><td><input type="radio" name="Stay_Downsizing" value="3_6mo"></td><td><input type="radio" name="Stay_Downsizing" value="6_12mo"></td><td><input type="radio" name="Stay_Downsizing" value="12plus"></td></tr>
+<tr><td>Apartment / no space at home</td><td><input type="radio" name="Stay_Apt_No_Space" value="u3mo"></td><td><input type="radio" name="Stay_Apt_No_Space" value="3_6mo"></td><td><input type="radio" name="Stay_Apt_No_Space" value="6_12mo"></td><td><input type="radio" name="Stay_Apt_No_Space" value="12plus"></td></tr>
+<tr><td>Home renovation</td><td><input type="radio" name="Stay_Renovation" value="u3mo"></td><td><input type="radio" name="Stay_Renovation" value="3_6mo"></td><td><input type="radio" name="Stay_Renovation" value="6_12mo"></td><td><input type="radio" name="Stay_Renovation" value="12plus"></td></tr>
+<tr><td>Business use</td><td><input type="radio" name="Stay_Business_Use" value="u3mo"></td><td><input type="radio" name="Stay_Business_Use" value="3_6mo"></td><td><input type="radio" name="Stay_Business_Use" value="6_12mo"></td><td><input type="radio" name="Stay_Business_Use" value="12plus"></td></tr>
+<tr><td>Military</td><td><input type="radio" name="Stay_Military" value="u3mo"></td><td><input type="radio" name="Stay_Military" value="3_6mo"></td><td><input type="radio" name="Stay_Military" value="6_12mo"></td><td><input type="radio" name="Stay_Military" value="12plus"></td></tr>
+<tr><td>Student storage</td><td><input type="radio" name="Stay_Student" value="u3mo"></td><td><input type="radio" name="Stay_Student" value="3_6mo"></td><td><input type="radio" name="Stay_Student" value="6_12mo"></td><td><input type="radio" name="Stay_Student" value="12plus"></td></tr>
+<tr><td>Vehicle / RV / boat storage</td><td><input type="radio" name="Stay_Vehicle_RV" value="u3mo"></td><td><input type="radio" name="Stay_Vehicle_RV" value="3_6mo"></td><td><input type="radio" name="Stay_Vehicle_RV" value="6_12mo"></td><td><input type="radio" name="Stay_Vehicle_RV" value="12plus"></td></tr>
 </tbody>
         </table>
         </div>
@@ -983,11 +983,11 @@
         <table class="grid-table">
           <thead><tr><th>Customer Type</th><th>Longest Stay?</th><th>Fastest Move-Out?</th><th>Notes</th></tr></thead>
           <tbody id="q23tbody">
-<tr><td><input type="text" name="q23_type0" placeholder="Customer type"></td><td><input type="checkbox" name="q23_long0"></td><td><input type="checkbox" name="q23_fast0"></td><td><input type="text" name="q23_notes0" placeholder="Notes"></td></tr>
-<tr><td><input type="text" name="q23_type1" placeholder="Customer type"></td><td><input type="checkbox" name="q23_long1"></td><td><input type="checkbox" name="q23_fast1"></td><td><input type="text" name="q23_notes1" placeholder="Notes"></td></tr>
-<tr><td><input type="text" name="q23_type2" placeholder="Customer type"></td><td><input type="checkbox" name="q23_long2"></td><td><input type="checkbox" name="q23_fast2"></td><td><input type="text" name="q23_notes2" placeholder="Notes"></td></tr>
-<tr><td><input type="text" name="q23_type3" placeholder="Customer type"></td><td><input type="checkbox" name="q23_long3"></td><td><input type="checkbox" name="q23_fast3"></td><td><input type="text" name="q23_notes3" placeholder="Notes"></td></tr>
-<tr><td><input type="text" name="q23_type4" placeholder="Customer type"></td><td><input type="checkbox" name="q23_long4"></td><td><input type="checkbox" name="q23_fast4"></td><td><input type="text" name="q23_notes4" placeholder="Notes"></td></tr>
+<tr><td><input type="text" name="Tenure_Type_1" placeholder="Customer type"></td><td><input type="checkbox" name="Tenure_Longest_1"></td><td><input type="checkbox" name="Tenure_Fastest_1"></td><td><input type="text" name="Tenure_Notes_1" placeholder="Notes"></td></tr>
+<tr><td><input type="text" name="Tenure_Type_2" placeholder="Customer type"></td><td><input type="checkbox" name="Tenure_Longest_2"></td><td><input type="checkbox" name="Tenure_Fastest_2"></td><td><input type="text" name="Tenure_Notes_2" placeholder="Notes"></td></tr>
+<tr><td><input type="text" name="Tenure_Type_3" placeholder="Customer type"></td><td><input type="checkbox" name="Tenure_Longest_3"></td><td><input type="checkbox" name="Tenure_Fastest_3"></td><td><input type="text" name="Tenure_Notes_3" placeholder="Notes"></td></tr>
+<tr><td><input type="text" name="Tenure_Type_4" placeholder="Customer type"></td><td><input type="checkbox" name="Tenure_Longest_4"></td><td><input type="checkbox" name="Tenure_Fastest_4"></td><td><input type="text" name="Tenure_Notes_4" placeholder="Notes"></td></tr>
+<tr><td><input type="text" name="Tenure_Type_5" placeholder="Customer type"></td><td><input type="checkbox" name="Tenure_Longest_5"></td><td><input type="checkbox" name="Tenure_Fastest_5"></td><td><input type="text" name="Tenure_Notes_5" placeholder="Notes"></td></tr>
 </tbody>
         </table>
         </div>
@@ -996,13 +996,13 @@
 
       <div class="question" data-q="24">
         <div class="q-label">24. Is there a time of year when more people move in?</div>
-        <textarea name="q24" rows="2" placeholder="e.g. Summer months, May–August…"></textarea>
+        <textarea name="Peak_Move_In_Season" rows="2" placeholder="e.g. Summer months, May–August…"></textarea>
       <span class="q-error" id="qerr24">Please describe your peak move-in season.</span>
       </div>
 
       <div class="question" data-q="25">
         <div class="q-label">25. Is there a time of year when more people move out?</div>
-        <textarea name="q25" rows="2" placeholder="e.g. End of year, December…"></textarea>
+        <textarea name="Peak_Move_Out_Season" rows="2" placeholder="e.g. End of year, December…"></textarea>
       <span class="q-error" id="qerr25">Please describe your peak move-out season.</span>
       </div>
 
@@ -1021,21 +1021,21 @@
         <div class="q-label">26. When new customers come in, how did they usually hear about us?</div>
         <div class="q-hint">Check the ones you hear most often.</div>
         <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="q26" value="google_search"><span>Found us on Google search</span></label>
-          <label class="check-item"><input type="checkbox" name="q26" value="google_maps"><span>Saw us on Google Maps</span></label>
-          <label class="check-item"><input type="checkbox" name="q26" value="drive_by"><span>Drove by and saw the building / signage</span></label>
-          <label class="check-item"><input type="checkbox" name="q26" value="friend_ref"><span>Friend, family member, or neighbor referral</span></label>
-          <label class="check-item"><input type="checkbox" name="q26" value="pro_ref"><span>Realtor, moving company, or contractor referral</span></label>
-          <label class="check-item"><input type="checkbox" name="q26" value="listing_site"><span>Storage listing site (SpareFoot, etc.)</span></label>
-          <label class="check-item"><input type="checkbox" name="q26" value="facebook"><span>Facebook or Instagram ad</span></label>
-          <label class="check-item"><input type="checkbox" name="q26" value="mail_flyer"><span>Mail flyer or postcard</span></label>
-          <label class="check-item"><input type="checkbox" name="q26" value="yelp"><span>Yelp or another review site</span></label>
-          <label class="check-item"><input type="checkbox" name="q26" value="returning"><span>Returning customer</span></label>
+          <label class="check-item"><input type="checkbox" name="How_Customers_Find_Us" value="google_search"><span>Found us on Google search</span></label>
+          <label class="check-item"><input type="checkbox" name="How_Customers_Find_Us" value="google_maps"><span>Saw us on Google Maps</span></label>
+          <label class="check-item"><input type="checkbox" name="How_Customers_Find_Us" value="drive_by"><span>Drove by and saw the building / signage</span></label>
+          <label class="check-item"><input type="checkbox" name="How_Customers_Find_Us" value="friend_ref"><span>Friend, family member, or neighbor referral</span></label>
+          <label class="check-item"><input type="checkbox" name="How_Customers_Find_Us" value="pro_ref"><span>Realtor, moving company, or contractor referral</span></label>
+          <label class="check-item"><input type="checkbox" name="How_Customers_Find_Us" value="listing_site"><span>Storage listing site (SpareFoot, etc.)</span></label>
+          <label class="check-item"><input type="checkbox" name="How_Customers_Find_Us" value="facebook"><span>Facebook or Instagram ad</span></label>
+          <label class="check-item"><input type="checkbox" name="How_Customers_Find_Us" value="mail_flyer"><span>Mail flyer or postcard</span></label>
+          <label class="check-item"><input type="checkbox" name="How_Customers_Find_Us" value="yelp"><span>Yelp or another review site</span></label>
+          <label class="check-item"><input type="checkbox" name="How_Customers_Find_Us" value="returning"><span>Returning customer</span></label>
         </div>
         <div class="other-inline" style="margin-top:8px">
-          <input type="checkbox" name="q26" value="other">
+          <input type="checkbox" name="How_Customers_Find_Us" value="other">
           <span>Other:</span>
-          <input type="text" name="q26_other" placeholder="Describe…">
+          <input type="text" name="How_Find_Us_Other" placeholder="Describe…">
         </div>
       <span class="q-error" id="qerr26">Please select at least one lead source.</span>
       </div>
@@ -1047,15 +1047,15 @@
         <table class="grid-table">
           <thead><tr><th>Lead Source</th><th>High Volume</th><th>Best Conversion</th><th>Longest Stay</th><th>Most Price Sensitive</th></tr></thead>
           <tbody id="q27tbody">
-<tr><td>Google search / website</td><td><input type="checkbox" name="q27_r0_hvol"></td><td><input type="checkbox" name="q27_r0_bconv"></td><td><input type="checkbox" name="q27_r0_longstay"></td><td><input type="checkbox" name="q27_r0_pricesens"></td></tr>
-<tr><td>Google Maps</td><td><input type="checkbox" name="q27_r1_hvol"></td><td><input type="checkbox" name="q27_r1_bconv"></td><td><input type="checkbox" name="q27_r1_longstay"></td><td><input type="checkbox" name="q27_r1_pricesens"></td></tr>
-<tr><td>Drive-by traffic</td><td><input type="checkbox" name="q27_r2_hvol"></td><td><input type="checkbox" name="q27_r2_bconv"></td><td><input type="checkbox" name="q27_r2_longstay"></td><td><input type="checkbox" name="q27_r2_pricesens"></td></tr>
-<tr><td>Customer referrals</td><td><input type="checkbox" name="q27_r3_hvol"></td><td><input type="checkbox" name="q27_r3_bconv"></td><td><input type="checkbox" name="q27_r3_longstay"></td><td><input type="checkbox" name="q27_r3_pricesens"></td></tr>
-<tr><td>Realtor / mover / contractor referrals</td><td><input type="checkbox" name="q27_r4_hvol"></td><td><input type="checkbox" name="q27_r4_bconv"></td><td><input type="checkbox" name="q27_r4_longstay"></td><td><input type="checkbox" name="q27_r4_pricesens"></td></tr>
-<tr><td>Storage listing sites</td><td><input type="checkbox" name="q27_r5_hvol"></td><td><input type="checkbox" name="q27_r5_bconv"></td><td><input type="checkbox" name="q27_r5_longstay"></td><td><input type="checkbox" name="q27_r5_pricesens"></td></tr>
-<tr><td>Facebook / Instagram</td><td><input type="checkbox" name="q27_r6_hvol"></td><td><input type="checkbox" name="q27_r6_bconv"></td><td><input type="checkbox" name="q27_r6_longstay"></td><td><input type="checkbox" name="q27_r6_pricesens"></td></tr>
-<tr><td>Mailers / postcards</td><td><input type="checkbox" name="q27_r7_hvol"></td><td><input type="checkbox" name="q27_r7_bconv"></td><td><input type="checkbox" name="q27_r7_longstay"></td><td><input type="checkbox" name="q27_r7_pricesens"></td></tr>
-<tr><td>Returning customers</td><td><input type="checkbox" name="q27_r8_hvol"></td><td><input type="checkbox" name="q27_r8_bconv"></td><td><input type="checkbox" name="q27_r8_longstay"></td><td><input type="checkbox" name="q27_r8_pricesens"></td></tr>
+<tr><td>Google search / website</td><td><input type="checkbox" name="LeadSrc_GoogleWeb_HighVol"></td><td><input type="checkbox" name="LeadSrc_GoogleWeb_BestConv"></td><td><input type="checkbox" name="LeadSrc_GoogleWeb_LongStay"></td><td><input type="checkbox" name="LeadSrc_GoogleWeb_PriceSens"></td></tr>
+<tr><td>Google Maps</td><td><input type="checkbox" name="LeadSrc_GoogleMaps_HighVol"></td><td><input type="checkbox" name="LeadSrc_GoogleMaps_BestConv"></td><td><input type="checkbox" name="LeadSrc_GoogleMaps_LongStay"></td><td><input type="checkbox" name="LeadSrc_GoogleMaps_PriceSens"></td></tr>
+<tr><td>Drive-by traffic</td><td><input type="checkbox" name="LeadSrc_DriveBy_HighVol"></td><td><input type="checkbox" name="LeadSrc_DriveBy_BestConv"></td><td><input type="checkbox" name="LeadSrc_DriveBy_LongStay"></td><td><input type="checkbox" name="LeadSrc_DriveBy_PriceSens"></td></tr>
+<tr><td>Customer referrals</td><td><input type="checkbox" name="LeadSrc_CustRef_HighVol"></td><td><input type="checkbox" name="LeadSrc_CustRef_BestConv"></td><td><input type="checkbox" name="LeadSrc_CustRef_LongStay"></td><td><input type="checkbox" name="LeadSrc_CustRef_PriceSens"></td></tr>
+<tr><td>Realtor / mover / contractor referrals</td><td><input type="checkbox" name="LeadSrc_ProRef_HighVol"></td><td><input type="checkbox" name="LeadSrc_ProRef_BestConv"></td><td><input type="checkbox" name="LeadSrc_ProRef_LongStay"></td><td><input type="checkbox" name="LeadSrc_ProRef_PriceSens"></td></tr>
+<tr><td>Storage listing sites</td><td><input type="checkbox" name="LeadSrc_ListingSite_HighVol"></td><td><input type="checkbox" name="LeadSrc_ListingSite_BestConv"></td><td><input type="checkbox" name="LeadSrc_ListingSite_LongStay"></td><td><input type="checkbox" name="LeadSrc_ListingSite_PriceSens"></td></tr>
+<tr><td>Facebook / Instagram</td><td><input type="checkbox" name="LeadSrc_Facebook_HighVol"></td><td><input type="checkbox" name="LeadSrc_Facebook_BestConv"></td><td><input type="checkbox" name="LeadSrc_Facebook_LongStay"></td><td><input type="checkbox" name="LeadSrc_Facebook_PriceSens"></td></tr>
+<tr><td>Mailers / postcards</td><td><input type="checkbox" name="LeadSrc_Mailers_HighVol"></td><td><input type="checkbox" name="LeadSrc_Mailers_BestConv"></td><td><input type="checkbox" name="LeadSrc_Mailers_LongStay"></td><td><input type="checkbox" name="LeadSrc_Mailers_PriceSens"></td></tr>
+<tr><td>Returning customers</td><td><input type="checkbox" name="LeadSrc_Returning_HighVol"></td><td><input type="checkbox" name="LeadSrc_Returning_BestConv"></td><td><input type="checkbox" name="LeadSrc_Returning_LongStay"></td><td><input type="checkbox" name="LeadSrc_Returning_PriceSens"></td></tr>
 </tbody>
         </table>
         </div>
@@ -1065,18 +1065,18 @@
       <div class="question" data-q="28">
         <div class="q-label">28. Do any local businesses regularly send customers your way?</div>
         <div class="q-hint">Examples: realtor, moving company, apartment complex, contractor. List names if you can.</div>
-        <textarea name="q28" rows="3" placeholder="List businesses and relationships…"></textarea>
+        <textarea name="Local_Referral_Businesses" rows="3" placeholder="List businesses and relationships…"></textarea>
       <span class="q-error" id="qerr28">Please describe any local referral businesses.</span>
       </div>
 
       <div class="question" data-q="29">
         <div class="q-label">29. How do most people first get in touch with you?</div>
         <div class="check-grid">
-          <label class="check-item"><input type="radio" name="q29" value="walk_in"><span>Walk in</span></label>
-          <label class="check-item"><input type="radio" name="q29" value="phone"><span>Phone call</span></label>
-          <label class="check-item"><input type="radio" name="q29" value="book_web"><span>Book online through our website</span></label>
-          <label class="check-item"><input type="radio" name="q29" value="book_3rd"><span>Book through a third-party site</span></label>
-          <label class="check-item"><input type="radio" name="q29" value="email_text"><span>Email or text</span></label>
+          <label class="check-item"><input type="radio" name="First_Contact_Method" value="walk_in"><span>Walk in</span></label>
+          <label class="check-item"><input type="radio" name="First_Contact_Method" value="phone"><span>Phone call</span></label>
+          <label class="check-item"><input type="radio" name="First_Contact_Method" value="book_web"><span>Book online through our website</span></label>
+          <label class="check-item"><input type="radio" name="First_Contact_Method" value="book_3rd"><span>Book through a third-party site</span></label>
+          <label class="check-item"><input type="radio" name="First_Contact_Method" value="email_text"><span>Email or text</span></label>
         </div>
       <span class="q-error" id="qerr29">Please select how most customers first contact you.</span>
       </div>
@@ -1084,7 +1084,7 @@
       <div class="question" data-q="30">
         <div class="q-label">30. What questions do new customers usually ask first?</div>
         <div class="q-hint">Examples: price, unit sizes, security, access hours, availability.</div>
-        <textarea name="q30" rows="3" placeholder="Common first questions from new customers…"></textarea>
+        <textarea name="Common_First_Questions" rows="3" placeholder="Common first questions from new customers…"></textarea>
       <span class="q-error" id="qerr30">Please describe common first questions.</span>
       </div>
 
@@ -1103,35 +1103,35 @@
         <div class="q-label">31. What are the main reasons people pick your facility?</div>
         <div class="q-hint">Check the ones that come up most.</div>
         <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="q31" value="price"><span>Price / good deal</span></label>
-          <label class="check-item"><input type="checkbox" name="q31" value="location"><span>Close to where they live or work</span></label>
-          <label class="check-item"><input type="checkbox" name="q31" value="right_size"><span>Right size unit available</span></label>
-          <label class="check-item"><input type="checkbox" name="q31" value="movein_special"><span>Move-in special or promotion</span></label>
-          <label class="check-item"><input type="checkbox" name="q31" value="clean_safe"><span>Facility looks clean and safe</span></label>
-          <label class="check-item"><input type="checkbox" name="q31" value="good_reviews"><span>Good reviews online</span></label>
-          <label class="check-item"><input type="checkbox" name="q31" value="friendly_staff"><span>Friendly staff / good customer service</span></label>
-          <label class="check-item"><input type="checkbox" name="q31" value="climate"><span>Climate-controlled units</span></label>
-          <label class="check-item"><input type="checkbox" name="q31" value="easy_online"><span>Easy to reserve or pay online</span></label>
-          <label class="check-item"><input type="checkbox" name="q31" value="driveup"><span>Drive-up access</span></label>
-          <label class="check-item"><input type="checkbox" name="q31" value="flex_mm"><span>Flexible month-to-month rental</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Customers_Choose_Us" value="price"><span>Price / good deal</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Customers_Choose_Us" value="location"><span>Close to where they live or work</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Customers_Choose_Us" value="right_size"><span>Right size unit available</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Customers_Choose_Us" value="movein_special"><span>Move-in special or promotion</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Customers_Choose_Us" value="clean_safe"><span>Facility looks clean and safe</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Customers_Choose_Us" value="good_reviews"><span>Good reviews online</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Customers_Choose_Us" value="friendly_staff"><span>Friendly staff / good customer service</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Customers_Choose_Us" value="climate"><span>Climate-controlled units</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Customers_Choose_Us" value="easy_online"><span>Easy to reserve or pay online</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Customers_Choose_Us" value="driveup"><span>Drive-up access</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Customers_Choose_Us" value="flex_mm"><span>Flexible month-to-month rental</span></label>
         </div>
         <div class="other-inline" style="margin-top:8px">
-          <input type="checkbox" name="q31" value="other">
+          <input type="checkbox" name="Why_Customers_Choose_Us" value="other">
           <span>Other:</span>
-          <input type="text" name="q31_other" placeholder="Describe…">
+          <input type="text" name="Why_Choose_Us_Other" placeholder="Describe…">
         </div>
       <span class="q-error" id="qerr31">Please select at least one reason customers choose you.</span>
       </div>
 
       <div class="question" data-q="32">
         <div class="q-label">32. What is the #1 compliment you consistently receive?</div>
-        <textarea name="q32" rows="2" placeholder="Most common compliment from customers…"></textarea>
+        <textarea name="Top_Compliment" rows="2" placeholder="Most common compliment from customers…"></textarea>
       <span class="q-error" id="qerr32">Please enter the most common compliment.</span>
       </div>
 
       <div class="question" data-q="33">
         <div class="q-label">33. What is the #1 complaint or hesitation you hear during the leasing process?</div>
-        <textarea name="q33" rows="2" placeholder="Most common complaint or hesitation…"></textarea>
+        <textarea name="Top_Complaint" rows="2" placeholder="Most common complaint or hesitation…"></textarea>
       <span class="q-error" id="qerr33">Please enter the most common complaint.</span>
       </div>
 
@@ -1139,12 +1139,12 @@
         <div class="q-label">34. Based on what you observe, how likely do you think customers are to refer this facility to a friend or family member?</div>
         <div class="q-hint">Think about the general sentiment you pick up from customers day-to-day.</div>
         <div class="check-grid single-col">
-          <label class="check-item"><input type="radio" name="q34_nps" value="very_likely"><span>Very likely - customers frequently mention us to others or we get a lot of referrals</span></label>
-          <label class="check-item"><input type="radio" name="q34_nps" value="somewhat_likely"><span>Somewhat likely - happy customers but not many active referrals</span></label>
-          <label class="check-item"><input type="radio" name="q34_nps" value="neutral"><span>Neutral - mixed, hard to say</span></label>
-          <label class="check-item"><input type="radio" name="q34_nps" value="unlikely"><span>Unlikely - customers are generally not enthusiastic enough to refer</span></label>
+          <label class="check-item"><input type="radio" name="Likelihood_To_Refer" value="very_likely"><span>Very likely - customers frequently mention us to others or we get a lot of referrals</span></label>
+          <label class="check-item"><input type="radio" name="Likelihood_To_Refer" value="somewhat_likely"><span>Somewhat likely - happy customers but not many active referrals</span></label>
+          <label class="check-item"><input type="radio" name="Likelihood_To_Refer" value="neutral"><span>Neutral - mixed, hard to say</span></label>
+          <label class="check-item"><input type="radio" name="Likelihood_To_Refer" value="unlikely"><span>Unlikely - customers are generally not enthusiastic enough to refer</span></label>
         </div>
-        <textarea name="q34_nps_reason" rows="2" placeholder="Any context on what drives referrals or holds them back at your facility…" style="margin-top:8px"></textarea>
+        <textarea name="Referral_Context" rows="2" placeholder="Any context on what drives referrals or holds them back at your facility…" style="margin-top:8px"></textarea>
       <span class="q-error" id="qerr34">Please select how likely customers are to refer the facility.</span>
       </div>
 
@@ -1152,16 +1152,16 @@
         <div class="q-label">35. When someone decides not to rent with us, what is usually the reason?</div>
         <div class="q-hint">Check the most common reasons.</div>
         <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="q34" value="price_high"><span>Our price was too high</span></label>
-          <label class="check-item"><input type="checkbox" name="q34" value="comp_closer"><span>A competitor was closer</span></label>
-          <label class="check-item"><input type="checkbox" name="q34" value="no_right_size"><span>We did not have the right unit size</span></label>
-          <label class="check-item"><input type="checkbox" name="q34" value="better_deal"><span>Competitor had a better deal or promotion</span></label>
-          <label class="check-item"><input type="checkbox" name="q34" value="better_reviews"><span>They found better reviews somewhere else</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Not_Chosen" value="price_high"><span>Our price was too high</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Not_Chosen" value="comp_closer"><span>A competitor was closer</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Not_Chosen" value="no_right_size"><span>We did not have the right unit size</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Not_Chosen" value="better_deal"><span>Competitor had a better deal or promotion</span></label>
+          <label class="check-item"><input type="checkbox" name="Why_Not_Chosen" value="better_reviews"><span>They found better reviews somewhere else</span></label>
         </div>
         <div class="other-inline" style="margin-top:8px">
-          <input type="checkbox" name="q34" value="other">
+          <input type="checkbox" name="Why_Not_Chosen" value="other">
           <span>Other:</span>
-          <input type="text" name="q34_other" placeholder="Describe…">
+          <input type="text" name="Why_Not_Chosen_Other" placeholder="Describe…">
         </div>
       <span class="q-error" id="qerr35">Please select at least one reason.</span>
       </div>
@@ -1184,11 +1184,11 @@
         <table class="comp-table">
           <thead><tr><th>#</th><th>Competitor Name</th><th>How Close?</th><th>Cheaper / Same / Pricier?</th><th>Why Customers Pick Them</th></tr></thead>
           <tbody>
-            <tr><td>1.</td><td><input type="text" name="q35_name1" placeholder="Name"></td><td><input type="text" name="q35_dist1" placeholder="e.g. 0.5 mi"></td><td><select name="q35_price1"><option value="">—</option><option>Cheaper</option><option>Same</option><option>Pricier</option></select></td><td><input type="text" name="q35_why1" placeholder="Reason"></td></tr>
-            <tr><td>2.</td><td><input type="text" name="q35_name2" placeholder="Name"></td><td><input type="text" name="q35_dist2" placeholder="e.g. 1 mi"></td><td><select name="q35_price2"><option value="">—</option><option>Cheaper</option><option>Same</option><option>Pricier</option></select></td><td><input type="text" name="q35_why2" placeholder="Reason"></td></tr>
-            <tr><td>3.</td><td><input type="text" name="q35_name3" placeholder="Name"></td><td><input type="text" name="q35_dist3" placeholder="e.g. 2 mi"></td><td><select name="q35_price3"><option value="">—</option><option>Cheaper</option><option>Same</option><option>Pricier</option></select></td><td><input type="text" name="q35_why3" placeholder="Reason"></td></tr>
-            <tr><td>4.</td><td><input type="text" name="q35_name4" placeholder="Name"></td><td><input type="text" name="q35_dist4"></td><td><select name="q35_price4"><option value="">—</option><option>Cheaper</option><option>Same</option><option>Pricier</option></select></td><td><input type="text" name="q35_why4" placeholder="Reason"></td></tr>
-            <tr><td>5.</td><td><input type="text" name="q35_name5" placeholder="Name"></td><td><input type="text" name="q35_dist5"></td><td><select name="q35_price5"><option value="">—</option><option>Cheaper</option><option>Same</option><option>Pricier</option></select></td><td><input type="text" name="q35_why5" placeholder="Reason"></td></tr>
+            <tr><td>1.</td><td><input type="text" name="Competitor_1_Name" placeholder="Name"></td><td><input type="text" name="Competitor_1_Distance" placeholder="e.g. 0.5 mi"></td><td><select name="Competitor_1_Price"><option value="">—</option><option>Cheaper</option><option>Same</option><option>Pricier</option></select></td><td><input type="text" name="Competitor_1_Why_Chosen" placeholder="Reason"></td></tr>
+            <tr><td>2.</td><td><input type="text" name="Competitor_2_Name" placeholder="Name"></td><td><input type="text" name="Competitor_2_Distance" placeholder="e.g. 1 mi"></td><td><select name="Competitor_2_Price"><option value="">—</option><option>Cheaper</option><option>Same</option><option>Pricier</option></select></td><td><input type="text" name="Competitor_2_Why_Chosen" placeholder="Reason"></td></tr>
+            <tr><td>3.</td><td><input type="text" name="Competitor_3_Name" placeholder="Name"></td><td><input type="text" name="Competitor_3_Distance" placeholder="e.g. 2 mi"></td><td><select name="Competitor_3_Price"><option value="">—</option><option>Cheaper</option><option>Same</option><option>Pricier</option></select></td><td><input type="text" name="Competitor_3_Why_Chosen" placeholder="Reason"></td></tr>
+            <tr><td>4.</td><td><input type="text" name="Competitor_4_Name" placeholder="Name"></td><td><input type="text" name="Competitor_4_Distance"></td><td><select name="Competitor_4_Price"><option value="">—</option><option>Cheaper</option><option>Same</option><option>Pricier</option></select></td><td><input type="text" name="Competitor_4_Why_Chosen" placeholder="Reason"></td></tr>
+            <tr><td>5.</td><td><input type="text" name="Competitor_5_Name" placeholder="Name"></td><td><input type="text" name="Competitor_5_Distance"></td><td><select name="Competitor_5_Price"><option value="">—</option><option>Cheaper</option><option>Same</option><option>Pricier</option></select></td><td><input type="text" name="Competitor_5_Why_Chosen" placeholder="Reason"></td></tr>
           </tbody>
         </table>
         </div>
@@ -1197,13 +1197,13 @@
 
       <div class="question" data-q="37">
         <div class="q-label">37. Is there anything competitors offer that we do not?</div>
-        <textarea name="q37" rows="3" placeholder="Features, services, or pricing competitors have that we don't…"></textarea>
+        <textarea name="What_Competitors_Offer_We_Dont" rows="3" placeholder="Features, services, or pricing competitors have that we don't…"></textarea>
       <span class="q-error" id="qerr37">Please describe what competitors offer that you do not.</span>
       </div>
 
       <div class="question" data-q="38">
         <div class="q-label">38. Are competitors running any move-in deals right now that you know of?</div>
-        <textarea name="q38" rows="2" placeholder="Current competitor promotions…"></textarea>
+        <textarea name="Competitor_Current_Deals" rows="2" placeholder="Current competitor promotions…"></textarea>
       <span class="q-error" id="qerr38">Please describe any current competitor deals.</span>
       </div>
 
@@ -1211,13 +1211,13 @@
         <div class="q-label">39. Have customers come to you specifically because they left a competitor?</div>
         <div class="q-hint">If yes, which competitor do you hear about most, and what was the main reason they left?</div>
         <div class="check-grid" style="margin-bottom:12px">
-          <label class="check-item"><input type="radio" name="q39_switchers" value="yes_often"><span>Yes, this happens regularly</span></label>
-          <label class="check-item"><input type="radio" name="q39_switchers" value="yes_sometimes"><span>Yes, occasionally</span></label>
-          <label class="check-item"><input type="radio" name="q39_switchers" value="rarely"><span>Rarely or never</span></label>
-          <label class="check-item"><input type="radio" name="q39_switchers" value="unsure"><span>Not sure / don't always ask</span></label>
+          <label class="check-item"><input type="radio" name="Customers_Left_Competitor" value="yes_often"><span>Yes, this happens regularly</span></label>
+          <label class="check-item"><input type="radio" name="Customers_Left_Competitor" value="yes_sometimes"><span>Yes, occasionally</span></label>
+          <label class="check-item"><input type="radio" name="Customers_Left_Competitor" value="rarely"><span>Rarely or never</span></label>
+          <label class="check-item"><input type="radio" name="Customers_Left_Competitor" value="unsure"><span>Not sure / don't always ask</span></label>
         </div>
-        <input type="text" name="q39_comp_name" placeholder="Competitor they left most often (if applicable)…" style="margin-bottom:8px">
-        <textarea name="q39_comp_reason" rows="2" placeholder="Main reason they left that competitor…"></textarea>
+        <input type="text" name="Competitor_They_Left" placeholder="Competitor they left most often (if applicable)…" style="margin-bottom:8px">
+        <textarea name="Reason_They_Left_Competitor" rows="2" placeholder="Main reason they left that competitor…"></textarea>
       <span class="q-error" id="qerr39">Please indicate whether customers switch from competitors.</span>
       </div>
 
@@ -1236,17 +1236,17 @@
         <div class="q-label">40. When customers move out, what is usually the reason?</div>
         <div class="q-hint">Check the most common reasons.</div>
         <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="q40" value="no_need"><span>They do not need storage anymore</span></label>
-          <label class="check-item"><input type="checkbox" name="q40" value="moving_area"><span>They are moving out of the area</span></label>
-          <label class="check-item"><input type="checkbox" name="q40" value="price_up"><span>Price went up and they did not want to pay more</span></label>
-          <label class="check-item"><input type="checkbox" name="q40" value="cheaper_comp"><span>Switched to a cheaper competitor</span></label>
-          <label class="check-item"><input type="checkbox" name="q40" value="unhappy"><span>Unhappy with the facility or service</span></label>
-          <label class="check-item"><input type="checkbox" name="q40" value="no_payment"><span>Could not keep up with payments</span></label>
+          <label class="check-item"><input type="checkbox" name="Move_Out_Reasons" value="no_need"><span>They do not need storage anymore</span></label>
+          <label class="check-item"><input type="checkbox" name="Move_Out_Reasons" value="moving_area"><span>They are moving out of the area</span></label>
+          <label class="check-item"><input type="checkbox" name="Move_Out_Reasons" value="price_up"><span>Price went up and they did not want to pay more</span></label>
+          <label class="check-item"><input type="checkbox" name="Move_Out_Reasons" value="cheaper_comp"><span>Switched to a cheaper competitor</span></label>
+          <label class="check-item"><input type="checkbox" name="Move_Out_Reasons" value="unhappy"><span>Unhappy with the facility or service</span></label>
+          <label class="check-item"><input type="checkbox" name="Move_Out_Reasons" value="no_payment"><span>Could not keep up with payments</span></label>
         </div>
         <div class="other-inline" style="margin-top:8px">
-          <input type="checkbox" name="q40" value="other">
+          <input type="checkbox" name="Move_Out_Reasons" value="other">
           <span>Other:</span>
-          <input type="text" name="q40_other" placeholder="Describe…">
+          <input type="text" name="Move_Out_Reasons_Other" placeholder="Describe…">
         </div>
       <span class="q-error" id="qerr40">Please select at least one move-out reason.</span>
       </div>
@@ -1254,10 +1254,10 @@
       <div class="question" data-q="41">
         <div class="q-label">41. How do customers usually react when their rate goes up?</div>
         <div class="check-grid single-col">
-          <label class="check-item"><input type="radio" name="q40" value="dont_say"><span>Most do not say anything; they just pay</span></label>
-          <label class="check-item"><input type="radio" name="q40" value="some_call"><span>Some call to ask about it but stay</span></label>
-          <label class="check-item"><input type="radio" name="q40" value="leave"><span>A noticeable number leave because of it</span></label>
-          <label class="check-item"><input type="radio" name="q40" value="upset"><span>People get upset and it is a regular issue</span></label>
+          <label class="check-item"><input type="radio" name="Move_Out_Reasons" value="dont_say"><span>Most do not say anything; they just pay</span></label>
+          <label class="check-item"><input type="radio" name="Move_Out_Reasons" value="some_call"><span>Some call to ask about it but stay</span></label>
+          <label class="check-item"><input type="radio" name="Move_Out_Reasons" value="leave"><span>A noticeable number leave because of it</span></label>
+          <label class="check-item"><input type="radio" name="Move_Out_Reasons" value="upset"><span>People get upset and it is a regular issue</span></label>
         </div>
       <span class="q-error" id="qerr41">Please select how customers react to rate increases.</span>
       </div>
@@ -1266,19 +1266,19 @@
         <div class="q-label">42. Which customers are most sensitive to price increases?</div>
         <div class="q-hint">Rank the top 3 most price-sensitive groups. Enter 1, 2, or 3.</div>
         <div class="rank-grid">
-          <div class="rank-item"><input type="number" class="rank-input" name="q41_apt" min="1" max="3" placeholder="–"><span>Apartment renters</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q41_students" min="1" max="3" placeholder="–"><span>Students</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q41_contractors" min="1" max="3" placeholder="–"><span>Contractors</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q41_longterm" min="1" max="3" placeholder="–"><span>Long-term residential</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q41_ecomm" min="1" max="3" placeholder="–"><span>E-commerce sellers</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q41_retirees" min="1" max="3" placeholder="–"><span>Retirees / fixed income</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q41_military" min="1" max="3" placeholder="–"><span>Military</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q41_smallbiz" min="1" max="3" placeholder="–"><span>Small businesses</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q41_vehicle" min="1" max="3" placeholder="–"><span>Vehicle storage customers</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="PriceSens_Rank_Apt_Renters" min="1" max="3" placeholder="–"><span>Apartment renters</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="PriceSens_Rank_Students" min="1" max="3" placeholder="–"><span>Students</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="PriceSens_Rank_Contractors" min="1" max="3" placeholder="–"><span>Contractors</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="PriceSens_Rank_Longterm_Resi" min="1" max="3" placeholder="–"><span>Long-term residential</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="PriceSens_Rank_Ecommerce" min="1" max="3" placeholder="–"><span>E-commerce sellers</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="PriceSens_Rank_Retirees" min="1" max="3" placeholder="–"><span>Retirees / fixed income</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="PriceSens_Rank_Military" min="1" max="3" placeholder="–"><span>Military</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="PriceSens_Rank_Small_Biz" min="1" max="3" placeholder="–"><span>Small businesses</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="PriceSens_Rank_Vehicle_Storage" min="1" max="3" placeholder="–"><span>Vehicle storage customers</span></div>
         </div>
         <div class="other-inline" style="margin-top:8px">
           <span style="font-size:.82rem;color:var(--gray-600)">Other:</span>
-          <input type="text" name="q41_other" placeholder="Other group + rank…">
+          <input type="text" name="PriceSens_Rank_Other" placeholder="Other group + rank…">
         </div>
       <span class="q-error" id="qerr42">Please rank at least one price-sensitive group.</span>
       </div>
@@ -1297,7 +1297,7 @@
       <div class="question" data-q="43">
         <div class="q-label">43. What are the biggest day-to-day issues customers run into?</div>
         <div class="q-hint">Examples: gate problems, app not working, pests, lighting, payment issues.</div>
-        <textarea name="q42" rows="3" placeholder="Day-to-day customer issues…"></textarea>
+        <textarea name="Day_To_Day_Customer_Issues" rows="3" placeholder="Day-to-day customer issues…"></textarea>
       <span class="q-error" id="qerr43">Please describe day-to-day customer issues.</span>
       </div>
 
@@ -1305,22 +1305,22 @@
         <div class="q-label">44. What operational issues hurt leasing or customer satisfaction most?</div>
         <div class="q-hint">Rank the top 5. Enter 1–5.</div>
         <div class="rank-grid">
-          <div class="rank-item"><input type="number" class="rank-input" name="q43_pricing" min="1" max="5" placeholder="–"><span>Pricing confusion</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q43_rates" min="1" max="5" placeholder="–"><span>Rate increases</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q43_website" min="1" max="5" placeholder="–"><span>Website / online booking issues</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q43_office" min="1" max="5" placeholder="–"><span>Limited office hours</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q43_gate" min="1" max="5" placeholder="–"><span>Gate access problems</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q43_lighting" min="1" max="5" placeholder="–"><span>Poor lighting / security perception</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q43_clean" min="1" max="5" placeholder="–"><span>Cleanliness</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q43_climate" min="1" max="5" placeholder="–"><span>Lack of climate control</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q43_units" min="1" max="5" placeholder="–"><span>Unit availability</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q43_access" min="1" max="5" placeholder="–"><span>Hard-to-access units</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q43_staff" min="1" max="5" placeholder="–"><span>Staffing / customer service consistency</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q43_comp" min="1" max="5" placeholder="–"><span>Competitor promotions</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="OpsRank_Pricing_Confusion" min="1" max="5" placeholder="–"><span>Pricing confusion</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="OpsRank_Rate_Increases" min="1" max="5" placeholder="–"><span>Rate increases</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="OpsRank_Website_Booking" min="1" max="5" placeholder="–"><span>Website / online booking issues</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="OpsRank_Limited_Office_Hours" min="1" max="5" placeholder="–"><span>Limited office hours</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="OpsRank_Gate_Access" min="1" max="5" placeholder="–"><span>Gate access problems</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="OpsRank_Poor_Lighting" min="1" max="5" placeholder="–"><span>Poor lighting / security perception</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="OpsRank_Cleanliness" min="1" max="5" placeholder="–"><span>Cleanliness</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="OpsRank_No_Climate_Control" min="1" max="5" placeholder="–"><span>Lack of climate control</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="OpsRank_Unit_Availability" min="1" max="5" placeholder="–"><span>Unit availability</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="OpsRank_Hard_Access_Units" min="1" max="5" placeholder="–"><span>Hard-to-access units</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="OpsRank_Staffing_Service" min="1" max="5" placeholder="–"><span>Staffing / customer service consistency</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="OpsRank_Competitor_Promos" min="1" max="5" placeholder="–"><span>Competitor promotions</span></div>
         </div>
         <div class="other-inline" style="margin-top:8px">
           <span style="font-size:.82rem;color:var(--gray-600)">Other:</span>
-          <input type="text" name="q43_other" placeholder="Other issue + rank…">
+          <input type="text" name="OpsRank_Other" placeholder="Other issue + rank…">
         </div>
       <span class="q-error" id="qerr44">Please rank at least one operational issue.</span>
       </div>
@@ -1328,31 +1328,31 @@
       <div class="question" data-q="45">
         <div class="q-label">45. Do customers ask for services or features you do not currently offer?</div>
         <div class="q-hint">Examples: vehicle/boat storage, package acceptance, moving supplies, longer hours, truck rental, specific unit sizes.</div>
-        <textarea name="q44" rows="3" placeholder="Requested services or features…"></textarea>
+        <textarea name="Services_Customers_Request" rows="3" placeholder="Requested services or features…"></textarea>
       <span class="q-error" id="qerr45">Please describe services customers request.</span>
       </div>
 
       <div class="question" data-q="46">
         <div class="q-label">46. Are there certain unit sizes you are always running out of?</div>
-        <textarea name="q45" rows="2" placeholder="e.g. 10×10 and 10×20 are always full…"></textarea>
+        <textarea name="Unit_Sizes_Always_Full" rows="2" placeholder="e.g. 10×10 and 10×20 are always full…"></textarea>
       <span class="q-error" id="qerr46">Please describe unit sizes you run out of.</span>
       </div>
 
       <div class="question" data-q="47">
         <div class="q-label">47. Are there unit sizes that sit empty and are hard to fill?</div>
-        <textarea name="q46" rows="2" placeholder="e.g. 5×5 units often sit empty…"></textarea>
+        <textarea name="Unit_Sizes_Hard_To_Fill" rows="2" placeholder="e.g. 5×5 units often sit empty…"></textarea>
       <span class="q-error" id="qerr47">Please describe unit sizes that are hard to fill.</span>
       </div>
 
       <div class="question" data-q="48">
         <div class="q-label">48. If you could change or improve one thing about the customer move-in / onboarding process, what would it be?</div>
-        <textarea name="q47" rows="3" placeholder="Your top onboarding improvement idea…"></textarea>
+        <textarea name="Onboarding_Improvement" rows="3" placeholder="Your top onboarding improvement idea…"></textarea>
       <span class="q-error" id="qerr48">Please describe your onboarding improvement idea.</span>
       </div>
 
       <div class="question" data-q="49">
         <div class="q-label">49. If you could add one thing to your facility to get more customers, what would it be?</div>
-        <textarea name="q48" rows="3" placeholder="Your top facility improvement idea…"></textarea>
+        <textarea name="One_Thing_To_Add" rows="3" placeholder="Your top facility improvement idea…"></textarea>
       <span class="q-error" id="qerr49">Please describe what you would add to the facility.</span>
       </div>
 
@@ -1374,18 +1374,18 @@
         <table class="grid-table">
           <thead><tr><th>Customer Type</th><th>Not Present</th><th>Some Opportunity</th><th>Major Opportunity</th></tr></thead>
           <tbody id="q49tbody">
-<tr><td>Contractors</td><td><input type="radio" name="q49_r0" value="notpres"></td><td><input type="radio" name="q49_r0" value="someopp"></td><td><input type="radio" name="q49_r0" value="majoropp"></td></tr>
-<tr><td>Apartment renters</td><td><input type="radio" name="q49_r1" value="notpres"></td><td><input type="radio" name="q49_r1" value="someopp"></td><td><input type="radio" name="q49_r1" value="majoropp"></td></tr>
-<tr><td>Military</td><td><input type="radio" name="q49_r2" value="notpres"></td><td><input type="radio" name="q49_r2" value="someopp"></td><td><input type="radio" name="q49_r2" value="majoropp"></td></tr>
-<tr><td>College students</td><td><input type="radio" name="q49_r3" value="notpres"></td><td><input type="radio" name="q49_r3" value="someopp"></td><td><input type="radio" name="q49_r3" value="majoropp"></td></tr>
-<tr><td>E-commerce sellers</td><td><input type="radio" name="q49_r4" value="notpres"></td><td><input type="radio" name="q49_r4" value="someopp"></td><td><input type="radio" name="q49_r4" value="majoropp"></td></tr>
-<tr><td>Vehicle / RV storage</td><td><input type="radio" name="q49_r5" value="notpres"></td><td><input type="radio" name="q49_r5" value="someopp"></td><td><input type="radio" name="q49_r5" value="majoropp"></td></tr>
-<tr><td>Boat owners</td><td><input type="radio" name="q49_r6" value="notpres"></td><td><input type="radio" name="q49_r6" value="someopp"></td><td><input type="radio" name="q49_r6" value="majoropp"></td></tr>
-<tr><td>Small businesses</td><td><input type="radio" name="q49_r7" value="notpres"></td><td><input type="radio" name="q49_r7" value="someopp"></td><td><input type="radio" name="q49_r7" value="majoropp"></td></tr>
-<tr><td>Seasonal residents</td><td><input type="radio" name="q49_r8" value="notpres"></td><td><input type="radio" name="q49_r8" value="someopp"></td><td><input type="radio" name="q49_r8" value="majoropp"></td></tr>
-<tr><td>Retirees / fixed income</td><td><input type="radio" name="q49_r9" value="notpres"></td><td><input type="radio" name="q49_r9" value="someopp"></td><td><input type="radio" name="q49_r9" value="majoropp"></td></tr>
-<tr><td>Medical / healthcare</td><td><input type="radio" name="q49_r10" value="notpres"></td><td><input type="radio" name="q49_r10" value="someopp"></td><td><input type="radio" name="q49_r10" value="majoropp"></td></tr>
-<tr><td>Other customer groups</td><td><input type="radio" name="q49_r11" value="notpres"></td><td><input type="radio" name="q49_r11" value="someopp"></td><td><input type="radio" name="q49_r11" value="majoropp"></td></tr>
+<tr><td>Contractors</td><td><input type="radio" name="Underserved_Contractors" value="notpres"></td><td><input type="radio" name="Underserved_Contractors" value="someopp"></td><td><input type="radio" name="Underserved_Contractors" value="majoropp"></td></tr>
+<tr><td>Apartment renters</td><td><input type="radio" name="Underserved_Apt_Renters" value="notpres"></td><td><input type="radio" name="Underserved_Apt_Renters" value="someopp"></td><td><input type="radio" name="Underserved_Apt_Renters" value="majoropp"></td></tr>
+<tr><td>Military</td><td><input type="radio" name="Underserved_Military" value="notpres"></td><td><input type="radio" name="Underserved_Military" value="someopp"></td><td><input type="radio" name="Underserved_Military" value="majoropp"></td></tr>
+<tr><td>College students</td><td><input type="radio" name="Underserved_College_Students" value="notpres"></td><td><input type="radio" name="Underserved_College_Students" value="someopp"></td><td><input type="radio" name="Underserved_College_Students" value="majoropp"></td></tr>
+<tr><td>E-commerce sellers</td><td><input type="radio" name="Underserved_Ecommerce" value="notpres"></td><td><input type="radio" name="Underserved_Ecommerce" value="someopp"></td><td><input type="radio" name="Underserved_Ecommerce" value="majoropp"></td></tr>
+<tr><td>Vehicle / RV storage</td><td><input type="radio" name="Underserved_Vehicle_RV" value="notpres"></td><td><input type="radio" name="Underserved_Vehicle_RV" value="someopp"></td><td><input type="radio" name="Underserved_Vehicle_RV" value="majoropp"></td></tr>
+<tr><td>Boat owners</td><td><input type="radio" name="Underserved_Boat_Owners" value="notpres"></td><td><input type="radio" name="Underserved_Boat_Owners" value="someopp"></td><td><input type="radio" name="Underserved_Boat_Owners" value="majoropp"></td></tr>
+<tr><td>Small businesses</td><td><input type="radio" name="Underserved_Small_Biz" value="notpres"></td><td><input type="radio" name="Underserved_Small_Biz" value="someopp"></td><td><input type="radio" name="Underserved_Small_Biz" value="majoropp"></td></tr>
+<tr><td>Seasonal residents</td><td><input type="radio" name="Underserved_Seasonal" value="notpres"></td><td><input type="radio" name="Underserved_Seasonal" value="someopp"></td><td><input type="radio" name="Underserved_Seasonal" value="majoropp"></td></tr>
+<tr><td>Retirees / fixed income</td><td><input type="radio" name="Underserved_Retirees" value="notpres"></td><td><input type="radio" name="Underserved_Retirees" value="someopp"></td><td><input type="radio" name="Underserved_Retirees" value="majoropp"></td></tr>
+<tr><td>Medical / healthcare</td><td><input type="radio" name="Underserved_Medical" value="notpres"></td><td><input type="radio" name="Underserved_Medical" value="someopp"></td><td><input type="radio" name="Underserved_Medical" value="majoropp"></td></tr>
+<tr><td>Other customer groups</td><td><input type="radio" name="Underserved_Other" value="notpres"></td><td><input type="radio" name="Underserved_Other" value="someopp"></td><td><input type="radio" name="Underserved_Other" value="majoropp"></td></tr>
 </tbody>
         </table>
         </div>
@@ -1395,14 +1395,14 @@
       <div class="question" data-q="51">
         <div class="q-label">51. Are there local businesses or organizations we should partner with?</div>
         <div class="q-hint">Examples: realtors, movers, apartment complexes, contractors, property managers, chambers of commerce.</div>
-        <textarea name="q50" rows="3" placeholder="List potential partners…"></textarea>
+        <textarea name="Local_Partnership_Opportunities" rows="3" placeholder="List potential partners…"></textarea>
       <span class="q-error" id="qerr51">Please describe potential local partners.</span>
       </div>
 
       <div class="question" data-q="52">
         <div class="q-label">52. Is anything happening in your area that could bring in more customers?</div>
         <div class="q-hint">Examples: new neighborhoods, road construction, military base changes, businesses opening or closing.</div>
-        <textarea name="q51" rows="3" placeholder="Local developments or changes…"></textarea>
+        <textarea name="Local_Growth_Opportunities" rows="3" placeholder="Local developments or changes…"></textarea>
       <span class="q-error" id="qerr52">Please describe local growth opportunities.</span>
       </div>
 
@@ -1410,19 +1410,19 @@
         <div class="q-label">53. In your opinion, what should our marketing focus on for your facility?</div>
         <div class="q-hint">Pick the top 3 that matter most in your market. Enter 1, 2, or 3.</div>
         <div class="rank-grid">
-          <div class="rank-item"><input type="number" class="rank-input" name="q52_price" min="1" max="3" placeholder="–"><span>Price / promotions</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q52_convenience" min="1" max="3" placeholder="–"><span>Convenience / location</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q52_security" min="1" max="3" placeholder="–"><span>Security</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q52_climate" min="1" max="3" placeholder="–"><span>Climate control</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q52_longterm" min="1" max="3" placeholder="–"><span>Long-term value</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q52_biz" min="1" max="3" placeholder="–"><span>Business storage</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q52_monthmth" min="1" max="3" placeholder="–"><span>Month-to-month flexibility</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q52_clean" min="1" max="3" placeholder="–"><span>Cleanliness / safety</span></div>
-          <div class="rank-item"><input type="number" class="rank-input" name="q52_driveup" min="1" max="3" placeholder="–"><span>Drive-up access</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="MktFocus_Rank_Price_Promos" min="1" max="3" placeholder="–"><span>Price / promotions</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="MktFocus_Rank_Convenience" min="1" max="3" placeholder="–"><span>Convenience / location</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="MktFocus_Rank_Security" min="1" max="3" placeholder="–"><span>Security</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="MktFocus_Rank_Climate" min="1" max="3" placeholder="–"><span>Climate control</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="MktFocus_Rank_Longterm_Value" min="1" max="3" placeholder="–"><span>Long-term value</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="MktFocus_Rank_Biz_Storage" min="1" max="3" placeholder="–"><span>Business storage</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="MktFocus_Rank_Month_To_Month" min="1" max="3" placeholder="–"><span>Month-to-month flexibility</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="MktFocus_Rank_Cleanliness" min="1" max="3" placeholder="–"><span>Cleanliness / safety</span></div>
+          <div class="rank-item"><input type="number" class="rank-input" name="MktFocus_Rank_DriveUp" min="1" max="3" placeholder="–"><span>Drive-up access</span></div>
         </div>
         <div class="other-inline" style="margin-top:8px">
           <span style="font-size:.82rem;color:var(--gray-600)">Other:</span>
-          <input type="text" name="q52_other" placeholder="Other focus area + rank…">
+          <input type="text" name="MktFocus_Rank_Other" placeholder="Other focus area + rank…">
         </div>
       <span class="q-error" id="qerr53">Please rank at least one marketing focus.</span>
       </div>
@@ -1430,7 +1430,7 @@
       <div class="question" data-q="54">
         <div class="q-label">54. Is there any messaging or advertising that would not work in your market?</div>
         <div class="q-hint">Example: premium messaging in a price-sensitive area, or military messaging where there is no base nearby.</div>
-        <textarea name="q53" rows="3" placeholder="Messaging that wouldn't fit your market…"></textarea>
+        <textarea name="Messaging_That_Wont_Work" rows="3" placeholder="Messaging that wouldn't fit your market…"></textarea>
       <span class="q-error" id="qerr54">Please describe messaging that would not work.</span>
       </div>
 
@@ -1441,11 +1441,11 @@
         <table class="grid-table">
           <thead><tr><th>Channel</th><th>Rank (1–5)</th></tr></thead>
           <tbody>
-            <tr><td>Google search / Google Maps</td><td><input type="number" name="q54_google" min="1" max="5" placeholder="–" style="width:70px;text-align:center"></td></tr>
-            <tr><td>Drive-by signage / visibility</td><td><input type="number" name="q54_driveby" min="1" max="5" placeholder="–" style="width:70px;text-align:center"></td></tr>
-            <tr><td>Local referrals (realtors, movers, etc.)</td><td><input type="number" name="q54_referrals" min="1" max="5" placeholder="–" style="width:70px;text-align:center"></td></tr>
-            <tr><td>Online ads (Facebook, Instagram, etc.)</td><td><input type="number" name="q54_online" min="1" max="5" placeholder="–" style="width:70px;text-align:center"></td></tr>
-            <tr><td>Community partnerships / local events</td><td><input type="number" name="q54_community" min="1" max="5" placeholder="–" style="width:70px;text-align:center"></td></tr>
+            <tr><td>Google search / Google Maps</td><td><input type="number" name="ChannelRank_Google" min="1" max="5" placeholder="–" style="width:70px;text-align:center"></td></tr>
+            <tr><td>Drive-by signage / visibility</td><td><input type="number" name="ChannelRank_DriveBy" min="1" max="5" placeholder="–" style="width:70px;text-align:center"></td></tr>
+            <tr><td>Local referrals (realtors, movers, etc.)</td><td><input type="number" name="ChannelRank_Local_Referrals" min="1" max="5" placeholder="–" style="width:70px;text-align:center"></td></tr>
+            <tr><td>Online ads (Facebook, Instagram, etc.)</td><td><input type="number" name="ChannelRank_Online_Ads" min="1" max="5" placeholder="–" style="width:70px;text-align:center"></td></tr>
+            <tr><td>Community partnerships / local events</td><td><input type="number" name="ChannelRank_Community" min="1" max="5" placeholder="–" style="width:70px;text-align:center"></td></tr>
           </tbody>
         </table>
         </div>
@@ -1455,7 +1455,7 @@
       <div class="question" data-q="56">
         <div class="q-label">56. Anything else we should know?</div>
         <div class="q-hint">Trends, concerns, ideas, staffing needs, or anything not covered above.</div>
-        <textarea name="q55" rows="4" placeholder="Any additional observations, ideas, or concerns…"></textarea>
+        <textarea name="Anything_Else" rows="4" placeholder="Any additional observations, ideas, or concerns…"></textarea>
       <span class="q-error" id="qerr56">Please share any additional observations.</span>
       </div>
 
@@ -1582,61 +1582,61 @@ function collectFormData(){
 // ── Validation rules — one entry per question ───────────────────────────────
 // type: 'text'|'radio'|'checkbox'|'grid-radio'|'grid-checkbox'|'table-text'|'rank'|'number'
 const RULES = [
-  {q:'1',  type:'text',         names:['q1']},
-  {q:'2',  type:'text',         names:['q2']},
-  {q:'3',  type:'text',         names:['q3']},
-  {q:'4',  type:'radio',        names:['q4']},
-  {q:'5',  type:'number',       names:['q5']},
-  {q:'6',  type:'checkbox',     names:['q6']},
-  {q:'7',  type:'checkbox',     names:['q7']},
-  {q:'8',  type:'radio',        names:['q8_mix']},
-  {q:'9',  type:'grid-radio',   prefix:'q9_r',  rows:10, minRows:1},
-  {q:'10', type:'text',         names:['q10'],  tag:'textarea'},
-  {q:'11', type:'checkbox',     names:['q11']},
-  {q:'12', type:'grid-radio',   prefix:'q12_r', rows:6},
-  {q:'13', type:'grid-radio',   prefix:'q13_r', rows:17},
-  {q:'14', type:'text',         names:['q14'],  tag:'textarea'},
-  {q:'15', type:'checkbox',     names:['q15']},
+  {q:'1',  type:'text',         names:['Facility_Name']},
+  {q:'2',  type:'text',         names:['Manager_Name']},
+  {q:'3',  type:'text',         names:['Date']},
+  {q:'4',  type:'radio',        names:['How_Long_Managed']},
+  {q:'5',  type:'number',       names:['Approx_Tenants']},
+  {q:'6',  type:'checkbox',     names:['Market_Type']},
+  {q:'7',  type:'checkbox',     names:['Demand_Drivers']},
+  {q:'8',  type:'radio',        names:['Customer_Mix']},
+  {q:'9',  type:'grid-radio',   prefix:'Freq_',  rows:10, minRows:1},
+  {q:'10', type:'text',         names:['Typical_Personal_Customer'],  tag:'textarea'},
+  {q:'11', type:'checkbox',     names:['Why_Personal_Customers_Rent']},
+  {q:'12', type:'grid-radio',   prefix:'Driver_r', rows:6},
+  {q:'13', type:'grid-radio',   prefix:'BizType_r', rows:17},
+  {q:'14', type:'text',         names:['What_Biz_Customers_Store'],  tag:'textarea'},
+  {q:'15', type:'checkbox',     names:['Business_Needs']},
   {q:'16', type:'grid-checkbox',prefix:'q16_r', rows:8, cols:['small','med','large','climate','driveup','park']},
-  {q:'17', type:'radio',        names:['q17']},
-  {q:'18', type:'checkbox',     names:['q18']},
-  {q:'19', type:'checkbox',     names:['q19']},
-  {q:'20', type:'table-text',   names:['q20_seg1']},
-  {q:'21', type:'radio',        names:['q21_personal','q21_business'], all:true},
-  {q:'22', type:'grid-radio',   prefix:'q22_r', rows:9,  minRows:1},
-  {q:'23', type:'table-text',   names:['q23_type0']},
-  {q:'24', type:'text',         names:['q24'],  tag:'textarea'},
-  {q:'25', type:'text',         names:['q25'],  tag:'textarea'},
-  {q:'26', type:'checkbox',     names:['q26']},
-  {q:'27', type:'grid-checkbox',prefix:'q27_r', rows:9, cols:['hvol','bconv','longstay','pricesens'], minRows:1},
-  {q:'28', type:'text',         names:['q28'],  tag:'textarea'},
-  {q:'29', type:'radio',        names:['q29']},
-  {q:'30', type:'text',         names:['q30'],  tag:'textarea'},
-  {q:'31', type:'checkbox',     names:['q31']},
-  {q:'32', type:'text',         names:['q32'],  tag:'textarea'},
-  {q:'33', type:'text',         names:['q33'],  tag:'textarea'},
-  {q:'34', type:'radio',        names:['q34_nps']},
-  {q:'36', type:'table-text',   names:['q35_name1']},
-  {q:'37', type:'text',         names:['q37'],  tag:'textarea'},
-  {q:'38', type:'text',         names:['q38'],  tag:'textarea'},
-  {q:'39', type:'radio',        names:['q39_switchers']},
-  {q:'40', type:'checkbox',     names:['q40']},
-  {q:'41', type:'radio',        names:['q40']},
-  {q:'42', type:'rank',         prefix:'q41_', names:['q41_apt','q41_students','q41_contractors','q41_longterm','q41_ecomm','q41_retirees','q41_military','q41_smallbiz','q41_vehicle'], minCount:1},
-  {q:'43', type:'text',         names:['q42'],  tag:'textarea'},
-  {q:'44', type:'rank',         names:['q43_pricing','q43_rates','q43_website','q43_office','q43_gate','q43_lighting','q43_clean','q43_climate','q43_units','q43_access','q43_staff','q43_comp'], minCount:1},
-  {q:'45', type:'text',         names:['q44'],  tag:'textarea'},
-  {q:'46', type:'text',         names:['q45'],  tag:'textarea'},
-  {q:'47', type:'text',         names:['q46'],  tag:'textarea'},
-  {q:'48', type:'text',         names:['q47'],  tag:'textarea'},
-  {q:'49', type:'text',         names:['q48'],  tag:'textarea'},
-  {q:'50', type:'grid-radio',   prefix:'q49_r', rows:12, minRows:1},
-  {q:'51', type:'text',         names:['q50'],  tag:'textarea'},
-  {q:'52', type:'text',         names:['q51'],  tag:'textarea'},
-  {q:'53', type:'rank',         names:['q52_price','q52_convenience','q52_security','q52_climate','q52_longterm','q52_biz','q52_monthmth','q52_clean','q52_driveup'], minCount:1},
-  {q:'54', type:'text',         names:['q53'],  tag:'textarea'},
-  {q:'55', type:'rank',         names:['q54_google','q54_driveby','q54_referrals','q54_online','q54_community'], minCount:1},
-  {q:'56', type:'text',         names:['q55'],  tag:'textarea'},
+  {q:'17', type:'radio',        names:['Enterprise_Accounts']},
+  {q:'18', type:'checkbox',     names:['Larger_Account_Types']},
+  {q:'19', type:'checkbox',     names:['Larger_Accounts_Care_About']},
+  {q:'20', type:'table-text',   names:['Top_Segment_1']},
+  {q:'21', type:'radio',        names:['Avg_Stay_Personal','Avg_Stay_Business'], all:true},
+  {q:'22', type:'grid-radio',   prefix:'Stay_r', rows:9,  minRows:1},
+  {q:'23', type:'table-text',   names:['Tenure_Type_1']},
+  {q:'24', type:'text',         names:['Peak_Move_In_Season'],  tag:'textarea'},
+  {q:'25', type:'text',         names:['Peak_Move_Out_Season'],  tag:'textarea'},
+  {q:'26', type:'checkbox',     names:['How_Customers_Find_Us']},
+  {q:'27', type:'grid-checkbox',prefix:'LeadSrc_r', rows:9, cols:['hvol','bconv','longstay','pricesens'], minRows:1},
+  {q:'28', type:'text',         names:['Local_Referral_Businesses'],  tag:'textarea'},
+  {q:'29', type:'radio',        names:['First_Contact_Method']},
+  {q:'30', type:'text',         names:['Common_First_Questions'],  tag:'textarea'},
+  {q:'31', type:'checkbox',     names:['Why_Customers_Choose_Us']},
+  {q:'32', type:'text',         names:['Top_Compliment'],  tag:'textarea'},
+  {q:'33', type:'text',         names:['Top_Complaint'],  tag:'textarea'},
+  {q:'34', type:'radio',        names:['Likelihood_To_Refer']},
+  {q:'36', type:'table-text',   names:['Competitor_1_Name']},
+  {q:'37', type:'text',         names:['What_Competitors_Offer_We_Dont'],  tag:'textarea'},
+  {q:'38', type:'text',         names:['Competitor_Current_Deals'],  tag:'textarea'},
+  {q:'39', type:'radio',        names:['Customers_Left_Competitor']},
+  {q:'40', type:'checkbox',     names:['Move_Out_Reasons']},
+  {q:'41', type:'radio',        names:['Move_Out_Reasons']},
+  {q:'42', type:'rank',         prefix:'q41_', names:['PriceSens_Rank_Apt_Renters','PriceSens_Rank_Students','PriceSens_Rank_Contractors','PriceSens_Rank_Longterm_Resi','PriceSens_Rank_Ecommerce','PriceSens_Rank_Retirees','PriceSens_Rank_Military','PriceSens_Rank_Small_Biz','PriceSens_Rank_Vehicle_Storage'], minCount:1},
+  {q:'43', type:'text',         names:['Day_To_Day_Customer_Issues'],  tag:'textarea'},
+  {q:'44', type:'rank',         names:['OpsRank_Pricing_Confusion','OpsRank_Rate_Increases','OpsRank_Website_Booking','OpsRank_Limited_Office_Hours','OpsRank_Gate_Access','OpsRank_Poor_Lighting','OpsRank_Cleanliness','OpsRank_No_Climate_Control','OpsRank_Unit_Availability','OpsRank_Hard_Access_Units','OpsRank_Staffing_Service','OpsRank_Competitor_Promos'], minCount:1},
+  {q:'45', type:'text',         names:['Services_Customers_Request'],  tag:'textarea'},
+  {q:'46', type:'text',         names:['Unit_Sizes_Always_Full'],  tag:'textarea'},
+  {q:'47', type:'text',         names:['Unit_Sizes_Hard_To_Fill'],  tag:'textarea'},
+  {q:'48', type:'text',         names:['Onboarding_Improvement'],  tag:'textarea'},
+  {q:'49', type:'text',         names:['One_Thing_To_Add'],  tag:'textarea'},
+  {q:'50', type:'grid-radio',   prefix:'Underserved_r', rows:12, minRows:1},
+  {q:'51', type:'text',         names:['Local_Partnership_Opportunities'],  tag:'textarea'},
+  {q:'52', type:'text',         names:['Local_Growth_Opportunities'],  tag:'textarea'},
+  {q:'53', type:'rank',         names:['MktFocus_Rank_Price_Promos','MktFocus_Rank_Convenience','MktFocus_Rank_Security','MktFocus_Rank_Climate','MktFocus_Rank_Longterm_Value','MktFocus_Rank_Biz_Storage','MktFocus_Rank_Month_To_Month','MktFocus_Rank_Cleanliness','MktFocus_Rank_DriveUp'], minCount:1},
+  {q:'54', type:'text',         names:['Messaging_That_Wont_Work'],  tag:'textarea'},
+  {q:'55', type:'rank',         names:['ChannelRank_Google','ChannelRank_DriveBy','ChannelRank_Local_Referrals','ChannelRank_Online_Ads','ChannelRank_Community'], minCount:1},
+  {q:'56', type:'text',         names:['Anything_Else'],  tag:'textarea'},
 ];
 
 function isAnswered(rule){
