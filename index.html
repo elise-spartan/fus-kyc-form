@@ -1554,6 +1554,97 @@ function collectFormData(){
   return data;
 }
 
+// ── Validation rules — one entry per question ───────────────────────────────
+const RULES = [
+  {q:'1',  type:'text',         names:['Facility_Name']},
+  {q:'2',  type:'text',         names:['Manager_Name']},
+  {q:'3',  type:'text',         names:['Date']},
+  {q:'4',  type:'radio',        names:['How_Long_Managed']},
+  {q:'5',  type:'number',       names:['Approx_Tenants']},
+  {q:'6',  type:'checkbox',     names:['Market_Type']},
+  {q:'7',  type:'checkbox',     names:['Demand_Drivers']},
+  {q:'8',  type:'radio',        names:['Customer_Mix']},
+  {q:'9',  type:'grid-radio',   prefix:'Freq_',  rows:10, minRows:1},
+  {q:'10', type:'text',         names:['Typical_Personal_Customer'],  tag:'textarea'},
+  {q:'11', type:'checkbox',     names:['Why_Personal_Customers_Rent']},
+  {q:'12', type:'grid-radio',   prefix:'Driver_r', rows:6},
+  {q:'13', type:'grid-radio',   prefix:'BizType_r', rows:17},
+  {q:'14', type:'text',         names:['What_Biz_Customers_Store'],  tag:'textarea'},
+  {q:'15', type:'checkbox',     names:['Business_Needs']},
+  {q:'16', type:'grid-checkbox',prefix:'q16_r', rows:8, cols:['small','med','large','climate','driveup','park']},
+  {q:'17', type:'radio',        names:['Enterprise_Accounts']},
+  {q:'18', type:'checkbox',     names:['Larger_Account_Types']},
+  {q:'19', type:'checkbox',     names:['Larger_Accounts_Care_About']},
+  {q:'20', type:'table-text',   names:['Top_Segment_1']},
+  {q:'21', type:'radio',        names:['Avg_Stay_Personal','Avg_Stay_Business'], all:true},
+  {q:'22', type:'grid-radio',   prefix:'Stay_r', rows:9,  minRows:1},
+  {q:'23', type:'table-text',   names:['Tenure_Type_1']},
+  {q:'24', type:'text',         names:['Peak_Move_In_Season'],  tag:'textarea'},
+  {q:'25', type:'text',         names:['Peak_Move_Out_Season'],  tag:'textarea'},
+  {q:'26', type:'checkbox',     names:['How_Customers_Find_Us']},
+  {q:'27', type:'grid-checkbox',prefix:'LeadSrc_r', rows:9, cols:['hvol','bconv','longstay','pricesens'], minRows:1},
+  {q:'28', type:'text',         names:['Local_Referral_Businesses'],  tag:'textarea'},
+  {q:'29', type:'radio',        names:['First_Contact_Method']},
+  {q:'30', type:'text',         names:['Common_First_Questions'],  tag:'textarea'},
+  {q:'31', type:'checkbox',     names:['Why_Customers_Choose_Us']},
+  {q:'32', type:'text',         names:['Top_Compliment'],  tag:'textarea'},
+  {q:'33', type:'text',         names:['Top_Complaint'],  tag:'textarea'},
+  {q:'34', type:'radio',        names:['Likelihood_To_Refer']},
+  {q:'36', type:'table-text',   names:['Competitor_1_Name']},
+  {q:'37', type:'text',         names:['What_Competitors_Offer_We_Dont'],  tag:'textarea'},
+  {q:'38', type:'text',         names:['Competitor_Current_Deals'],  tag:'textarea'},
+  {q:'39', type:'radio',        names:['Customers_Left_Competitor']},
+  {q:'40', type:'checkbox',     names:['Move_Out_Reasons']},
+  {q:'41', type:'radio',        names:['Rate_Increase_Reaction']},
+  {q:'42', type:'rank',         names:['PriceSens_Rank_Apt_Renters','PriceSens_Rank_Students','PriceSens_Rank_Contractors','PriceSens_Rank_Longterm_Resi','PriceSens_Rank_Ecommerce','PriceSens_Rank_Retirees','PriceSens_Rank_Military','PriceSens_Rank_Small_Biz','PriceSens_Rank_Vehicle_Storage'], minCount:1},
+  {q:'43', type:'text',         names:['Day_To_Day_Customer_Issues'],  tag:'textarea'},
+  {q:'44', type:'rank',         names:['OpsRank_Pricing_Confusion','OpsRank_Rate_Increases','OpsRank_Website_Booking','OpsRank_Limited_Office_Hours','OpsRank_Gate_Access','OpsRank_Poor_Lighting','OpsRank_Cleanliness','OpsRank_No_Climate_Control','OpsRank_Unit_Availability','OpsRank_Hard_Access_Units','OpsRank_Staffing_Service','OpsRank_Competitor_Promos'], minCount:1},
+  {q:'45', type:'text',         names:['Services_Customers_Request'],  tag:'textarea'},
+  {q:'46', type:'text',         names:['Unit_Sizes_Always_Full'],  tag:'textarea'},
+  {q:'47', type:'text',         names:['Unit_Sizes_Hard_To_Fill'],  tag:'textarea'},
+  {q:'48', type:'text',         names:['Onboarding_Improvement'],  tag:'textarea'},
+  {q:'49', type:'text',         names:['One_Thing_To_Add'],  tag:'textarea'},
+  {q:'50', type:'grid-radio',   prefix:'Underserved_r', rows:12, minRows:1},
+  {q:'51', type:'text',         names:['Local_Partnership_Opportunities'],  tag:'textarea'},
+  {q:'52', type:'text',         names:['Local_Growth_Opportunities'],  tag:'textarea'},
+  {q:'53', type:'rank',         names:['MktFocus_Rank_Price_Promos','MktFocus_Rank_Convenience','MktFocus_Rank_Security','MktFocus_Rank_Climate','MktFocus_Rank_Longterm_Value','MktFocus_Rank_Biz_Storage','MktFocus_Rank_Month_To_Month','MktFocus_Rank_Cleanliness','MktFocus_Rank_DriveUp'], minCount:1},
+  {q:'54', type:'text',         names:['Messaging_That_Wont_Work'],  tag:'textarea'},
+  {q:'55', type:'rank',         names:['ChannelRank_Google','ChannelRank_DriveBy','ChannelRank_Local_Referrals','ChannelRank_Online_Ads','ChannelRank_Community'], minCount:1},
+  {q:'56', type:'text',         names:['Anything_Else'],  tag:'textarea'},
+];
+
+function isAnswered(rule){
+  const form = document.getElementById('kycForm');
+  const {type} = rule;
+  if(type === 'text' || type === 'number'){
+    return rule.names.some(n => { const el=form.querySelector(`[name="${n}"]`); return el && el.value.trim().length > 0; });
+  }
+  if(type === 'radio'){
+    if(rule.all){ return rule.names.every(n => form.querySelector(`[name="${n}"]:checked`)); }
+    return rule.names.some(n => form.querySelector(`[name="${n}"]:checked`));
+  }
+  if(type === 'checkbox'){ return rule.names.some(n => form.querySelector(`[name="${n}"]:checked`)); }
+  if(type === 'grid-radio'){
+    const minRows = rule.minRows || rule.rows; let answered = 0;
+    for(let i=0; i<rule.rows; i++){ if(form.querySelector(`[name="${rule.prefix}${i}"]:checked`)) answered++; }
+    return answered >= minRows;
+  }
+  if(type === 'grid-checkbox'){
+    const minRows = rule.minRows || 1; let answered = 0;
+    for(let i=0; i<rule.rows; i++){
+      const anyCol = rule.cols.some(c => { const el=form.querySelector(`[name="${rule.prefix}${i}_${c}"]`); return el && el.checked; });
+      if(anyCol) answered++;
+    }
+    return answered >= minRows;
+  }
+  if(type === 'table-text'){ return rule.names.some(n => { const el=form.querySelector(`[name="${n}"]`); return el && el.value.trim().length > 0; }); }
+  if(type === 'rank'){
+    const minCount = rule.minCount || 1;
+    return rule.names.filter(n => { const el=form.querySelector(`[name="${n}"]`); return el && el.value.trim().length > 0; }).length >= minCount;
+  }
+  return false;
+}
+
 // ── Submit ───────────────────────────────────────────────────────────────────
 function submitForm(){
   // Clear all previous errors
