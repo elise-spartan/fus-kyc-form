@@ -1466,7 +1466,7 @@
 
   <!-- Submit -->
   <div class="submit-area" id="submitArea">
-    <p>Your responses are confidential and for FreeUp Storage marketing use only. Responses are saved in your browser until you submit or clear them.</p>
+    <p>Your responses are confidential and for FreeUp Storage marketing use only.<br><br>Once you've completed all questions, click Submit. Your Outlook will open with your responses pre-filled and ready to send. Give them a quick review and hit <strong>Send</strong> to submit to the marketing team.</p>
     <button type="button" class="btn-submit" onclick="submitForm()">✓ Submit Completed Form</button>
   </div>
 
@@ -1475,25 +1475,6 @@
   <div class="confidential">Confidential &nbsp;|&nbsp; FreeUp Storage &nbsp;|&nbsp; Internal Use Only</div>
   </div><!-- end formContent -->
 
-  <!-- Thank You Screen -->
-  <div id="thankyou" style="display:none; flex-direction:column; align-items:center; justify-content:center; min-height:70vh; padding:40px 20px; text-align:center;">
-    <div style="background:var(--red); width:64px; height:64px; border-radius:50%; display:grid; place-items:center; margin-bottom:24px; box-shadow:0 4px 20px rgba(226,59,48,.3)">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-    </div>
-    <h2 style="font-family:var(--display); font-size:2.4rem; color:var(--navy); letter-spacing:.1em; text-transform:uppercase; margin-bottom:12px;">Thank You!</h2>
-    <p style="font-size:1rem; color:#444; line-height:1.8; margin-bottom:8px;">Your responses have been compiled and your email client should have opened with a pre-filled message addressed to the FreeUp Storage marketing team.</p>
-    <p style="font-size:1rem; color:#444; line-height:1.8; margin-bottom:32px;">Please <strong>review your responses</strong> in the email and click <strong>Send</strong> to submit them. If the email didn't open automatically, please check your email client or pop-up settings.</p>
-    <div style="background:#f7f7f8; border:1.5px solid #e0e0e2; border-radius:var(--radius); padding:20px 28px; margin-bottom:32px; text-align:left; width:100%; max-width:480px;">
-      <p style="font-size:.8rem; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px;">What to do next</p>
-      <ol style="font-size:.88rem; color:#555; line-height:2; padding-left:18px;">
-        <li>Switch to your email client (Outlook, Gmail, etc.)</li>
-        <li>You'll see a draft email with your responses in the body</li>
-        <li>Review the answers to make sure everything looks correct</li>
-        <li>Click <strong>Send</strong></li>
-      </ol>
-    </div>
-    <button onclick="startOver()" style="background:var(--navy); color:white; border:none; padding:12px 28px; border-radius:var(--radius); font-family:var(--body); font-size:.82rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; cursor:pointer;">↺ Fill Out Another Form</button>
-  </div>
 
 </div>
 
@@ -1828,21 +1809,16 @@ function submitForm(){
   const bodyEnc = encodeURIComponent(body);
   const mailto  = `mailto:manilamarketing@spartan-investors.com?subject=${subject}&body=${bodyEnc}`;
 
-  // Show thank you screen FIRST before opening email client
-  document.getElementById('formContent').style.display = 'none';
-  document.getElementById('thankyou').style.display = 'flex';
-  window.scrollTo({top:0, behavior:'smooth'});
-  localStorage.removeItem('kyc_autosave');
+  // Open mailto
+  const a = document.createElement('a');
+  a.href = mailto;
+  a.target = '_blank';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 
-  // Then open mailto (slight delay so the page update renders first)
-  setTimeout(() => {
-    const a = document.createElement('a');
-    a.href = mailto;
-    a.target = '_blank';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  }, 300);
+  showToast('✓ Your Outlook should now be open with your responses. Please review and click Send.');
+  localStorage.removeItem('kyc_autosave');
 
 }
 // ── Clear / Start Over ───────────────────────────────────────────────────────
@@ -1858,17 +1834,7 @@ function clearForm(){
 }
 
 
-function startOver(){
-  document.getElementById('thankyou').style.display = 'none';
-  document.getElementById('formContent').style.display = 'block';
-  document.getElementById('kycForm').reset();
-  document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
-  document.querySelectorAll('.question.invalid').forEach(el => el.classList.remove('invalid'));
-  document.getElementById('errorBanner').classList.remove('show');
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-
-
+function showToast(msg, isWarning=false){
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.style.background = isWarning ? 'var(--red)' : 'var(--navy)';
