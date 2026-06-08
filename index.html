@@ -506,12 +506,6 @@
     border-left: 3px solid var(--red);
   }
   .toast.show { transform: translateY(0); opacity: 1; }
-    .form-container { max-width: 100%; margin: 0; padding: 10px; }
-    .section-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; margin-bottom: 12px; }
-    .section-header { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .check-item, .rank-item, .other-inline { border: 1px solid #ccc; }
-    textarea { min-height: 50px; }
-  }
 </style>
 </head>
 <body>
@@ -1793,8 +1787,14 @@ function submitForm(){
   a.click();
   document.body.removeChild(a);
 
-  showToast('✓ Your Outlook should now be open with your responses. Please review and click Send.');
+  // Reset form and scroll to top
   localStorage.removeItem('kyc_autosave');
+  document.getElementById('kycForm').reset();
+  document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
+  document.querySelectorAll('.question.invalid').forEach(el => el.classList.remove('invalid'));
+  document.getElementById('errorBanner').classList.remove('show');
+  window.scrollTo({top:0, behavior:'smooth'});
+  showToast('✓ Your Outlook should now be open with your responses. Please review and click Send.');
 
 }
 // ── Clear / Start Over ───────────────────────────────────────────────────────
