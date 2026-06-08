@@ -547,7 +547,6 @@
   </div>
   <div class="header-actions">
     <button class="btn btn-ghost" onclick="clearForm()">↺ Start Over</button>
-    <button class="btn btn-ghost" onclick="printForm()">🖨 Print / Save PDF</button>
     <button class="btn btn-primary" onclick="submitForm()">Submit Form</button>
   </div>
 </header>
@@ -1466,7 +1465,6 @@
   <!-- Submit -->
   <div class="submit-area">
     <p>Your responses are confidential and for FreeUp Storage marketing use only. Responses are saved in your browser until you submit or clear them.</p>
-    <button type="button" class="btn-print" onclick="printForm()">🖨 Print / Save PDF</button>
     <button type="button" class="btn-submit" onclick="submitForm()">✓ Submit Completed Form</button>
   </div>
 
@@ -1581,97 +1579,6 @@ function collectFormData(){
 }
 
 // ── Print: open a new window so it works inside iframes ─────────────────────
-function printForm(){
-  // Gather current HTML of the form with filled values baked in
-  const formHTML = document.getElementById('kycForm').innerHTML;
-
-  // Clone and serialize inputs so values appear in print
-  const clone = document.getElementById('kycForm').cloneNode(true);
-
-  // Copy live values into clone
-  const srcInputs = document.getElementById('kycForm').querySelectorAll('input, textarea, select');
-  const clnInputs = clone.querySelectorAll('input, textarea, select');
-  srcInputs.forEach((src, i) => {
-    const cln = clnInputs[i];
-    if(!cln) return;
-    if(src.type === 'checkbox' || src.type === 'radio') {
-      cln.checked = src.checked;
-      cln.setAttribute('checked', src.checked ? 'checked' : '');
-    } else {
-      cln.value = src.value;
-      cln.setAttribute('value', src.value);
-      if(src.tagName === 'TEXTAREA') cln.textContent = src.value;
-    }
-  });
-
-  const win = window.open('', '_blank', 'width=900,height=700');
-  if(!win) {
-    // Popup blocked — fall back to top-level print
-    try { window.top.print(); } catch(e) { window.print(); }
-    return;
-  }
-
-  win.document.write(`<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>FreeUp Storage — Know Your Customers</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Inter',sans-serif;font-size:11pt;color:#111;background:white;padding:20px 28px}
-  .print-header{display:flex;align-items:center;gap:14px;border-bottom:3px solid #E23B30;padding-bottom:14px;margin-bottom:20px}
-  .print-logo{background:#E23B30;color:white;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;padding:6px 14px;letter-spacing:.1em}
-  .print-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#142F54;letter-spacing:.1em;text-transform:uppercase;line-height:1}
-  .print-subtitle{font-size:7pt;text-transform:uppercase;letter-spacing:.1em;color:#ADAFB2;margin-top:3px}
-  .section-header{background:#142F54;color:white;padding:7px 14px;margin:18px 0 10px;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
-  .section-num{background:#E23B30;font-family:'Inter',sans-serif;font-size:6pt;font-weight:700;padding:2px 7px;text-transform:uppercase;letter-spacing:.08em}
-  .question{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #efefef}
-  .question:last-child{border-bottom:none}
-  .q-label{font-weight:700;font-size:9pt;color:#142F54;margin-bottom:3px}
-  .q-hint{font-size:7.5pt;color:#ADAFB2;font-style:italic;margin-bottom:6px}
-  input[type=text],input[type=date],input[type=number],textarea,select{
-    width:100%;border:1px solid #ccc;padding:4px 7px;font-family:'Inter',sans-serif;
-    font-size:9pt;border-radius:2px;background:#fafafa}
-  textarea{min-height:44px;resize:none}
-  .check-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px}
-  .check-item{display:flex;align-items:center;gap:7px;padding:4px 8px;border:1px solid #e0e0e2;font-size:8.5pt;border-radius:2px}
-  .check-item.checked{border-color:#142F54;background:#f0f3f8}
-  .other-inline{display:flex;align-items:center;gap:8px;padding:4px 8px;border:1px solid #e0e0e2;font-size:8.5pt;border-radius:2px;margin-top:4px}
-  .rank-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px}
-  .rank-item{display:flex;align-items:center;gap:7px;padding:4px 8px;border:1px solid #e0e0e2;font-size:8.5pt;border-radius:2px}
-  .rank-input{width:36px;text-align:center;font-weight:700;color:#E23B30;border:1px solid #ccc;padding:2px 4px;font-size:8.5pt}
-  table{width:100%;border-collapse:collapse;font-size:8pt}
-  th{text-align:center;font-weight:600;font-size:7pt;text-transform:uppercase;letter-spacing:.05em;color:#6b6d70;padding:6px 5px;border-bottom:2px solid #e0e0e2;background:#f7f7f8}
-  th:first-child{text-align:left;padding-left:8px}
-  td{padding:5px;border-bottom:1px solid #efefef;text-align:center;vertical-align:middle}
-  td:first-child{text-align:left;padding-left:8px;font-size:8pt}
-  .comp-table th{text-align:left;padding:5px 6px}
-  .comp-table td{text-align:left;padding:3px 4px}
-  .confidential{text-align:center;font-size:7pt;color:#ADAFB2;margin-top:24px;text-transform:uppercase;letter-spacing:.08em;border-top:1px solid #efefef;padding-top:10px}
-  @media print{
-    body{padding:12px 16px}
-    .no-print{display:none}
-    .section-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    .print-logo{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  }
-</style>
-</head>
-<body>
-<div class="print-header">
-  <div class="print-logo">FUS</div>
-  <div>
-    <div class="print-title">Know Your Customers</div>
-    <div class="print-subtitle">Store Manager Questionnaire &nbsp;·&nbsp; Confidential</div>
-  </div>
-</div>
-${clone.outerHTML}
-<p class="confidential">Confidential &nbsp;|&nbsp; FreeUp Storage &nbsp;|&nbsp; Internal Use Only</p>
-<script>window.onload=function(){window.print();}<\/script>
-</body></html>`);
-  win.document.close();
-}
-
 // ── Validation rules — one entry per question ───────────────────────────────
 // type: 'text'|'radio'|'checkbox'|'grid-radio'|'grid-checkbox'|'table-text'|'rank'|'number'
 const RULES = [
@@ -1814,415 +1721,33 @@ function submitForm(){
     return;
   }
 
-  // All answered — proceed
+  // All answered — submit to Formspree
   saveData();
-
   const data = collectFormData();
-  const facility = data.q1 || '(no facility)';
-  const manager  = data.q2 || '(no name)';
-  const date     = data.q3 || new Date().toLocaleDateString();
 
-  // ── Human-readable label map ─────────────────────────────────────────────
-  const LABELS = {
-    q1:'Facility name / location', q2:'Your name', q3:'Date',
-    q4:'How long managed',
-    q4_less_6mo:'Less than 6 months', q4_6mo_1yr:'6 months to 1 year',
-    q4_1_3yr:'1–3 years', q4_3plus:'3+ years',
-    q5:'Approx. number of tenants',
-    q6:'Market type',
-    q6_urban:'Urban', q6_dense_suburban:'Dense suburban',
-    q6_standard_suburban:'Standard suburban', q6_rural:'Rural',
-    q6_college_town:'College town', q6_military_town:'Military town',
-    q6_vacation_seasonal:'Vacation / seasonal market', q6_other:'Other market',
-    q7:'Nearby demand drivers',
-    q7_apt_density:'Apartment density', q7_new_housing:'New housing growth',
-    q7_military_base:'Military base', q7_college_univ:'College / university',
-    q7_tourism:'Tourism / seasonal residents', q7_small_biz:'Small business / contractor activity',
-    q7_warehousing:'Warehousing / industrial area', q7_affluent:'Affluent homeowners',
-    q7_retirees:'Retiree population', q7_hoa:'HOA-heavy neighborhoods',
-    q7_major_employers:'Major employers nearby', q7_hospitals:'Hospitals / medical offices',
-    q7_other:'Other demand driver',
-    q8_mix:'Overall customer mix',
-    q8_mix_all_personal:'Almost all personal', q8_mix_mostly_personal:'Mostly personal, some business',
-    q8_mix_even:'About even', q8_mix_mostly_biz:'Mostly business, some personal',
-    q8_mix_all_biz:'Almost all business',
-    q8_pct_b2c:'Personal / B2C %', q8_pct_b2b:'Business / B2B %',
-    q10:'Typical personal customer description',
-    q11:'Why personal customers rent',
-    q11_moving_local:'Moving locally', q11_moving_oos:'Moving out of state',
-    q11_downsizing:'Downsizing / life change', q11_renovating:'Renovating home',
-    q11_need_space:'Need more space / decluttering', q11_apt_no_garage:'Apartment / no garage',
-    q11_hoa:'HOA restrictions', q11_seasonal:'Seasonal items',
-    q11_military:'Military move / deployment', q11_college:'College student storage',
-    q11_vehicle:'Storing vehicle / RV / boat', q11_other:'Other reason',
-    q14:'What business customers store',
-    q15:'Business customer needs',
-    q15_247_access:'24/7 access', q15_climate_sensitive:'Climate control for sensitive inventory',
-    q15_driveup_trucks:'Drive-up for trucks / equipment', q15_pkg_accept:'Package acceptance',
-    q15_larger_units:'Larger / custom units', q15_vol_discount:'Volume discounts',
-    q15_acct_mgr:'Dedicated account manager', q15_flex_billing:'Flexible billing',
-    q15_parking:'Parking / fleet access', q15_other:'Other business need',
-    q17:'Enterprise-level accounts',
-    q17_none:'None', q17_a_few:'A few', q17_several:'Several important accounts',
-    q17_major:'Major part of the business',
-    q18:'Types of larger accounts',
-    q18_contractors:'Contractors', q18_property_mgmt:'Property management',
-    q18_retail:'Retail inventory', q18_govt:'Government / municipal',
-    q18_restoration:'Restoration companies', q18_medical:'Medical / records storage',
-    q18_ecomm:'E-commerce sellers', q18_fleet:'Fleet / vehicle users', q18_other:'Other account type',
-    q19:'What larger accounts care about most',
-    q19_access_hours:'Access hours', q19_security:'Security',
-    q19_multi_discount:'Multi-unit discounts', q19_billing:'Billing simplicity',
-    q19_contact:'Dedicated contact', q19_parking:'Parking / fleet access',
-    q19_climate:'Climate control', q19_pkg_accept:'Package acceptance', q19_other:'Other priority',
-    q20_seg1:'Top revenue segment #1', q20_seg2:'Top revenue segment #2',
-    q20_seg3:'Top revenue segment #3', q20_seg4:'Top revenue segment #4',
-    q20_seg5:'Top revenue segment #5',
-    q21_personal:'Personal customer avg stay', q21_business:'Business customer avg stay',
-    q21_personal_u3mo:'Under 3 months', q21_personal_3_12mo:'3–12 months',
-    q21_personal_1_2yr:'1–2 years', q21_personal_2plus:'2+ years',
-    q21_business_u3mo:'Under 3 months', q21_business_3_12mo:'3–12 months',
-    q21_business_1_2yr:'1–2 years', q21_business_2plus:'2+ years',
-    q23_type0:'Customer type #1 (longest/fastest)', q23_type1:'Customer type #2',
-    q23_type2:'Customer type #3', q23_type3:'Customer type #4', q23_type4:'Customer type #5',
-    q24:'Peak move-in season', q25:'Peak move-out season',
-    q26:'How customers find us',
-    q26_google_search:'Google search', q26_google_maps:'Google Maps',
-    q26_drive_by:'Drive-by / signage', q26_friend_ref:'Friend / family referral',
-    q26_pro_ref:'Realtor / mover / contractor referral', q26_listing_site:'Storage listing site',
-    q26_facebook:'Facebook / Instagram ad', q26_mail_flyer:'Mail flyer / postcard',
-    q26_yelp:'Yelp / review site', q26_returning:'Returning customer', q26_other:'Other source',
-    q28:'Local businesses that send referrals',
-    q29:'How customers first contact',
-    q29_walk_in:'Walk in', q29_phone:'Phone call', q29_book_web:'Book online (our website)',
-    q29_book_3rd:'Book via third-party site', q29_email_text:'Email or text',
-    q30:'Common first questions from new customers',
-    q31:'Main reasons customers choose us',
-    q31_price:'Price / good deal', q31_location:'Close to home / work',
-    q31_right_size:'Right unit size available', q31_movein_special:'Move-in special',
-    q31_clean_safe:'Clean and safe facility', q31_good_reviews:'Good reviews online',
-    q31_friendly_staff:'Friendly staff / service', q31_climate:'Climate-controlled units',
-    q31_easy_online:'Easy online booking', q31_driveup:'Drive-up access',
-    q31_flex_mm:'Month-to-month flexibility', q31_other:'Other reason chosen',
-    q32:'#1 compliment received', q33:'#1 complaint / hesitation',
-    q34:'Why customers don\'t rent with us',
-    q34_price_high:'Price too high', q34_comp_closer:'Competitor was closer',
-    q34_no_right_size:'No right unit size', q34_better_deal:'Competitor had better deal',
-    q34_better_reviews:'Better reviews elsewhere', q34_other:'Other reason lost',
-    q35_name1:'Competitor 1 – Name', q35_dist1:'Competitor 1 – Distance',
-    q35_price1:'Competitor 1 – Price vs us', q35_why1:'Competitor 1 – Why chosen',
-    q35_name2:'Competitor 2 – Name', q35_dist2:'Competitor 2 – Distance',
-    q35_price2:'Competitor 2 – Price vs us', q35_why2:'Competitor 2 – Why chosen',
-    q35_name3:'Competitor 3 – Name', q35_dist3:'Competitor 3 – Distance',
-    q35_price3:'Competitor 3 – Price vs us', q35_why3:'Competitor 3 – Why chosen',
-    q35_name4:'Competitor 4 – Name', q35_dist4:'Competitor 4 – Distance',
-    q35_price4:'Competitor 4 – Price vs us', q35_why4:'Competitor 4 – Why chosen',
-    q35_name5:'Competitor 5 – Name', q35_dist5:'Competitor 5 – Distance',
-    q35_price5:'Competitor 5 – Price vs us', q35_why5:'Competitor 5 – Why chosen',
-    q36:'Toughest competitor and why', q37:'What competitors offer that we don\'t',
-    q38:'Current competitor move-in deals',
-    q39:'Why customers move out',
-    q39_no_need:'No longer need storage', q39_moving_area:'Moving out of area',
-    q39_price_up:'Price increase', q39_cheaper_comp:'Switched to cheaper competitor',
-    q39_unhappy:'Unhappy with facility / service', q39_no_payment:'Could not keep up with payments',
-    q39_other:'Other move-out reason',
-    q40:'How customers react to rate increases',
-    q40_dont_say:'Most don\'t say anything, just pay',
-    q40_some_call:'Some call but stay',
-    q40_leave:'A noticeable number leave',
-    q40_upset:'People get upset regularly',
-    q41_apt:'Price sensitivity rank – Apartment renters',
-    q41_students:'Price sensitivity rank – Students',
-    q41_contractors:'Price sensitivity rank – Contractors',
-    q41_longterm:'Price sensitivity rank – Long-term residential',
-    q41_ecomm:'Price sensitivity rank – E-commerce sellers',
-    q41_retirees:'Price sensitivity rank – Retirees / fixed income',
-    q41_military:'Price sensitivity rank – Military',
-    q41_smallbiz:'Price sensitivity rank – Small businesses',
-    q41_vehicle:'Price sensitivity rank – Vehicle storage',
-    q42:'Biggest day-to-day customer issues',
-    q43_pricing:'Ops issue rank – Pricing confusion',
-    q43_rates:'Ops issue rank – Rate increases',
-    q43_website:'Ops issue rank – Website / booking issues',
-    q43_office:'Ops issue rank – Limited office hours',
-    q43_gate:'Ops issue rank – Gate access problems',
-    q43_lighting:'Ops issue rank – Poor lighting / security perception',
-    q43_clean:'Ops issue rank – Cleanliness',
-    q43_climate:'Ops issue rank – Lack of climate control',
-    q43_units:'Ops issue rank – Unit availability',
-    q43_access:'Ops issue rank – Hard-to-access units',
-    q43_staff:'Ops issue rank – Staffing / service consistency',
-    q43_comp:'Ops issue rank – Competitor promotions',
-    q44:'Services customers request that we don\'t offer',
-    q45:'Unit sizes always running out of',
-    q46:'Unit sizes hard to fill',
-    q47:'Onboarding process improvement idea',
-    q48:'One thing to add to facility',
-    q50:'Local partnership opportunities',
-    q51:'Local growth opportunities',
-    q52_price:'Marketing focus rank – Price / promotions',
-    q52_convenience:'Marketing focus rank – Convenience / location',
-    q52_security:'Marketing focus rank – Security',
-    q52_climate:'Marketing focus rank – Climate control',
-    q52_longterm:'Marketing focus rank – Long-term value',
-    q52_biz:'Marketing focus rank – Business storage',
-    q52_monthmth:'Marketing focus rank – Month-to-month flexibility',
-    q52_clean:'Marketing focus rank – Cleanliness / safety',
-    q52_driveup:'Marketing focus rank – Drive-up access',
-    q53:'Messaging that would NOT work in this market',
-    q54_google:'Channel rank – Google search / Maps',
-    q54_driveby:'Channel rank – Drive-by signage',
-    q54_referrals:'Channel rank – Local referrals',
-    q54_online:'Channel rank – Online ads (Facebook / Instagram)',
-    q54_community:'Channel rank – Community partnerships / events',
-    q55:'Anything else',
-  };
+  showToast('Submitting…');
 
-  // Grid row labels for Q9, Q12, Q13, Q16, Q22, Q27, Q49
-  const GRID_LABELS = {
-    q9:  ['Residential – Moving / temporary','Residential – Long-term','Apartment / condo renters','Homeowners','Military','Students','Seasonal / snowbird','Vehicle / RV / boat owners','Retirees / fixed income','Other customer types'],
-    q12: ['Stressful life event','Lack of space','Moving transition','Divorce / death / family change','Lifestyle upgrade / downsizing','Seasonal convenience'],
-    q13: ['General contractors','HVAC / plumbing / electrical','Landscapers / outdoor services','Roofers','Painters','Restoration companies','Realtors / staging','Property management','Medical / pharma reps','Restaurants / food service','Retail inventory','Amazon / e-commerce','Auto-related','Professional services / records','Nonprofits / churches','Government / municipal','Other business customers'],
-    q16: ['Residential movers','Long-term residential','Apartment / condo renters','Homeowners','Contractors / trades','Retail / e-commerce','Real estate / staging','Vehicle / RV / boat storage'],
-    q22: ['Local move','Out-of-state move','Downsizing / life change','Apartment / no space at home','Home renovation','Business use','Military','Student storage','Vehicle / RV / boat storage'],
-    q27: ['Google search / website','Google Maps','Drive-by traffic','Customer referrals','Realtor / mover / contractor referrals','Storage listing sites','Facebook / Instagram','Mailers / postcards','Returning customers'],
-    q49: ['Contractors','Apartment renters','Military','College students','E-commerce sellers','Vehicle / RV storage','Boat owners','Small businesses','Seasonal residents','Retirees / fixed income','Medical / healthcare','Other customer groups'],
-  };
-  const Q9_COLS  = ['None','A Few','Some','Many','Most'];
-  const Q12_COLS = ['Rare','Common','Very Common'];
-  const Q13_COLS = ['None','Rare','Common','Major Customer Base'];
-  const Q16_COLS = ['Small','Medium','Large','Climate','Drive-Up','Parking'];
-  const Q22_COLS = ['Under 3 mo.','3–6 mo.','6–12 mo.','12+ mo.'];
-  const Q27_COLS = ['High Volume','Best Conversion','Longest Stay','Most Price Sensitive'];
-  const Q49_COLS = ['Not Present','Some Opportunity','Major Opportunity'];
-
-  function getGridVal(prefix, rowIdx, cols, colLabels, isCheckbox=false){
-    const form = document.getElementById('kycForm');
-    if(isCheckbox){
-      const checked = cols.filter(c=>{
-        const el=form.querySelector(`[name="${prefix}${rowIdx}_${c}"]`);
-        return el&&el.checked;
-      });
-      return checked.length ? checked.map((_,i)=>colLabels[cols.indexOf(checked[i])]).join(', ') : '—';
+  fetch('https://formspree.io/f/mzdqrnpa', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(res => {
+    if(res.ok || res.next){
+      // Clear form after successful submission
+      localStorage.removeItem('kyc_autosave');
+      document.getElementById('kycForm').reset();
+      document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
+      window.scrollTo({top:0, behavior:'smooth'});
+      showToast('✓ Form submitted successfully. Thank you!');
+    } else {
+      showToast('⚠ Submission failed. Please try again.', true);
     }
-    const el = form.querySelector(`[name="${prefix}${rowIdx}"]:checked`);
-    if(!el) return '—';
-    const idx = ['u3mo','3_6mo','6_12mo','12plus','none','afew','some','many','most','rare','common','verycommon','notpres','someopp','majoropp'].indexOf(el.value);
-    return el.value; // will map below
-  }
+  })
+  .catch(() => showToast('⚠ Submission failed. Please check your connection and try again.', true));
 
-  // ── Build readable email body ────────────────────────────────────────────
-  const SEP = '─────────────────────────────────────────\n';
-  let body = `FREEUPSTORAGE — KNOW YOUR CUSTOMERS\n`;
-  body += `${'═'.repeat(42)}\n`;
-  body += `Facility:  ${facility}\n`;
-  body += `Manager:   ${manager}\n`;
-  body += `Date:      ${date}\n\n`;
-
-  function label(key){ return LABELS[key] || key.replace(/_/g,' '); }
-  function valLabel(key, val){
-    // Try to find a human label for the value
-    const combined = `${key}_${val}`;
-    return LABELS[combined] || val;
-  }
-
-  // Section 1
-  body += `SECTION 1: FACILITY & MARKET CONTEXT\n${SEP}`;
-  body += `Q1.  Facility: ${data.q1||''}\n`;
-  body += `Q2.  Manager: ${data.q2||''}\n`;
-  body += `Q3.  Date: ${data.q3||''}\n`;
-  body += `Q4.  How long managed: ${valLabel('q4',data.q4||'')}\n`;
-  body += `Q5.  Approx. tenants: ${data.q5||''}\n`;
-  const q6v = Array.isArray(data.q6)?data.q6:[data.q6||''];
-  body += `Q6.  Market type: ${q6v.map(v=>valLabel('q6',v)).join(', ')}${data.q6_other?' (Other: '+data.q6_other+')':''}\n`;
-  const q7v = Array.isArray(data.q7)?data.q7:[data.q7||''];
-  body += `Q7.  Demand drivers: ${q7v.map(v=>valLabel('q7',v)).join(', ')}${data.q7_other?' (Other: '+data.q7_other+')':''}\n\n`;
-
-  // Section 2
-  body += `SECTION 2: CUSTOMER MIX & SEGMENTS\n${SEP}`;
-  body += `Q8.  Customer mix: ${valLabel('q8_mix',data.q8_mix||'')}  |  B2C: ${data.q8_pct_b2c||'?'}%  B2B: ${data.q8_pct_b2b||'?'}%\n`;
-
-  // Q9 grid
-  body += `Q9.  Personal customer frequency:\n`;
-  const form = document.getElementById('kycForm');
-  GRID_LABELS.q9.forEach((rowLabel,i)=>{
-    const el = form.querySelector(`[name="q9_r${i}"]:checked`);
-    const val = el ? Q9_COLS[['none','afew','some','many','most'].indexOf(el.value)] : '—';
-    body += `     • ${rowLabel}: ${val}\n`;
-  });
-
-  body += `Q10. Typical customer: ${data.q10||''}\n`;
-  const q11v = Array.isArray(data.q11)?data.q11:[data.q11||''];
-  body += `Q11. Why renting: ${q11v.map(v=>valLabel('q11',v)).join(', ')}${data.q11_other?' (Other: '+data.q11_other+')':''}\n`;
-
-  // Q12 grid
-  body += `Q12. Emotional/practical drivers:\n`;
-  GRID_LABELS.q12.forEach((rowLabel,i)=>{
-    const el = form.querySelector(`[name="q12_r${i}"]:checked`);
-    const val = el ? Q12_COLS[['rare','common','verycommon'].indexOf(el.value)] : '—';
-    body += `     • ${rowLabel}: ${val}\n`;
-  });
-
-  // Q13 grid
-  body += `Q13. Business customer frequency:\n`;
-  GRID_LABELS.q13.forEach((rowLabel,i)=>{
-    const el = form.querySelector(`[name="q13_r${i}"]:checked`);
-    const val = el ? Q13_COLS[['none','rare','common','major'].indexOf(el.value)] : '—';
-    body += `     • ${rowLabel}: ${val}\n`;
-  });
-
-  body += `Q14. What biz customers store: ${data.q14||''}\n`;
-  const q15v = Array.isArray(data.q15)?data.q15:[data.q15||''];
-  body += `Q15. Business needs: ${q15v.map(v=>valLabel('q15',v)).join(', ')}${data.q15_other?' (Other: '+data.q15_other+')':''}\n`;
-
-  // Q16 grid
-  body += `Q16. Unit types by customer:\n`;
-  GRID_LABELS.q16.forEach((rowLabel,i)=>{
-    const cols=['small','med','large','climate','driveup','park'];
-    const checked=cols.filter(c=>{const el=form.querySelector(`[name="q16_r${i}_${c}"]`);return el&&el.checked;});
-    const val=checked.length?checked.map((_,j)=>Q16_COLS[cols.indexOf(checked[j])]).join(', '):'—';
-    body += `     • ${rowLabel}: ${val}\n`;
-  });
-
-  body += `Q17. Enterprise accounts: ${valLabel('q17',data.q17||'')}\n`;
-  const q18v=Array.isArray(data.q18)?data.q18:[data.q18||''];
-  body += `Q18. Larger account types: ${q18v.map(v=>valLabel('q18',v)).join(', ')}${data.q18_other?' (Other: '+data.q18_other+')':''}\n`;
-  const q19v=Array.isArray(data.q19)?data.q19:[data.q19||''];
-  body += `Q19. Larger accounts care about: ${q19v.map(v=>valLabel('q19',v)).join(', ')}${data.q19_other?' (Other: '+data.q19_other+')':''}\n`;
-
-  body += `Q20. Top revenue segments:\n`;
-  for(let i=1;i<=5;i++){
-    if(data[`q20_seg${i}`]) body += `     ${i}. ${data[`q20_seg${i}`]}\n`;
-  }
-  body += `\n`;
-
-  // Section 3
-  body += `SECTION 3: LENGTH OF STAY & SEASONALITY\n${SEP}`;
-  const stayMap={u3mo:'Under 3 mo.','3_12mo':'3–12 mo.','1_2yr':'1–2 years','2plus':'2+ years'};
-  body += `Q21. Avg stay – Personal: ${stayMap[data.q21_personal]||'—'}  |  Business: ${stayMap[data.q21_business]||'—'}\n`;
-
-  body += `Q22. Stay by reason for renting:\n`;
-  GRID_LABELS.q22.forEach((rowLabel,i)=>{
-    const el=form.querySelector(`[name="q22_r${i}"]:checked`);
-    const val=el?Q22_COLS[['u3mo','3_6mo','6_12mo','12plus'].indexOf(el.value)]:'—';
-    body += `     • ${rowLabel}: ${val}\n`;
-  });
-
-  body += `Q23. Longest / fastest movers:\n`;
-  for(let i=0;i<5;i++){
-    if(data[`q23_type${i}`]){
-      const long=form.querySelector(`[name="q23_long${i}"]`)?.checked?'Longest stay':'';
-      const fast=form.querySelector(`[name="q23_fast${i}"]`)?.checked?'Fastest move-out':'';
-      const flags=[long,fast].filter(Boolean).join(' + ')||'—';
-      body += `     • ${data[`q23_type${i}`]}: ${flags}`;
-      if(data[`q23_notes${i}`]) body += ` — ${data[`q23_notes${i}`]}`;
-      body += `\n`;
-    }
-  }
-  body += `Q24. Peak move-in: ${data.q24||''}\n`;
-  body += `Q25. Peak move-out: ${data.q25||''}\n\n`;
-
-  // Section 4
-  body += `SECTION 4: HOW CUSTOMERS FIND US\n${SEP}`;
-  const q26v=Array.isArray(data.q26)?data.q26:[data.q26||''];
-  body += `Q26. How they find us: ${q26v.map(v=>valLabel('q26',v)).join(', ')}${data.q26_other?' (Other: '+data.q26_other+')':''}\n`;
-
-  body += `Q27. Best lead sources:\n`;
-  GRID_LABELS.q27.forEach((rowLabel,i)=>{
-    const cols=['hvol','bconv','longstay','pricesens'];
-    const checked=cols.filter(c=>{const el=form.querySelector(`[name="q27_r${i}_${c}"]`);return el&&el.checked;});
-    if(checked.length){
-      const val=checked.map(c=>Q27_COLS[cols.indexOf(c)]).join(', ');
-      body += `     • ${rowLabel}: ${val}\n`;
-    }
-  });
-
-  body += `Q28. Local referral businesses: ${data.q28||''}\n`;
-  body += `Q29. First contact method: ${valLabel('q29',data.q29||'')}\n`;
-  body += `Q30. Common first questions: ${data.q30||''}\n\n`;
-
-  // Section 5
-  body += `SECTION 5: WHY CUSTOMERS CHOOSE US\n${SEP}`;
-  const q31v=Array.isArray(data.q31)?data.q31:[data.q31||''];
-  body += `Q31. Why chosen: ${q31v.map(v=>valLabel('q31',v)).join(', ')}${data.q31_other?' (Other: '+data.q31_other+')':''}\n`;
-  body += `Q32. Top compliment: ${data.q32||''}\n`;
-  body += `Q33. Top complaint: ${data.q33||''}\n`;
-  const q34v=Array.isArray(data.q34)?data.q34:[data.q34||''];
-  body += `Q34. Why not chosen: ${q34v.map(v=>valLabel('q34',v)).join(', ')}${data.q34_other?' (Other: '+data.q34_other+')':''}\n\n`;
-
-  // Section 6
-  body += `SECTION 6: THE COMPETITION\n${SEP}`;
-  for(let i=1;i<=5;i++){
-    if(data[`q35_name${i}`]){
-      body += `Q35. Competitor ${i}: ${data[`q35_name${i}`]} | ${data[`q35_dist${i}`]||'?'} away | ${data[`q35_price${i}`]||'?'} | ${data[`q35_why${i}`]||''}\n`;
-    }
-  }
-  body += `Q36. Toughest competitor: ${data.q36||''}\n`;
-  body += `Q37. What they offer that we don't: ${data.q37||''}\n`;
-  body += `Q38. Current competitor deals: ${data.q38||''}\n\n`;
-
-  // Section 7
-  body += `SECTION 7: WHY CUSTOMERS LEAVE & PRICE SENSITIVITY\n${SEP}`;
-  const q39v=Array.isArray(data.q39)?data.q39:[data.q39||''];
-  body += `Q39. Move-out reasons: ${q39v.map(v=>valLabel('q39',v)).join(', ')}${data.q39_other?' (Other: '+data.q39_other+')':''}\n`;
-  body += `Q40. Reaction to rate increases: ${valLabel('q40',data.q40||'')}\n`;
-  body += `Q41. Price sensitivity rankings:\n`;
-  ['apt','students','contractors','longterm','ecomm','retirees','military','smallbiz','vehicle'].forEach(k=>{
-    if(data[`q41_${k}`]) body += `     ${data[`q41_${k}`]}. ${label('q41_'+k).replace('Price sensitivity rank – ','')}\n`;
-  });
-  body += `\n`;
-
-  // Section 8
-  body += `SECTION 8: WHAT COULD BE BETTER\n${SEP}`;
-  body += `Q42. Day-to-day issues: ${data.q42||''}\n`;
-  body += `Q43. Operational issue rankings:\n`;
-  ['pricing','rates','website','office','gate','lighting','clean','climate','units','access','staff','comp'].forEach(k=>{
-    if(data[`q43_${k}`]) body += `     ${data[`q43_${k}`]}. ${label('q43_'+k).replace('Ops issue rank – ','')}\n`;
-  });
-  body += `Q44. Services customers request: ${data.q44||''}\n`;
-  body += `Q45. Unit sizes always full: ${data.q45||''}\n`;
-  body += `Q46. Unit sizes hard to fill: ${data.q46||''}\n`;
-  body += `Q47. Onboarding improvement: ${data.q47||''}\n`;
-  body += `Q48. One thing to add: ${data.q48||''}\n\n`;
-
-  // Section 9
-  body += `SECTION 9: OPPORTUNITIES & MARKETING\n${SEP}`;
-  body += `Q49. Underserved segments:\n`;
-  GRID_LABELS.q49.forEach((rowLabel,i)=>{
-    const el=form.querySelector(`[name="q49_r${i}"]:checked`);
-    const val=el?Q49_COLS[['notpres','someopp','majoropp'].indexOf(el.value)]:'—';
-    body += `     • ${rowLabel}: ${val}\n`;
-  });
-  body += `Q50. Local partnerships: ${data.q50||''}\n`;
-  body += `Q51. Local growth opportunities: ${data.q51||''}\n`;
-  body += `Q52. Marketing focus rankings:\n`;
-  ['price','convenience','security','climate','longterm','biz','monthmth','clean','driveup'].forEach(k=>{
-    if(data[`q52_${k}`]) body += `     ${data[`q52_${k}`]}. ${label('q52_'+k).replace('Marketing focus rank – ','')}\n`;
-  });
-  body += `Q53. Messaging that won't work: ${data.q53||''}\n`;
-  body += `Q54. Channel rankings:\n`;
-  ['google','driveby','referrals','online','community'].forEach(k=>{
-    if(data[`q54_${k}`]) body += `     ${data[`q54_${k}`]}. ${label('q54_'+k).replace('Channel rank – ','')}\n`;
-  });
-  body += `Q55. Anything else: ${data.q55||''}\n`;
-  body += `\n${'═'.repeat(42)}\n`;
-  body += `Confidential | FreeUp Storage | Internal Use Only\n`;
-
-  const subject = encodeURIComponent(`KYC Form — ${facility} — ${manager}`);
-  const bodyEnc = encodeURIComponent(body);
-  const mailto  = `mailto:manilamarketing@spartan-investors.com?subject=${subject}&body=${bodyEnc}`;
-
-  const a = document.createElement('a');
-  a.href = mailto;
-  a.target = '_blank';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-
-  showToast('✓ Opening email with your responses. Printing a PDF copy…');
-  setTimeout(()=>printForm(), 1000);
 }
-
 // ── Clear / Start Over ───────────────────────────────────────────────────────
 function clearForm(){
   if(!confirm('Clear all answers and start over?')) return;
