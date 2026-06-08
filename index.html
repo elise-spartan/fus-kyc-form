@@ -472,6 +472,24 @@
     text-transform: uppercase;
   }
   .btn-submit:hover { background: var(--red); transform: translateY(-1px); }
+  .btn-print {
+    background: transparent;
+    color: var(--gray-600);
+    padding: 12px 20px;
+    font-size: .78rem;
+    font-weight: 600;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: var(--body);
+    transition: all .15s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .btn-print:hover { border-color: var(--navy); color: var(--navy); }
 
   /* ── Confidential badge ── */
   .confidential {
@@ -506,6 +524,17 @@
     border-left: 3px solid var(--red);
   }
   .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ── Print styles ── */
+  @media print {
+    body { background: white; padding: 0; font-size: 11px; }
+    .site-header, .header-actions, .btn, .submit-area, .toast { display: none !important; }
+    .form-container { max-width: 100%; margin: 0; padding: 10px; }
+    .section-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; margin-bottom: 12px; }
+    .section-header { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .check-item, .rank-item, .other-inline { border: 1px solid #ccc; }
+    textarea { min-height: 50px; }
+  }
 </style>
 </head>
 <body>
@@ -527,8 +556,6 @@
 </div>
 
 <div class="form-container">
-
-  <div id="formContent">
   <!-- Intro -->
   <div class="intro-card">
     <div class="subtitle">Store Manager Questionnaire</div>
@@ -1436,20 +1463,17 @@
   </div>
 
   <!-- Submit -->
-  <div class="submit-area" id="submitArea">
-    <p>Your responses are confidential and for FreeUp Storage marketing use only.<br><br>Once you've completed all questions, click Submit. Your Outlook will open with your responses pre-filled and ready to send. Give them a quick review and hit <strong>Send</strong> to submit to the marketing team.</p>
+  <div class="submit-area">
+    <p>Your responses are confidential and for FreeUp Storage marketing use only. Responses are saved in your browser until you submit or clear them.</p>
     <button type="button" class="btn-submit" onclick="submitForm()">✓ Submit Completed Form</button>
   </div>
 
   </form>
 
   <div class="confidential">Confidential &nbsp;|&nbsp; FreeUp Storage &nbsp;|&nbsp; Internal Use Only</div>
-  </div><!-- end formContent -->
-
-
 </div>
 
-
+<div class="toast" id="toast"></div>
 
 <script>
 
@@ -1554,7 +1578,9 @@ function collectFormData(){
   return data;
 }
 
+// ── Print: open a new window so it works inside iframes ─────────────────────
 // ── Validation rules — one entry per question ───────────────────────────────
+// type: 'text'|'radio'|'checkbox'|'grid-radio'|'grid-checkbox'|'table-text'|'rank'|'number'
 const RULES = [
   {q:'1',  type:'text',         names:['Facility_Name']},
   {q:'2',  type:'text',         names:['Manager_Name']},
@@ -1595,8 +1621,8 @@ const RULES = [
   {q:'38', type:'text',         names:['Competitor_Current_Deals'],  tag:'textarea'},
   {q:'39', type:'radio',        names:['Customers_Left_Competitor']},
   {q:'40', type:'checkbox',     names:['Move_Out_Reasons']},
-  {q:'41', type:'radio',        names:['Rate_Increase_Reaction']},
-  {q:'42', type:'rank',         names:['PriceSens_Rank_Apt_Renters','PriceSens_Rank_Students','PriceSens_Rank_Contractors','PriceSens_Rank_Longterm_Resi','PriceSens_Rank_Ecommerce','PriceSens_Rank_Retirees','PriceSens_Rank_Military','PriceSens_Rank_Small_Biz','PriceSens_Rank_Vehicle_Storage'], minCount:1},
+  {q:'41', type:'radio',        names:['Move_Out_Reasons']},
+  {q:'42', type:'rank',         prefix:'q41_', names:['PriceSens_Rank_Apt_Renters','PriceSens_Rank_Students','PriceSens_Rank_Contractors','PriceSens_Rank_Longterm_Resi','PriceSens_Rank_Ecommerce','PriceSens_Rank_Retirees','PriceSens_Rank_Military','PriceSens_Rank_Small_Biz','PriceSens_Rank_Vehicle_Storage'], minCount:1},
   {q:'43', type:'text',         names:['Day_To_Day_Customer_Issues'],  tag:'textarea'},
   {q:'44', type:'rank',         names:['OpsRank_Pricing_Confusion','OpsRank_Rate_Increases','OpsRank_Website_Booking','OpsRank_Limited_Office_Hours','OpsRank_Gate_Access','OpsRank_Poor_Lighting','OpsRank_Cleanliness','OpsRank_No_Climate_Control','OpsRank_Unit_Availability','OpsRank_Hard_Access_Units','OpsRank_Staffing_Service','OpsRank_Competitor_Promos'], minCount:1},
   {q:'45', type:'text',         names:['Services_Customers_Request'],  tag:'textarea'},
@@ -1616,31 +1642,55 @@ const RULES = [
 function isAnswered(rule){
   const form = document.getElementById('kycForm');
   const {type} = rule;
+
   if(type === 'text' || type === 'number'){
-    return rule.names.some(n => { const el=form.querySelector(`[name="${n}"]`); return el && el.value.trim().length > 0; });
+    return rule.names.some(n => {
+      const el = form.querySelector(`[name="${n}"]`);
+      return el && el.value.trim().length > 0;
+    });
   }
   if(type === 'radio'){
-    if(rule.all){ return rule.names.every(n => form.querySelector(`[name="${n}"]:checked`)); }
+    if(rule.all){
+      return rule.names.every(n => form.querySelector(`[name="${n}"]:checked`));
+    }
     return rule.names.some(n => form.querySelector(`[name="${n}"]:checked`));
   }
-  if(type === 'checkbox'){ return rule.names.some(n => form.querySelector(`[name="${n}"]:checked`)); }
+  if(type === 'checkbox'){
+    return rule.names.some(n => form.querySelector(`[name="${n}"]:checked`));
+  }
   if(type === 'grid-radio'){
-    const minRows = rule.minRows || rule.rows; let answered = 0;
-    for(let i=0; i<rule.rows; i++){ if(form.querySelector(`[name="${rule.prefix}${i}"]:checked`)) answered++; }
+    const minRows = rule.minRows || rule.rows;
+    let answered = 0;
+    for(let i=0; i<rule.rows; i++){
+      if(form.querySelector(`[name="${rule.prefix}${i}"]:checked`)) answered++;
+    }
     return answered >= minRows;
   }
   if(type === 'grid-checkbox'){
-    const minRows = rule.minRows || 1; let answered = 0;
+    const minRows = rule.minRows || 1;
+    let answered = 0;
     for(let i=0; i<rule.rows; i++){
-      const anyCol = rule.cols.some(c => { const el=form.querySelector(`[name="${rule.prefix}${i}_${c}"]`); return el && el.checked; });
+      const anyCol = rule.cols.some(c => {
+        const el = form.querySelector(`[name="${rule.prefix}${i}_${c}"]`);
+        return el && el.checked;
+      });
       if(anyCol) answered++;
     }
     return answered >= minRows;
   }
-  if(type === 'table-text'){ return rule.names.some(n => { const el=form.querySelector(`[name="${n}"]`); return el && el.value.trim().length > 0; }); }
+  if(type === 'table-text'){
+    return rule.names.some(n => {
+      const el = form.querySelector(`[name="${n}"]`);
+      return el && el.value.trim().length > 0;
+    });
+  }
   if(type === 'rank'){
     const minCount = rule.minCount || 1;
-    return rule.names.filter(n => { const el=form.querySelector(`[name="${n}"]`); return el && el.value.trim().length > 0; }).length >= minCount;
+    const filled = rule.names.filter(n => {
+      const el = form.querySelector(`[name="${n}"]`);
+      return el && el.value.trim().length > 0;
+    });
+    return filled.length >= minCount;
   }
   return false;
 }
@@ -1671,99 +1721,31 @@ function submitForm(){
     return;
   }
 
-  // All answered — build readable email and open mailto
+  // All answered — submit to Formspree
   saveData();
   const data = collectFormData();
 
-  const facility = data['Facility_Name'] || '(no facility)';
-  const manager  = data['Manager_Name']  || '(no name)';
-  const date     = data['Date']          || new Date().toLocaleDateString();
+  showToast('Submitting…');
 
-  const LABELS = {
-    'Facility_Name':'Facility','Manager_Name':'Manager','Date':'Date',
-    'How_Long_Managed':'How long managed','Approx_Tenants':'Approx. tenants',
-    'Market_Type':'Market type','Market_Type_Other':'Market type (other)',
-    'Demand_Drivers':'Demand drivers','Demand_Drivers_Other':'Demand drivers (other)',
-    'Customer_Mix':'Customer mix','Pct_Personal_B2C':'Personal / B2C %','Pct_Business_B2B':'Business / B2B %',
-    'Freq_Residential_Moving':'Freq - Residential moving','Freq_Residential_Longterm':'Freq - Residential long-term',
-    'Freq_Apt_Condo_Renters':'Freq - Apt/condo renters','Freq_Homeowners':'Freq - Homeowners',
-    'Freq_Military':'Freq - Military','Freq_Students':'Freq - Students',
-    'Freq_Seasonal_Snowbird':'Freq - Seasonal/snowbird','Freq_Vehicle_RV_Boat':'Freq - Vehicle/RV/boat',
-    'Freq_Retirees':'Freq - Retirees','Freq_Other_Customer_Types':'Freq - Other customer types',
-    'Typical_Personal_Customer':'Typical personal customer',
-    'Why_Personal_Customers_Rent':'Why personal customers rent',
-    'What_Biz_Customers_Store':'What biz customers store',
-    'Business_Needs':'Business needs','Enterprise_Accounts':'Enterprise accounts',
-    'Larger_Account_Types':'Larger account types','Larger_Accounts_Care_About':'Larger accounts care about',
-    'Peak_Move_In_Season':'Peak move-in season','Peak_Move_Out_Season':'Peak move-out season',
-    'How_Customers_Find_Us':'How customers find us','Local_Referral_Businesses':'Local referral businesses',
-    'First_Contact_Method':'First contact method','Common_First_Questions':'Common first questions',
-    'Why_Customers_Choose_Us':'Why customers choose us','Top_Compliment':'Top compliment',
-    'Top_Complaint':'Top complaint','Likelihood_To_Refer':'Likelihood to refer','Referral_Context':'Referral context',
-    'Why_Not_Chosen':'Why not chosen',
-    'Primary_Competitor_and_Why':'Primary competitor and why',
-    'Competitor_1_Name':'Competitor 1','Competitor_1_Distance':'Competitor 1 - distance','Competitor_1_Price':'Competitor 1 - price','Competitor_1_Why_Chosen':'Competitor 1 - why chosen',
-    'Competitor_2_Name':'Competitor 2','Competitor_2_Distance':'Competitor 2 - distance','Competitor_2_Price':'Competitor 2 - price','Competitor_2_Why_Chosen':'Competitor 2 - why chosen',
-    'Competitor_3_Name':'Competitor 3','Competitor_3_Distance':'Competitor 3 - distance','Competitor_3_Price':'Competitor 3 - price','Competitor_3_Why_Chosen':'Competitor 3 - why chosen',
-    'Competitor_4_Name':'Competitor 4','Competitor_4_Distance':'Competitor 4 - distance','Competitor_4_Price':'Competitor 4 - price','Competitor_4_Why_Chosen':'Competitor 4 - why chosen',
-    'Competitor_5_Name':'Competitor 5','Competitor_5_Distance':'Competitor 5 - distance','Competitor_5_Price':'Competitor 5 - price','Competitor_5_Why_Chosen':'Competitor 5 - why chosen',
-    'What_Competitors_Offer_We_Dont':'What competitors offer we don\'t','Competitor_Current_Deals':'Competitor current deals',
-    'Customers_Left_Competitor':'Customers left a competitor','Competitor_They_Left':'Competitor they left','Reason_They_Left_Competitor':'Why they left',
-    'Move_Out_Reasons':'Move-out reasons','Rate_Increase_Reaction':'Rate increase reaction',
-    'PriceSens_Rank_Apt_Renters':'Price sens. rank - Apt renters','PriceSens_Rank_Students':'Price sens. rank - Students',
-    'PriceSens_Rank_Contractors':'Price sens. rank - Contractors','PriceSens_Rank_Longterm_Resi':'Price sens. rank - Long-term',
-    'PriceSens_Rank_Ecommerce':'Price sens. rank - E-commerce','PriceSens_Rank_Retirees':'Price sens. rank - Retirees',
-    'PriceSens_Rank_Military':'Price sens. rank - Military','PriceSens_Rank_Small_Biz':'Price sens. rank - Small biz',
-    'PriceSens_Rank_Vehicle_Storage':'Price sens. rank - Vehicle storage',
-    'Day_To_Day_Customer_Issues':'Day-to-day customer issues',
-    'OpsRank_Pricing_Confusion':'Ops rank - Pricing confusion','OpsRank_Rate_Increases':'Ops rank - Rate increases',
-    'OpsRank_Website_Booking':'Ops rank - Website/booking','OpsRank_Limited_Office_Hours':'Ops rank - Limited office hours',
-    'OpsRank_Gate_Access':'Ops rank - Gate access','OpsRank_Poor_Lighting':'Ops rank - Poor lighting',
-    'OpsRank_Cleanliness':'Ops rank - Cleanliness','OpsRank_No_Climate_Control':'Ops rank - No climate control',
-    'OpsRank_Unit_Availability':'Ops rank - Unit availability','OpsRank_Hard_Access_Units':'Ops rank - Hard-to-access units',
-    'OpsRank_Staffing_Service':'Ops rank - Staffing/service','OpsRank_Competitor_Promos':'Ops rank - Competitor promos',
-    'Services_Customers_Request':'Services customers request','Unit_Sizes_Always_Full':'Unit sizes always full',
-    'Unit_Sizes_Hard_To_Fill':'Unit sizes hard to fill','Onboarding_Improvement':'Onboarding improvement',
-    'One_Thing_To_Add':'One thing to add',
-    'Local_Partnership_Opportunities':'Local partnership opportunities','Local_Growth_Opportunities':'Local growth opportunities',
-    'MktFocus_Rank_Price_Promos':'Mkt focus - Price/promos','MktFocus_Rank_Convenience':'Mkt focus - Convenience',
-    'MktFocus_Rank_Security':'Mkt focus - Security','MktFocus_Rank_Climate':'Mkt focus - Climate',
-    'MktFocus_Rank_Longterm_Value':'Mkt focus - Long-term value','MktFocus_Rank_Biz_Storage':'Mkt focus - Biz storage',
-    'MktFocus_Rank_Month_To_Month':'Mkt focus - Month-to-month','MktFocus_Rank_Cleanliness':'Mkt focus - Cleanliness',
-    'MktFocus_Rank_DriveUp':'Mkt focus - Drive-up',
-    'Messaging_That_Wont_Work':'Messaging that won\'t work',
-    'ChannelRank_Google':'Channel rank - Google','ChannelRank_DriveBy':'Channel rank - Drive-by',
-    'ChannelRank_Local_Referrals':'Channel rank - Local referrals','ChannelRank_Online_Ads':'Channel rank - Online ads',
-    'ChannelRank_Community':'Channel rank - Community','Anything_Else':'Anything else',
-  };
-
-  const SEP = '─────────────────────────────────\n';
-  let body = `FREEUPSTORAGE — KNOW YOUR CUSTOMERS\n${'═'.repeat(36)}\n`;
-  body += `Facility: ${facility}\nManager: ${manager}\nDate: ${date}\n\n`;
-
-  Object.entries(data).forEach(([k,v]) => {
-    if(['Facility_Name','Manager_Name','Date'].includes(k)) return;
-    const label = LABELS[k] || k.replace(/_/g,' ');
-    const val = Array.isArray(v) ? v.join(', ') : v;
-    if(val && String(val).trim()) body += `${label}: ${val}\n`;
-  });
-
-  body += `\n${'═'.repeat(36)}\nConfidential | FreeUp Storage | Internal Use Only`;
-
-  const subject = encodeURIComponent(`KYC Form — ${facility} — ${manager}`);
-  const bodyEnc = encodeURIComponent(body);
-  const mailto  = `mailto:manilamarketing@spartan-investors.com?subject=${subject}&body=${bodyEnc}`;
-
-  // Open mailto
-  const a = document.createElement('a');
-  a.href = mailto;
-  a.target = '_blank';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-
-  showToast('✓ Your Outlook should now be open with your responses. Please review and click Send.');
-  localStorage.removeItem('kyc_autosave');
+  fetch('https://formspree.io/f/mzdqrnpa', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(res => {
+    if(res.ok || res.next){
+      // Clear form after successful submission
+      localStorage.removeItem('kyc_autosave');
+      document.getElementById('kycForm').reset();
+      document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
+      window.scrollTo({top:0, behavior:'smooth'});
+      showToast('✓ Form submitted successfully. Thank you!');
+    } else {
+      showToast('⚠ Submission failed. Please try again.', true);
+    }
+  })
+  .catch(() => showToast('⚠ Submission failed. Please check your connection and try again.', true));
 
 }
 // ── Clear / Start Over ───────────────────────────────────────────────────────
