@@ -1515,7 +1515,7 @@
 function updateProgress(){
   const total = 56;
   let answered = 0;
-  for(let q=1; q<=55; q++){
+  for(let q=1; q<=56; q++){
     const el = document.querySelector(`[data-q="${q}"]`);
     if(!el) continue;
     const inputs = el.querySelectorAll('input, textarea, select');
@@ -2304,6 +2304,7 @@ function clearForm(){
 
 // ── Init ─────────────────────────────────────────────────────────────────────
 loadSaved();
+updateProgress();
 </script>
 </body>
 </html>
