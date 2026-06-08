@@ -2238,6 +2238,7 @@ function clearForm(){
 }
 
 
+function showToast(msg, isWarning=false){
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.style.background = isWarning ? 'var(--red)' : 'var(--navy)';
