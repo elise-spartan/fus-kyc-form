@@ -1478,27 +1478,6 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ── Build grid tables dynamically ───────────────────────────────────────────
-
-// ── Progress tracking ────────────────────────────────────────────────────────
-function updateProgress(){
-  const total = 56;
-  let answered = 0;
-  for(let q=1; q<=56; q++){
-    const el = document.querySelector(`[data-q="${q}"]`);
-    if(!el) continue;
-    const inputs = el.querySelectorAll('input, textarea, select');
-    let hasValue = false;
-    inputs.forEach(inp => {
-      if(inp.type==='checkbox'||inp.type==='radio'){
-        if(inp.checked) hasValue=true;
-      } else if(inp.value.trim()) hasValue=true;
-    });
-    if(hasValue) answered++;
-  }
-  const pct = Math.round(answered/total*100);
-  }
-
 
 // Clear invalid state on a question when it gets answered
 document.getElementById('kycForm').addEventListener('input', e => {
@@ -1571,7 +1550,7 @@ function loadSaved(){
     form.querySelectorAll('input[type=checkbox]:checked, input[type=radio]:checked').forEach(inp=>{
       inp.closest('.check-item')?.classList.add('checked');
     });
-    updateProgress();
+
     showToast('✓ Previous answers restored');
   } catch(e){}
 }
@@ -2254,7 +2233,6 @@ function clearForm(){
   document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
   document.querySelectorAll('.question.invalid').forEach(el => el.classList.remove('invalid'));
   document.getElementById('errorBanner').classList.remove('show');
-  updateProgress();
   window.scrollTo({top:0, behavior:'smooth'});
   showToast('✓ Form cleared. Ready for a new response.');
 }
