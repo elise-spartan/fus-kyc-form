@@ -556,6 +556,8 @@
 </div>
 
 <div class="form-container">
+
+  <div id="formContent">
   <!-- Intro -->
   <div class="intro-card">
     <div class="subtitle">Store Manager Questionnaire</div>
@@ -1471,6 +1473,7 @@
   </form>
 
   <div class="confidential">Confidential &nbsp;|&nbsp; FreeUp Storage &nbsp;|&nbsp; Internal Use Only</div>
+  </div><!-- end formContent -->
 
   <!-- Thank You Screen -->
   <div id="thankyou" style="display:none; flex-direction:column; align-items:center; justify-content:center; min-height:70vh; padding:40px 20px; text-align:center;">
@@ -1825,20 +1828,21 @@ function submitForm(){
   const bodyEnc = encodeURIComponent(body);
   const mailto  = `mailto:manilamarketing@spartan-investors.com?subject=${subject}&body=${bodyEnc}`;
 
-  const a = document.createElement('a');
-  a.href = mailto;
-  a.target = '_blank';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-
-  // Show thank you screen
-  document.getElementById('kycForm').style.display = 'none';
-  document.getElementById('submitArea').style.display = 'none';
-  document.getElementById('errorBanner').style.display = 'none';
+  // Show thank you screen FIRST before opening email client
+  document.getElementById('formContent').style.display = 'none';
   document.getElementById('thankyou').style.display = 'flex';
   window.scrollTo({top:0, behavior:'smooth'});
   localStorage.removeItem('kyc_autosave');
+
+  // Then open mailto (slight delay so the page update renders first)
+  setTimeout(() => {
+    const a = document.createElement('a');
+    a.href = mailto;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }, 300);
 
 }
 // ── Clear / Start Over ───────────────────────────────────────────────────────
@@ -1856,9 +1860,7 @@ function clearForm(){
 
 function startOver(){
   document.getElementById('thankyou').style.display = 'none';
-  document.getElementById('kycForm').style.display = 'block';
-  document.getElementById('submitArea').style.display = 'flex';
-  document.getElementById('errorBanner').style.display = '';
+  document.getElementById('formContent').style.display = 'block';
   document.getElementById('kycForm').reset();
   document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
   document.querySelectorAll('.question.invalid').forEach(el => el.classList.remove('invalid'));
