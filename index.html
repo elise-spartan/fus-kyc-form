@@ -1463,7 +1463,7 @@
   </div>
 
   <!-- Submit -->
-  <div class="submit-area">
+  <div class="submit-area" id="submitArea">
     <p>Your responses are confidential and for FreeUp Storage marketing use only. Responses are saved in your browser until you submit or clear them.</p>
     <button type="button" class="btn-submit" onclick="submitForm()">✓ Submit Completed Form</button>
   </div>
@@ -1473,7 +1473,27 @@
   <div class="confidential">Confidential &nbsp;|&nbsp; FreeUp Storage &nbsp;|&nbsp; Internal Use Only</div>
 </div>
 
-<div class="toast" id="toast"></div>
+<!-- Thank You Screen -->
+<div id="thankyou" style="display:none; flex-direction:column; align-items:center; justify-content:center; min-height:70vh; padding:40px 20px; text-align:center; max-width:640px; margin:0 auto;">
+  <div style="background:var(--red); width:64px; height:64px; border-radius:50%; display:grid; place-items:center; margin-bottom:24px; box-shadow:0 4px 20px rgba(226,59,48,.3)">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+  </div>
+  <h2 style="font-family:var(--display); font-size:2.4rem; color:var(--navy); letter-spacing:.1em; text-transform:uppercase; margin-bottom:12px;">Thank You!</h2>
+  <p style="font-size:1rem; color:#444; line-height:1.8; margin-bottom:8px;">Your responses have been compiled and your email client should have opened with a pre-filled message addressed to the FreeUp Storage marketing team.</p>
+  <p style="font-size:1rem; color:#444; line-height:1.8; margin-bottom:32px;">Please <strong>review your responses</strong> in the email and click <strong>Send</strong> to submit them. If the email didn't open automatically, please check your email client or pop-up settings.</p>
+  <div style="background:#f7f7f8; border:1.5px solid #e0e0e2; border-radius:var(--radius); padding:20px 28px; margin-bottom:32px; text-align:left; width:100%">
+    <p style="font-size:.8rem; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px;">What to do next</p>
+    <ol style="font-size:.88rem; color:#555; line-height:2; padding-left:18px;">
+      <li>Switch to your email client (Outlook, Gmail, etc.)</li>
+      <li>You'll see a draft email with your responses in the body</li>
+      <li>Review the answers to make sure everything looks correct</li>
+      <li>Click <strong>Send</strong></li>
+    </ol>
+  </div>
+  <button onclick="startOver()" style="background:var(--navy); color:white; border:none; padding:12px 28px; border-radius:var(--radius); font-family:var(--body); font-size:.82rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; cursor:pointer;">↺ Fill Out Another Form</button>
+</div>
+
+
 
 <script>
 
@@ -1721,31 +1741,102 @@ function submitForm(){
     return;
   }
 
-  // All answered — submit to Formspree
+  // All answered — build readable email and open mailto
   saveData();
   const data = collectFormData();
 
-  showToast('Submitting…');
+  const facility = data['Facility_Name'] || '(no facility)';
+  const manager  = data['Manager_Name']  || '(no name)';
+  const date     = data['Date']          || new Date().toLocaleDateString();
 
-  fetch('https://formspree.io/f/mzdqrnpa', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify(data)
-  })
-  .then(res => res.json())
-  .then(res => {
-    if(res.ok || res.next){
-      // Clear form after successful submission
-      localStorage.removeItem('kyc_autosave');
-      document.getElementById('kycForm').reset();
-      document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
-      window.scrollTo({top:0, behavior:'smooth'});
-      showToast('✓ Form submitted successfully. Thank you!');
-    } else {
-      showToast('⚠ Submission failed. Please try again.', true);
-    }
-  })
-  .catch(() => showToast('⚠ Submission failed. Please check your connection and try again.', true));
+  const LABELS = {
+    'Facility_Name':'Facility','Manager_Name':'Manager','Date':'Date',
+    'How_Long_Managed':'How long managed','Approx_Tenants':'Approx. tenants',
+    'Market_Type':'Market type','Market_Type_Other':'Market type (other)',
+    'Demand_Drivers':'Demand drivers','Demand_Drivers_Other':'Demand drivers (other)',
+    'Customer_Mix':'Customer mix','Pct_Personal_B2C':'Personal / B2C %','Pct_Business_B2B':'Business / B2B %',
+    'Freq_Residential_Moving':'Freq - Residential moving','Freq_Residential_Longterm':'Freq - Residential long-term',
+    'Freq_Apt_Condo_Renters':'Freq - Apt/condo renters','Freq_Homeowners':'Freq - Homeowners',
+    'Freq_Military':'Freq - Military','Freq_Students':'Freq - Students',
+    'Freq_Seasonal_Snowbird':'Freq - Seasonal/snowbird','Freq_Vehicle_RV_Boat':'Freq - Vehicle/RV/boat',
+    'Freq_Retirees':'Freq - Retirees','Freq_Other_Customer_Types':'Freq - Other customer types',
+    'Typical_Personal_Customer':'Typical personal customer',
+    'Why_Personal_Customers_Rent':'Why personal customers rent',
+    'What_Biz_Customers_Store':'What biz customers store',
+    'Business_Needs':'Business needs','Enterprise_Accounts':'Enterprise accounts',
+    'Larger_Account_Types':'Larger account types','Larger_Accounts_Care_About':'Larger accounts care about',
+    'Peak_Move_In_Season':'Peak move-in season','Peak_Move_Out_Season':'Peak move-out season',
+    'How_Customers_Find_Us':'How customers find us','Local_Referral_Businesses':'Local referral businesses',
+    'First_Contact_Method':'First contact method','Common_First_Questions':'Common first questions',
+    'Why_Customers_Choose_Us':'Why customers choose us','Top_Compliment':'Top compliment',
+    'Top_Complaint':'Top complaint','Likelihood_To_Refer':'Likelihood to refer','Referral_Context':'Referral context',
+    'Why_Not_Chosen':'Why not chosen',
+    'Primary_Competitor_and_Why':'Primary competitor and why',
+    'Competitor_1_Name':'Competitor 1','Competitor_1_Distance':'Competitor 1 - distance','Competitor_1_Price':'Competitor 1 - price','Competitor_1_Why_Chosen':'Competitor 1 - why chosen',
+    'Competitor_2_Name':'Competitor 2','Competitor_2_Distance':'Competitor 2 - distance','Competitor_2_Price':'Competitor 2 - price','Competitor_2_Why_Chosen':'Competitor 2 - why chosen',
+    'Competitor_3_Name':'Competitor 3','Competitor_3_Distance':'Competitor 3 - distance','Competitor_3_Price':'Competitor 3 - price','Competitor_3_Why_Chosen':'Competitor 3 - why chosen',
+    'Competitor_4_Name':'Competitor 4','Competitor_4_Distance':'Competitor 4 - distance','Competitor_4_Price':'Competitor 4 - price','Competitor_4_Why_Chosen':'Competitor 4 - why chosen',
+    'Competitor_5_Name':'Competitor 5','Competitor_5_Distance':'Competitor 5 - distance','Competitor_5_Price':'Competitor 5 - price','Competitor_5_Why_Chosen':'Competitor 5 - why chosen',
+    'What_Competitors_Offer_We_Dont':'What competitors offer we don\'t','Competitor_Current_Deals':'Competitor current deals',
+    'Customers_Left_Competitor':'Customers left a competitor','Competitor_They_Left':'Competitor they left','Reason_They_Left_Competitor':'Why they left',
+    'Move_Out_Reasons':'Move-out reasons','Rate_Increase_Reaction':'Rate increase reaction',
+    'PriceSens_Rank_Apt_Renters':'Price sens. rank - Apt renters','PriceSens_Rank_Students':'Price sens. rank - Students',
+    'PriceSens_Rank_Contractors':'Price sens. rank - Contractors','PriceSens_Rank_Longterm_Resi':'Price sens. rank - Long-term',
+    'PriceSens_Rank_Ecommerce':'Price sens. rank - E-commerce','PriceSens_Rank_Retirees':'Price sens. rank - Retirees',
+    'PriceSens_Rank_Military':'Price sens. rank - Military','PriceSens_Rank_Small_Biz':'Price sens. rank - Small biz',
+    'PriceSens_Rank_Vehicle_Storage':'Price sens. rank - Vehicle storage',
+    'Day_To_Day_Customer_Issues':'Day-to-day customer issues',
+    'OpsRank_Pricing_Confusion':'Ops rank - Pricing confusion','OpsRank_Rate_Increases':'Ops rank - Rate increases',
+    'OpsRank_Website_Booking':'Ops rank - Website/booking','OpsRank_Limited_Office_Hours':'Ops rank - Limited office hours',
+    'OpsRank_Gate_Access':'Ops rank - Gate access','OpsRank_Poor_Lighting':'Ops rank - Poor lighting',
+    'OpsRank_Cleanliness':'Ops rank - Cleanliness','OpsRank_No_Climate_Control':'Ops rank - No climate control',
+    'OpsRank_Unit_Availability':'Ops rank - Unit availability','OpsRank_Hard_Access_Units':'Ops rank - Hard-to-access units',
+    'OpsRank_Staffing_Service':'Ops rank - Staffing/service','OpsRank_Competitor_Promos':'Ops rank - Competitor promos',
+    'Services_Customers_Request':'Services customers request','Unit_Sizes_Always_Full':'Unit sizes always full',
+    'Unit_Sizes_Hard_To_Fill':'Unit sizes hard to fill','Onboarding_Improvement':'Onboarding improvement',
+    'One_Thing_To_Add':'One thing to add',
+    'Local_Partnership_Opportunities':'Local partnership opportunities','Local_Growth_Opportunities':'Local growth opportunities',
+    'MktFocus_Rank_Price_Promos':'Mkt focus - Price/promos','MktFocus_Rank_Convenience':'Mkt focus - Convenience',
+    'MktFocus_Rank_Security':'Mkt focus - Security','MktFocus_Rank_Climate':'Mkt focus - Climate',
+    'MktFocus_Rank_Longterm_Value':'Mkt focus - Long-term value','MktFocus_Rank_Biz_Storage':'Mkt focus - Biz storage',
+    'MktFocus_Rank_Month_To_Month':'Mkt focus - Month-to-month','MktFocus_Rank_Cleanliness':'Mkt focus - Cleanliness',
+    'MktFocus_Rank_DriveUp':'Mkt focus - Drive-up',
+    'Messaging_That_Wont_Work':'Messaging that won\'t work',
+    'ChannelRank_Google':'Channel rank - Google','ChannelRank_DriveBy':'Channel rank - Drive-by',
+    'ChannelRank_Local_Referrals':'Channel rank - Local referrals','ChannelRank_Online_Ads':'Channel rank - Online ads',
+    'ChannelRank_Community':'Channel rank - Community','Anything_Else':'Anything else',
+  };
+
+  const SEP = '─────────────────────────────────\n';
+  let body = `FREEUPSTORAGE — KNOW YOUR CUSTOMERS\n${'═'.repeat(36)}\n`;
+  body += `Facility: ${facility}\nManager: ${manager}\nDate: ${date}\n\n`;
+
+  Object.entries(data).forEach(([k,v]) => {
+    if(['Facility_Name','Manager_Name','Date'].includes(k)) return;
+    const label = LABELS[k] || k.replace(/_/g,' ');
+    const val = Array.isArray(v) ? v.join(', ') : v;
+    if(val && String(val).trim()) body += `${label}: ${val}\n`;
+  });
+
+  body += `\n${'═'.repeat(36)}\nConfidential | FreeUp Storage | Internal Use Only`;
+
+  const subject = encodeURIComponent(`KYC Form — ${facility} — ${manager}`);
+  const bodyEnc = encodeURIComponent(body);
+  const mailto  = `mailto:manilamarketing@spartan-investors.com?subject=${subject}&body=${bodyEnc}`;
+
+  const a = document.createElement('a');
+  a.href = mailto;
+  a.target = '_blank';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  // Show thank you screen
+  document.getElementById('kycForm').style.display = 'none';
+  document.getElementById('submitArea').style.display = 'none';
+  document.getElementById('thankyou').style.display = 'flex';
+  window.scrollTo({top:0, behavior:'smooth'});
+  localStorage.removeItem('kyc_autosave');
 
 }
 // ── Clear / Start Over ───────────────────────────────────────────────────────
@@ -1761,7 +1852,18 @@ function clearForm(){
 }
 
 
-function showToast(msg, isWarning=false){
+function startOver(){
+  document.getElementById('thankyou').style.display = 'none';
+  document.getElementById('kycForm').style.display = 'block';
+  document.getElementById('submitArea').style.display = 'flex';
+  document.getElementById('kycForm').reset();
+  document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
+  document.querySelectorAll('.question.invalid').forEach(el => el.classList.remove('invalid'));
+  document.getElementById('errorBanner').classList.remove('show');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.style.background = isWarning ? 'var(--red)' : 'var(--navy)';
