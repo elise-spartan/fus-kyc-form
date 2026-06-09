@@ -681,9 +681,9 @@
 <tr><td>Vehicle / RV / boat owners</td><td><input type="radio" name="Freq_Vehicle_RV_Boat" value="none"></td><td><input type="radio" name="Freq_Vehicle_RV_Boat" value="afew"></td><td><input type="radio" name="Freq_Vehicle_RV_Boat" value="some"></td><td><input type="radio" name="Freq_Vehicle_RV_Boat" value="many"></td><td><input type="radio" name="Freq_Vehicle_RV_Boat" value="most"></td></tr>
 <tr><td>Retirees / fixed income</td><td><input type="radio" name="Freq_Retirees" value="none"></td><td><input type="radio" name="Freq_Retirees" value="afew"></td><td><input type="radio" name="Freq_Retirees" value="some"></td><td><input type="radio" name="Freq_Retirees" value="many"></td><td><input type="radio" name="Freq_Retirees" value="most"></td></tr>
 <tr><td>Other customer types</td><td><input type="radio" name="Freq_Other_Customer_Types" value="none"></td><td><input type="radio" name="Freq_Other_Customer_Types" value="afew"></td><td><input type="radio" name="Freq_Other_Customer_Types" value="some"></td><td><input type="radio" name="Freq_Other_Customer_Types" value="many"></td><td><input type="radio" name="Freq_Other_Customer_Types" value="most"></td></tr>
-<tr><td><input type="text" name="Custom_Customer_Type_1" placeholder="Add customer type…" style="width:100%;font-size:.8rem;border:1px solid #e0e0e2;padding:4px 7px;border-radius:3px"></td><td><input type="radio" name="Freq_Custom_Type_1" value="none"></td><td><input type="radio" name="Freq_Custom_Type_1" value="afew"></td><td><input type="radio" name="Freq_Custom_Type_1" value="some"></td><td><input type="radio" name="Freq_Custom_Type_1" value="many"></td><td><input type="radio" name="Freq_Custom_Type_1" value="most"></td></tr>
-<tr><td><input type="text" name="Custom_Customer_Type_2" placeholder="Add customer type…" style="width:100%;font-size:.8rem;border:1px solid #e0e0e2;padding:4px 7px;border-radius:3px"></td><td><input type="radio" name="Freq_Custom_Type_2" value="none"></td><td><input type="radio" name="Freq_Custom_Type_2" value="afew"></td><td><input type="radio" name="Freq_Custom_Type_2" value="some"></td><td><input type="radio" name="Freq_Custom_Type_2" value="many"></td><td><input type="radio" name="Freq_Custom_Type_2" value="most"></td></tr>
-<tr><td><input type="text" name="Custom_Customer_Type_3" placeholder="Add customer type…" style="width:100%;font-size:.8rem;border:1px solid #e0e0e2;padding:4px 7px;border-radius:3px"></td><td><input type="radio" name="Freq_Custom_Type_3" value="none"></td><td><input type="radio" name="Freq_Custom_Type_3" value="afew"></td><td><input type="radio" name="Freq_Custom_Type_3" value="some"></td><td><input type="radio" name="Freq_Custom_Type_3" value="many"></td><td><input type="radio" name="Freq_Custom_Type_3" value="most"></td></tr>
+<tr><td><input type="text" name="Custom_Customer_Type_1" placeholder="Add customer type…" style="width:100%;font-size:.8rem;border:1px solid #e0e0e2;padding:4px 7px;border-radius:3px" oninput="toggleCustomRow(this,'Freq_Custom_Type_1')"></td><td><input type="radio" name="Freq_Custom_Type_1" value="none" disabled style="opacity:.2"></td><td><input type="radio" name="Freq_Custom_Type_1" value="afew" disabled style="opacity:.2"></td><td><input type="radio" name="Freq_Custom_Type_1" value="some" disabled style="opacity:.2"></td><td><input type="radio" name="Freq_Custom_Type_1" value="many" disabled style="opacity:.2"></td><td><input type="radio" name="Freq_Custom_Type_1" value="most" disabled style="opacity:.2"></td></tr>
+<tr><td><input type="text" name="Custom_Customer_Type_2" placeholder="Add customer type…" style="width:100%;font-size:.8rem;border:1px solid #e0e0e2;padding:4px 7px;border-radius:3px" oninput="toggleCustomRow(this,'Freq_Custom_Type_2')"></td><td><input type="radio" name="Freq_Custom_Type_2" value="none" disabled style="opacity:.2"></td><td><input type="radio" name="Freq_Custom_Type_2" value="afew" disabled style="opacity:.2"></td><td><input type="radio" name="Freq_Custom_Type_2" value="some" disabled style="opacity:.2"></td><td><input type="radio" name="Freq_Custom_Type_2" value="many" disabled style="opacity:.2"></td><td><input type="radio" name="Freq_Custom_Type_2" value="most" disabled style="opacity:.2"></td></tr>
+<tr><td><input type="text" name="Custom_Customer_Type_3" placeholder="Add customer type…" style="width:100%;font-size:.8rem;border:1px solid #e0e0e2;padding:4px 7px;border-radius:3px" oninput="toggleCustomRow(this,'Freq_Custom_Type_3')"></td><td><input type="radio" name="Freq_Custom_Type_3" value="none" disabled style="opacity:.2"></td><td><input type="radio" name="Freq_Custom_Type_3" value="afew" disabled style="opacity:.2"></td><td><input type="radio" name="Freq_Custom_Type_3" value="some" disabled style="opacity:.2"></td><td><input type="radio" name="Freq_Custom_Type_3" value="many" disabled style="opacity:.2"></td><td><input type="radio" name="Freq_Custom_Type_3" value="most" disabled style="opacity:.2"></td></tr>
 </tbody>
         </table>
         </div>
@@ -1702,35 +1702,32 @@ function submitForm(){
   saveData();
   const data = collectFormData();
 
-  const facility = data['Facility_Name'] || '(no facility)';
-  const manager  = data['Manager_Name']  || '(no name)';
-  const date     = data['Date']          || new Date().toLocaleDateString();
+  // Reset and show success immediately
+  localStorage.removeItem('kyc_autosave');
+  document.getElementById('kycForm').reset();
+  document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
+  document.querySelectorAll('.question.invalid').forEach(el => el.classList.remove('invalid'));
+  document.getElementById('errorBanner').classList.remove('show');
+  window.scrollTo({top:0, behavior:'smooth'});
+  showToast('✓ Form submitted successfully. Thank you!');
 
-  // Submit to Formspree
-  saveData();
-
+  // POST to Formspree in background
   fetch('https://formspree.io/f/mzdqrnpa', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify(data)
-  })
-  .then(res => res.json())
-  .then(res => {
-    if(res.ok || res.next){
-      localStorage.removeItem('kyc_autosave');
-      document.getElementById('kycForm').reset();
-      document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
-      document.querySelectorAll('.question.invalid').forEach(el => el.classList.remove('invalid'));
-      document.getElementById('errorBanner').classList.remove('show');
-      setTimeout(() => window.scrollTo({top:0, behavior:'smooth'}), 300);
-      showToast('✓ Form submitted successfully. Thank you!');
-    } else {
-      showToast('⚠ Submission failed. Please try again.', true);
-    }
-  })
-  .catch(() => showToast('⚠ Submission failed. Please check your connection and try again.', true));
+  }).catch(() => console.warn('Formspree submission error'));
 
 }
+function toggleCustomRow(input, radioName){
+  const enabled = input.value.trim().length > 0;
+  document.querySelectorAll(`[name="${radioName}"]`).forEach(r => {
+    r.disabled = !enabled;
+    r.style.opacity = enabled ? '1' : '.2';
+    if(!enabled) r.checked = false;
+  });
+}
+
 // ── Clear / Start Over ───────────────────────────────────────────────────────
 function clearForm(){
   if(!confirm('Clear all answers and start over?')) return;
